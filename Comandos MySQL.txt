@@ -260,12 +260,49 @@ order by total desc;
 select * from mejores_clientes;
 /*---------------------------------Procedimientos---------------------------------------*/
 /*---------------------Procedimiento1---------------------*/
-
+delimiter //
+create procedure generar_cita(in id varchar(20),in hora varchar(20),in fecha varchar(20),in cliente varchar(20),in empleado varchar(20))
+begin
+insert into cita values
+(id,hora,fecha,cliente,empleado);
+end
+//
+delimiter ;
+call generar_cita("3004","11:30","01/01/94","002","1001");
+select * from cita;
 /*---------------------Procedimiento2---------------------*/
-
+delimiter //
+create procedure modificar_cita(in id varchar(20),in fecha_nueva varchar(20),in hora_nueva varchar(20))
+begin
+update cita
+set fecha=fecha_nueva, hora=hora_nueva
+where id_cita=id;
+end
+//
+delimiter ;
+call modificar_cita("3004","01/02/94","13:30");
+select * from cita;
 /*---------------------Procedimiento3---------------------*/
-
+delimiter //
+create procedure cancelar_cita(in id varchar(20))
+begin
+delete from cita
+where id_cita=id;
+end
+//
+delimiter ;
+call cancelar_cita("3004");
+select * from cita;
 /*---------------------Procedimiento4---------------------*/
+delimiter //
+create procedure buscar_proveedor(in nombre varchar(40))
+begin
+select * from informacion_proveedores
+where proveedor=nombre;
+end
+//
+delimiter ;
+call buscar_proveedor("Proveedor3");
 /*---------------------------------Triggers---------------------------------------*/
 /*---------------------Trigger1---------------------*/
 
