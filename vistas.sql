@@ -2,7 +2,9 @@
 #vista 1
 CREATE VIEW cliente_servicio_insumo AS
 
-SELECT cliente.nombre AS nombre_cliente, cita.fechaSolicitda, servicio.descripción AS descripción_Servicio, servicio.fecha AS fecha_de_servicio, insumo.nombre AS nombre_insumo, servicioinsumo.REFinsumo
+SELECT cliente.nombre AS nombre_cliente, cita.fechaSolicitda, servicio.descripción 
+AS descripción_Servicio, servicio.fecha AS fecha_de_servicio, insumo.nombre 
+AS nombre_insumo, servicioinsumo.REFinsumo
 FROM cliente
 INNER JOIN cita ON cliente.id = cita.idCliente
 INNER JOIN servicio ON cita.id = servicio.idCita

@@ -37,7 +37,14 @@ CREATE TABLE IF NOT EXISTS insumo (
     FOREIGN KEY (NITProveedor) REFERENCES proveedor (NIT));
 
 
-# Tabla cliente
+
+
+
+# Tabla empleado
+
+CREATE TABLE IF NOT EXISTS empleado (
+  id INT NOT NULL,
+  cedu# Tabla cliente
 
 CREATE TABLE IF NOT EXISTS cliente (
   id INT NOT NULL,
@@ -46,14 +53,7 @@ CREATE TABLE IF NOT EXISTS cliente (
   correo VARCHAR(30) NOT NULL,
   edad VARCHAR(3) NOT NULL,
   direccion VARCHAR(50) NOT NULL,
-  PRIMARY KEY (id));
-
-
-# Tabla empleado
-
-CREATE TABLE IF NOT EXISTS empleado (
-  id INT NOT NULL,
-  cedula VARCHAR(15) NOT NULL,
+  PRIMARY KEY (id));la VARCHAR(15) NOT NULL,
   nombre VARCHAR(25) NOT NULL,
   PRIMARY KEY (id));
 

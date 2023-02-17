@@ -1,4 +1,4 @@
-# Datos de tabla procedimiento.
+# Datos de tabla proveedo
 INSERT INTO  proveedor (NIT, nombre, direccion)
 VALUES ( 111, "Productos SA", "CRA 2B -78"), 
 	(112,"Cosmeticos SA", "cra 3b-78");
