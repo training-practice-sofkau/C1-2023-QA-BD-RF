@@ -1,0 +1,361 @@
+create schema barberia;
+use barberia;
+/*--------------------------------------------------Tabla cliente y contacto_cliente --------------------------------------------------------*/
+create table cliente(
+	id_cliente varchar(20) primary key,
+    CC varchar(20),
+    nombre varchar(60),
+    profesion varchar(40),
+    correo varchar(40),
+    edad varchar(3),
+    direccion varchar(40)
+);
+insert into cliente values
+("001","1115456123","Ash Ketchup","Entrenador pokemon","Ash@hotmail.com","12","Calle pueblo # paleta"),
+("002","1115456124","Goku Armando","Peleador de MMA","Goku@hotmail.com","27","Namekusei"),
+("003","1115456125","Mario Bros","Fontanero","Mario@hotmail.com","20","Reino champinion");
+select * from cliente;
+
+create table contacto_cliente(
+	id_cliente_contacto varchar(20),
+    telefono varchar(20),
+    primary key(id_cliente_contacto,telefono),
+    foreign key(id_cliente_contacto) references cliente(id_cliente)
+);
+insert into contacto_cliente values
+("001","315789123"),
+("002","315789124"),
+("003","315789125");
+select * from contacto_cliente;
+/*--------------------------------------------------Tabla proveedor y contacto_proveedor --------------------------------------------------------*/
+create table proveedor(
+	id_proveedor varchar(20) primary key,
+    nombre varchar(60),
+    direccion varchar(40)
+);
+insert into proveedor values
+("101","Proveedor1","Calle falsa 123"),
+("102","Proveedor2","Calle falsa 124"),
+("103","Proveedor3","Calle falsa 125");
+select * from proveedor;
+
+create table contacto_proveedor(
+	id_proveedor_contacto varchar(20),
+    telefono varchar(20),
+    primary key(id_proveedor_contacto,telefono),
+    foreign key(id_proveedor_contacto) references proveedor(id_proveedor)
+);
+insert into contacto_proveedor values
+("101","315789129"),
+("102","315789128"),
+("103","315789127");
+select * from contacto_proveedor;
+/*--------------------------------------------------Tabla empleado y especialidadr --------------------------------------------------------*/
+create table empleado(
+	id_empleado varchar(20) primary key,
+    CC varchar(60),
+    nombre varchar(40),
+    liga double
+);
+insert into empleado values
+("1001","1115456111","Empleado1",1000),
+("1002","1115456112","Empleado2",2000),
+("1003","1115456113","Empleado3",3000);
+select * from empleado;
+
+create table especialidad(
+	id_empleado_especialidad varchar(20),
+    especialidad varchar(20),
+    primary key(id_empleado_especialidad,especialidad),
+    foreign key(id_empleado_especialidad) references empleado(id_empleado)
+);
+insert into especialidad values
+("1001","cejas"),
+("1002","cabello"),
+("1003","piel");
+select * from especialidad;
+/*--------------------------------------------------Tabla producto --------------------------------------------------------*/
+create table producto(
+	id_producto varchar(20) primary key,
+    nombre varchar(20),
+    descripcion varchar(60),
+    cantidad varchar(40),
+    precio varchar(40)
+);
+insert into producto values
+("2001","Shampoo anti caspa","Descripcion1","100","50000"),
+("2002","Tinte","Descripcion2","100","5000"),
+("2003","Prestobarba","Descripcion13","100","6000");
+select * from producto;
+/*--------------------------------------------------Tabla cita --------------------------------------------------------*/
+create table cita(
+	id_cita varchar(20) primary key,
+    hora varchar(20),
+    fecha varchar(60),
+    id_cliente_cita varchar(20),
+    id_empleado_cita varchar(20),
+    foreign key(id_cliente_cita) references cliente(id_cliente),
+    foreign key(id_empleado_cita) references empleado(id_empleado)
+);
+insert into cita values
+("3001","08:30","01/01/91","001","1001"),
+("3002","09:30","01/01/92","002","1002"),
+("3003","10:30","01/01/93","003","1003");
+select * from cita;
+/*--------------------------------------------------Tabla servicio --------------------------------------------------------*/
+create table servicio(
+	id_servicio varchar(20) primary key,
+    fecha varchar(20),
+    descripcion varchar(20),
+    precio varchar(20),
+    id_cita_servicio varchar(20),
+    foreign key(id_cita_servicio) references cita(id_cita)
+);
+alter table servicio
+add duracion varchar(10);
+insert into servicio values
+("4001","02/02/92","descripcion1","30000","3001"),
+("4002","02/02/93","descripcion2","20000","3002"),
+("4003","02/02/94","descripcion3","10000","3003");
+select * from servicio;
+/*--------------------------------------------------Tabla producto_servicio --------------------------------------------------------*/
+create table producto_servicio(
+	id_producto_servicio varchar(20),
+    id_servicio_producto varchar(20),
+    primary key(id_producto_servicio,id_servicio_producto),
+    foreign key(id_producto_servicio) references producto(id_producto),
+    foreign key(id_servicio_producto) references servicio(id_servicio)
+);
+insert into producto_servicio values
+("2001","4001"),
+("2002","4002"),
+("2003","4003");
+select * from producto_servicio;
+/*--------------------------------------------------Tabla empleado_vende --------------------------------------------------------*/
+create table empleado_vende(
+	id_empleado_vende varchar(20),
+    id_producto_vende varchar(20),
+    primary key(id_empleado_vende,id_producto_vende),
+    foreign key(id_empleado_vende) references empleado(id_empleado),
+    foreign key(id_producto_vende) references producto(id_producto)
+);
+insert into empleado_vende values
+("1001","2001"),
+("1002","2002"),
+("1003","2003");
+select * from empleado_vende;
+/*--------------------------------------------------Tabla compra --------------------------------------------------------*/
+create table compra(
+	id_producto_compra varchar(20),
+    id_cliente_compra varchar(20),
+    cantidad_producto varchar(5),
+    total varchar(10),
+    primary key(id_producto_compra,id_cliente_compra),
+    foreign key(id_producto_compra) references producto(id_producto),
+    foreign key(id_cliente_compra) references cliente(id_cliente)
+);
+alter table compra
+add fecha varchar(20);
+
+insert into compra values
+("2001","001","5","250000"),
+("2002","002","2","10000"),
+("2003","003","5","30000");
+select * from compra;
+/*--------------------------------------------------Tabla producto_proveedor --------------------------------------------------------*/
+create table producto_proveedor(
+	id_proveedor_producto varchar(20),
+    id_producto_proveedor varchar(20),
+    primary key(id_proveedor_producto,id_producto_proveedor),
+    foreign key(id_proveedor_producto) references proveedor(id_proveedor),
+    foreign key(id_producto_proveedor) references producto(id_producto)
+);
+insert into producto_proveedor values
+("101","2001"),
+("102","2002"),
+("103","2003");
+select * from producto_proveedor;
+/*--------------------------------------------------Consultas --------------------------------------------------------*/
+/*---------------------Consulta 1---------------------*/
+select nombre from empleado
+where liga >2000;
+/*---------------------Consulta 2--------------------*/
+select empleado.nombre as "empleado", especialidad.especialidad as "especialidad"
+from empleado inner join especialidad on id_empleado_especialidad=id_empleado
+where especialidad.especialidad = "cabello";
+/*---------------------Consulta 3---------------------*/
+select cliente.nombre, group_concat(contacto_cliente.telefono SEPARATOR ', ') as telefonos
+from cliente inner join contacto_cliente on id_cliente_contacto=id_cliente
+group by cliente.id_cliente;
+/*---------------------Consulta 4---------------------*/
+select * from cita
+where hora="08:30";
+/*---------------------Consulta 5---------------------*/
+select cita.fecha, cita.hora, empleado.nombre as "empleado", cliente.nombre as "cliente"
+from cliente inner join cita on id_cliente_cita=cliente.id_cliente
+			 inner join empleado on id_empleado=cita.id_empleado_cita; 
+/*---------------------Consulta 6---------------------*/
+select empleado.nombre, group_concat(especialidad.especialidad SEPARATOR ', ') as especialidades
+from empleado inner join especialidad on id_empleado_especialidad=id_empleado
+group by empleado.id_empleado;
+/*---------------------Consulta 7---------------------*/
+select cliente.CC as "cedula", cliente.nombre as "cliente", producto.nombre as "producto", producto.precio as "precio", compra.cantidad_producto as "cantidad", compra.total as "total"
+from cliente inner join compra on id_cliente_compra=cliente.id_cliente
+			 inner join producto on id_producto=compra.id_producto_compra;
+/*---------------------Consulta 8---------------------*/
+select producto.nombre as "producto", cliente.nombre as "cliente", empleado.nombre as "empleado"
+from empleado inner join empleado_vende on id_empleado_vende=empleado.id_empleado
+			  inner join producto on id_producto=empleado_vende.id_producto_vende
+              inner join compra on id_producto_compra=producto.id_producto
+              inner join cliente on id_cliente=compra.id_cliente_compra;
+/*---------------------Consulta 9---------------------*/
+select sum(total) as "ingresos totales"
+from compra;
+/*---------------------Consulta 10---------------------*/
+select sum(compra.cantidad_producto) as "mayor producto vendido", producto.nombre as "producto"
+from compra inner join producto on id_producto=compra.id_producto_compra
+group by compra.id_producto_compra
+limit 1;
+/*---------------------------------Vistas---------------------------------------*/
+/*---------------------Vista1---------------------*/
+create view facturas as
+select cliente.CC as "cedula", cliente.nombre as "cliente", producto.nombre as "producto", producto.precio as "precio", 
+	   compra.cantidad_producto as "cantidad", compra.total as "total", compra.fecha as "fecha compra"
+from cliente inner join compra on id_cliente_compra=cliente.id_cliente
+			 inner join producto on id_producto=compra.id_producto_compra;
+select * from facturas;
+/*---------------------Vista2---------------------*/
+create view historial_de_servicios as
+select cliente.nombre as "cliente", empleado.nombre as "empleado", group_concat(producto.nombre SEPARATOR ', ') as productos_consumidos,
+	   servicio.descripcion as "servicio", servicio.duracion as "duracion", servicio.fecha as "fecha"
+from cliente inner join cita on id_cliente_cita=cliente.id_cliente
+			 inner join empleado on id_empleado=cita.id_empleado_cita
+             inner join servicio on id_cita_servicio=cita.id_cita
+             inner join producto_servicio on id_servicio_producto=servicio.id_servicio
+             inner join producto on id_producto=producto_servicio.id_producto_servicio
+group by servicio.id_servicio;
+select * from historial_de_servicios;
+/*---------------------Vista3---------------------*/
+create view registro_de_ventas as
+select producto.nombre as "producto", cliente.nombre as "cliente", empleado.nombre as "empleado"
+from empleado inner join empleado_vende on id_empleado_vende=empleado.id_empleado
+			  inner join producto on id_producto=empleado_vende.id_producto_vende
+              inner join compra on id_producto_compra=producto.id_producto
+              inner join cliente on id_cliente=compra.id_cliente_compra;
+select * from registro_de_ventas;
+/*---------------------Vista4---------------------*/
+create view informacion_proveedores as
+select proveedor.id_proveedor as "idProveedor",proveedor.nombre as "proveedor", group_concat(producto.nombre SEPARATOR ', ') as productos
+from producto inner join producto_proveedor on id_producto_proveedor=producto.id_producto
+			  inner join proveedor on id_proveedor=producto_proveedor.id_proveedor_producto
+group by proveedor.id_proveedor;
+select * from informacion_proveedores;
+/*---------------------Vista5---------------------*/
+create view mejores_clientes as
+select sum(compra.total) as "total", cliente.nombre as "cliente"
+from compra inner join producto on id_producto=compra.id_producto_compra
+			inner join cliente on id_cliente=compra.id_cliente_compra
+group by compra.id_cliente_compra
+order by total desc;
+select * from mejores_clientes;
+/*---------------------------------Procedimientos---------------------------------------*/
+/*---------------------Procedimiento1---------------------*/
+delimiter //
+create procedure generar_cita(in id varchar(20),in hora varchar(20),in fecha varchar(20),in cliente varchar(20),in empleado varchar(20))
+begin
+insert into cita values
+(id,hora,fecha,cliente,empleado);
+end
+//
+delimiter ;
+call generar_cita("3004","11:30","01/01/94","002","1001");
+select * from cita;
+/*---------------------Procedimiento2---------------------*/
+delimiter //
+create procedure modificar_cita(in id varchar(20),in fecha_nueva varchar(20),in hora_nueva varchar(20))
+begin
+update cita
+set fecha=fecha_nueva, hora=hora_nueva
+where id_cita=id;
+end
+//
+delimiter ;
+call modificar_cita("3004","01/02/94","13:30");
+select * from cita;
+/*---------------------Procedimiento3---------------------*/
+delimiter //
+create procedure cancelar_cita(in id varchar(20))
+begin
+delete from cita
+where id_cita=id;
+end
+//
+delimiter ;
+call cancelar_cita("3004");
+select * from cita;
+/*---------------------Procedimiento4---------------------*/
+delimiter //
+create procedure buscar_proveedor(in nombre varchar(40))
+begin
+select * from informacion_proveedores
+where proveedor=nombre;
+end
+//
+delimiter ;
+call buscar_proveedor("Proveedor3");
+/*---------------------------------Triggers---------------------------------------*/
+/*---------------------Trigger1---------------------*/
+create table cita_cancelada(
+	usuario varchar(30),
+    fecha datetime default current_timestamp
+);
+delimiter //
+create trigger del_cita after delete on cita
+	for each row
+		begin
+		insert into cita_cancelada values(user(),now());
+	end;
+//
+delimiter ;
+call cancelar_cita("3004");
+select * from cita_cancelada;
+/*---------------------Trigger2---------------------*/
+create table control_cambios_cita(
+	usuario varchar(30),
+    descripcion varchar(30),
+    fecha datetime default current_timestamp
+);
+delimiter //
+create trigger ins_cita after insert on cita
+	for each row
+		begin
+		insert into control_cambios_cita values(user(),"creo cita",now());
+	end;
+//
+delimiter ;
+call generar_cita("3006","11:30","01/01/94","002","1002");
+select * from control_cambios_cita;
+/*---------------------Trigger3---------------------*/
+delimiter //
+create trigger mod_cita after update on cita
+	for each row
+		begin
+		insert into control_cambios_cita values(user(),"modifico",now());
+	end;
+//
+delimiter ;
+call modificar_cita("3006","01/02/94","13:30");
+select * from control_cambios_cita;
+/*---------------------Trigger4---------------------*/
+select * from producto;
+delimiter //
+create trigger ins_producto after insert on producto
+	for each row
+		begin
+		insert into control_cambios_cita values(user(),"creo producto",now());
+	end;
+//
+delimiter ;
+insert into producto values
+("2005","Gel","Descripcion5","100","1000");
+select * from control_cambios_cita;
