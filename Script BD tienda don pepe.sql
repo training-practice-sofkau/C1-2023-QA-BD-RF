@@ -40,17 +40,18 @@ foreign key (id_categorias) references categoria(id_categoria)
 );
 
 create table carrito_de_compra(
-id_carrito VARCHAR(15) primary key,
-cantidad INT 
+id_carrito VARCHAR(15) primary key
 );
 
 create table carrito_compra_producto(
 id_carrito_compra VARCHAR(15),
 nombre_producto VARCHAR(60),
+cantidad INT,
 primary key(id_carrito_compra,nombre_producto),
 foreign key(id_carrito_compra) references carrito_de_compra(id_carrito),
 foreign key(nombre_producto) references producto(nom_producto)
 );
+
 create table pedido(
 codigo_pedido VARCHAR(20) primary key,
 fecha DATE,
