@@ -110,7 +110,7 @@ CREATE TABLE vender (
 -- Tabla Servicio
 CREATE TABLE servicio (
 	idServicio INT AUTO_INCREMENT,
-	duración VARCHAR(15) DEFAULT '0 HORAS',
+	duración INT DEFAULT 0, -- ¡En horas!
     fechaServicio VARCHAR(100),
     descripción VARCHAR(250),
     idClienteS INT,
