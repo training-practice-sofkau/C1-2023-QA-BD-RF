@@ -28,7 +28,7 @@ CREATE TABLE producto (
 CREATE TABLE insumo (
 	REFInsumo INT AUTO_INCREMENT,
     nombreInsumo VARCHAR(40),
-    cantidadProducto INT DEFAULT 0,
+    cantidadInsumo INT DEFAULT 0,
     PRIMARY KEY (REFInsumo)
 );
 
