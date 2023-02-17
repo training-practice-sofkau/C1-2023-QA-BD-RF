@@ -98,6 +98,7 @@ create table zoologico.proveedor (
 create table zoologico.orden_compra (
 	id varchar(10) not null,
     fecha varchar(45) not null,
+    unidades varchar(5) not null,
     proveedor_id varchar(10) not null,
     empleado_logistico_id varchar(15) not null,
     primary key (id),
@@ -112,6 +113,7 @@ create table zoologico.orden_compra (
 create table zoologico.factura (
 	id varchar(10) not null,
     fecha varchar(45) not null,
+    unidades varchar(5) not null,
     total varchar(10) not null,
     id_proveedor varchar(10) not null,
     id_empleado_logistico varchar(15) not null,
@@ -136,11 +138,11 @@ create table zoologico.veterinario_reporte (
 -- -----------------------------------
 
 create table zoologico.alimento_dieta (
-	id varchar(10) not null,
+	alimento_id varchar(10) not null,
     dieta_id varchar(10) not null,
-    primary key (id),
-    foreign key (dieta_id) references zoologico.dieta (id));
-    
+    primary key (alimento_id, dieta_id),
+    foreign key (dieta_id) references zoologico.dieta (id),
+    foreign key (alimento_id) references zoologico.alimento (id));
 -- ---------------------------------------------
 -- Se crea la tabla Orden_alimento
 -- ---------------------------------------------
