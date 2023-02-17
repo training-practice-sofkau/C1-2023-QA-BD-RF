@@ -1,10 +1,8 @@
-# CONSULTA 1: obtener los nombres de clientes, sus correos electrónicos y números de teléfono:
+# CONSULTA 1: obtener el nombre del producto, precio de compra y precio de venta para calcular la ganancia neta por producto
+SELECT REF, nombre, cantidad, precioCompra, precioVenta, NITProveedor, (precioVenta - precioCompra) AS ganacia_por_producto
+FROM producto
+ORDER BY precioCompra ASC;
 
-SELECT cliente.nombre AS nombreCliente, correocliente.correo, telefonoCliente.telefono, profesioncliente.profesion
-FROM cliente
-INNER JOIN correocliente ON cliente.id = correocliente.idCliente
-INNER JOIN telefonoCliente ON cliente.id = telefonoCliente.idCliente
-INNER JOIN profesioncliente ON cliente.id = profesioncliente.idCliente;
 
 
 # CONSULTA 2: Obtener la descripción de la cotización, la fecha de venta y el nombre del producto vendido:
@@ -19,7 +17,7 @@ SELECT empleado.nombre AS nombre_Empleado, COUNT(venta.liga) as total_ligas
 FROM venta
 JOIN cotizacion ON venta.idCotizacion = cotizacion.id
 JOIN empleado ON cotizacion.idEmpleado = empleado.id
-WHERE venta.fecha BETWEEN '2022-01-01' AND '2022-12-31'
+WHERE venta.fecha BETWEEN '2022-01-01' AND '2023-12-31'
 GROUP BY empleado.nombre;
 
 
@@ -29,7 +27,7 @@ FROM empleado
 INNER JOIN servicioEmpleado ON servicioEmpleado.idEmpleado = empleado.id
 INNER JOIN servicio ON servicio.id = servicioEmpleado.idServicio
 INNER JOIN cita ON cita.id = servicio.idCita
-WHERE cita.fechaSolicitda BETWEEN '2023-02-01' AND '2023-02-15'
+WHERE cita.fechaSolicitda BETWEEN '2022-02-01' AND '2023-02-15'
 GROUP BY empleado.nombre;
 
 # CONSULTA 5: obtiene la lista de clientes con los empleados que atendieron durante la cotización.
@@ -56,12 +54,13 @@ FROM servicio
 INNER JOIN cita ON servicio.idCita = cita.id
 INNER JOIN cliente ON cita.idCliente = cliente.id;
 
-#CONSULTA 8: costo total generado por cliente en una determinada fecha
-SELECT cliente.nombre as cliente, servicio.descripción as descripciónRealizada, servicio.precio, servicio.fecha, cliente.correo
-FROM servicio
-INNER JOIN cita ON servicio.idCita = cita.id
-INNER JOIN cliente ON cita.idCliente = cliente.id
-GROUP BY cliente.nombre, servicio.fecha, servicio.descripción, servicio.precio;
+#CONSULTA 8: Obtener la cantidad de citas realizadas por el cliente, incluyendo su profesión ya que la barberia desea premiar al cliente con más citas pero con una temática relacionada a su profesión.
+SELECT cliente.nombre, profesionCliente.profesion, COUNT(cita.id) AS cantidad_citas
+FROM cliente
+INNER JOIN profesionCliente ON cliente.id = profesionCliente.idCliente
+INNER JOIN cita ON cliente.id = cita.idCliente
+WHERE cita.fechaSolicitda = '2022-02-02'
+GROUP BY cliente.nombre, profesionCliente.profesion;
 
 #CONSULTA 9: obtener productos relacionados con proveedores
 SELECT proveedor.nombre as nombre_proveedor, producto.nombre as nombre_producto, producto.precioCompra, producto.precioVenta, producto.cantidad
