@@ -218,6 +218,70 @@ WHERE id_producto = NEW.ref_producto;
 END
 //DELIMITER ;
 
+-- 3er. trigger
+
+
+-- 4to. trigger 
+
+
+-- Consultas que permiten ver la información de cada tabla o de varias tablas. 
+-- Consulta #1. Mostrar todos los empleados que trabajan en la barbería
+SELECT id_empleado AS "Cédula", CONCAT(nombre_empleado, " ",apellido_empleado) AS "Nombre completo empleado" 
+FROM tb_empleado; 
+
+-- Consulta #2. Mostrar todos los clientes de la barbería y su localidad. 
+SELECT id_cliente AS "Cédula cliente", CONCAT(nombre_cliente, apellido_cliente) AS "Nombre completo", direccion AS "Dirección"
+FROM tb_cliente; 
+
+-- Consulta #3. Mostrar todas las citas programadas para un empleado en especial (en este caso que contenga el id: 1000044)
+SELECT tb_empleado.id_empleado AS "Cédula del empleado", 
+CONCAT(tb_empleado.nombre_empleado, " ", tb_empleado.apellido_empleado) AS "Nombre del empleado", 
+tb_cliente.id_cliente AS "Cédula del cliente", 
+CONCAT(tb_cliente.nombre_cliente, " ", tb_cliente.apellido_cliente) AS "Nombre del cliente"
+FROM tb_empleado 
+INNER JOIN tb_cita ON tb_cita.id_empleado = tb_empleado.id_empleado
+INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_cita.id_cliente
+WHERE tb_empleado.id_empleado = '1000044';
+
+-- Consulta #4. Mostrar el id y el nombre, de los proveedores de productos en la barbería, donde la dirección empiece por Lake 
+SELECT id_proveedor AS "Id proveedor", nombre_proveedor AS "Nombre del proveedor", direccion
+FROM tb_proveedor
+WHERE direccion LIKE 'Lake%';
+
+-- Consulta #5. Mostrar todos los registros de venta que existen hasta el momento
+SELECT tb_registro_venta.id_registro_venta AS "Id registros de venta", 
+tb_registro_venta.valor, 
+tb_registro_venta.fecha, 
+tb_registro_venta.id_cliente AS "Cédula cliente",
+CONCAT (tb_cliente.nombre_cliente, " ",tb_cliente.apellido_cliente) AS "Nombre cliente"
+FROM tb_registro_venta
+INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_registro_venta.id_cliente;
+
+-- Consulta #6. Mostrar nombre de los empleados y los servicios que prestan en la barbería
+SELECT CONCAT(nombre_empleado, " ",apellido_empleado) AS "Nombre del empleado", especialidad AS Servicio
+FROM tb_empleado
+ORDER BY nombre_empleado;
+
+-- Consulta #7. Mostrar los clientes que nacieron en el año 1999
+SELECT CONCAT(nombre_cliente, apellido_cliente) AS "Nombre del cliente", fecha_nacimiento 
+FROM tb_cliente
+WHERE fecha_nacimiento LIKE '%1999';
+
+-- Consulta #8. Mostrar el precio de los productos donde su rango esté entre 5000 y 15000
+SELECT id_producto AS "Id del producto", nombre_producto AS "Nombre del producto", precio 
+FROM tb_producto
+WHERE precio BETWEEN 5000 AND 15000;
+
+-- Consulta #9. Mostrar los productos donde la cantidad del producto sea menor a 5
+SELECT id_producto AS "Id del producto", nombre_producto AS "Nombre del producto", cantidad_disponible AS Stock
+FROM tb_producto
+WHERE cantidad_disponible < 5; 
+
+-- Consulta #10. Mostrar el nombre de todos los clientes de manera ascendente
+SELECT CONCAT(nombre_cliente," " ,apellido_cliente) AS "Lista de clientes"
+FROM tb_cliente 
+ORDER BY nombre_cliente ASC;
+
 INSERT INTO dll_venta_producto()
 VALUES ('034135', '1000000', '0000000001', 1, 2102);
 
