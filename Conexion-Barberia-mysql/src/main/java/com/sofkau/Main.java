@@ -22,7 +22,7 @@ public class Main {
             IRepository<Ventas> repositoryVentas = new VentaRepositoryImpl();
             IRepository<Servicios> repositoryServicios = new ServiciosRepositoryImpl();
 
-            System.out.println("=========== insertar producto ==============");
+            System.out.println("=========== insertar producto =============");
 
             for (int i = 1; i <= 50; i++) {
 
