@@ -4,9 +4,10 @@ INSERT INTO proveedor (nit, nombre, telefono, correo, direccion) VALUES
 ('123456789-0', 'Proveedor 1', '1234567890', 'proveedor1@ejemplo.com', 'Dirección proveedor 1'),
 ('987654321-0', 'Proveedor 2', '0987654321', 'proveedor2@ejemplo.com', 'Dirección proveedor 2');
 
-INSERT INTO factura (id_factura, total, nit_proveedor_factura) VALUES
+INSERT INTO factura (id_factura, total, nit_proveedor_factura) VALUES 
 ('FAC-001', '1500000', '123456789-0'),
-('FAC-002', '2000000', '987654321-0');
+('FAC-002', '2000000', '987654321-0'),
+('FAC-003', '15205630', '123456789-0');
 
 INSERT INTO logistico (id_logistico, nombre, apellido, telefono) VALUES
 ('LOG-001', 'Logístico 1', 'Apellido 1', '1111111111'),
@@ -16,9 +17,11 @@ INSERT INTO orden_compra (id_orden, fecha_emision, fecha_entrega, descripcion, n
 ('ORD-001', '2022-01-15', '2022-01-22', 'Orden de compra 1', '123456789-0', 'LOG-001'),
 ('ORD-002', '2022-02-01', '2022-02-08', 'Orden de compra 2', '987654321-0', 'LOG-002');
 
-INSERT INTO alimento (id_alimento, nombre_alimento, tipo_alimento, cantidad) VALUES
+INSERT INTO alimento (id_alimento, nombre_alimento, tipo_alimento, cantidad) VALUES 
 ('ALI-001', 'Alimento 1', 'Tipo 1', '1000 gr'),
-('ALI-002', 'Alimento 2', 'Tipo 2', '500 gr');
+('ALI-002', 'Alimento 2', 'Tipo 2', '500 gr'),
+('ALI-003', 'Alimento 3', 'Tipo 3', '700 gr'),
+('ALI-004', 'Alimento 4', 'Tipo 3', '200 gr');
 
 INSERT INTO proveedor_alimento (id_proveedor_alimento, id_alimento_proveedor) VALUES
 ('123456789-0', 'ALI-001'),
@@ -28,9 +31,10 @@ INSERT INTO dieta (id_dieta, tipo_alimento, dosis) VALUES
 ('DIE-001', 'Tipo 1', '50 gr'),
 ('DIE-002', 'Tipo 2', '30 gr');
 
-INSERT INTO animal (id_animal, nombre, clase, especie, fecha_nacimiento, id_dieta_animal) VALUES
-('ANI-001', 'Animal 1', 'Clase 1', 'Especie 1', '2021-01-01', 'DIE-001'),
-('ANI-002', 'Animal 2', 'Clase 2', 'Especie 2', '2021-02-01', 'DIE-002');
+INSERT INTO animal (id_animal, nombre, clase, especie, fecha_nacimiento, id_dieta_animal) VALUES 
+('ANI-002', 'Animal 2', 'Clase 2', 'Especie 2', '2021-02-01', 'DIE-002'),
+('ANI-003', 'Animal 3', 'Clase 1', 'Especie 1', '2021-02-01', 'DIE-001'),
+('ANI-004', 'Animal 3', 'Clase 1', 'Especie 1', '2021-02-01', 'DIE-003');
 
 INSERT INTO alimento_animal (id_alimento_animal, id_animal_alimento) VALUES
 ('ALI-001', 'ANI-001'),

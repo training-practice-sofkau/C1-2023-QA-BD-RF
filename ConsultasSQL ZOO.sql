@@ -23,12 +23,14 @@ FROM orden_compra
 JOIN logistico ON orden_compra.id_logistico_orden = logistico.id_logistico;
 
 -- -----------------------------------------------------
--- 4. Consulta para ver el alimento y el proveedor de ese alimento
+-- 4. Consulta para ver la cantidad de alimento existente segun tipo de alimento, 
+-- y total de alimento diario Requerido segun dietas diseñadas
 -- -----------------------------------------------------
-SELECT a.nombre_alimento, p.nombre 
-FROM alimento a 
-JOIN proveedor_alimento pa ON a.id_alimento = pa.id_alimento_proveedor 
-JOIN proveedor p ON pa.id_proveedor_alimento = p.nit;
+SELECT dieta.tipo_alimento, SUM(dieta.dosis) AS total_alimento_diario_requerido, 
+    (SELECT SUM(cantidad) FROM alimento WHERE alimento.tipo_alimento = dieta.tipo_alimento) AS cantidad_existente
+FROM dieta
+WHERE dieta.tipo_alimento IN (SELECT tipo_alimento FROM alimento)
+GROUP BY dieta.tipo_alimento;
 
 -- -----------------------------------------------------
 -- 5. Consulta para ver el alimento que un animal consume diario segun su dieta
@@ -49,7 +51,8 @@ JOIN entrenador ON informe_animal.id_entrenador_informe = entrenador.id_entrenad
 -- -----------------------------------------------------
 -- 7. Consulta para ver todas las facturas y la informacion del proveedor 
 -- -----------------------------------------------------
-SELECT factura.id_factura, proveedor.nombre, proveedor.telefono, proveedor.correo, proveedor.direccion, factura.total
+SELECT factura.id_factura, proveedor.nombre, proveedor.telefono, proveedor.correo, 
+proveedor.direccion, factura.total
 FROM factura
 JOIN proveedor
 ON factura.nit_proveedor_factura = proveedor.nit;
@@ -60,11 +63,11 @@ ON factura.nit_proveedor_factura = proveedor.nit;
 SELECT nombre, clase, especie, fecha_nacimiento FROM animal;
 
 -- -----------------------------------------------------
--- 9. Consulta para ver los animales segun su clase
+-- 9. Consulta para ver la cantidad de animales segun su clase
 -- -----------------------------------------------------
-SELECT nombre, clase, especie, fecha_nacimiento 
-FROM animal 
-WHERE clase = 'Clase 1';
+SELECT clase, COUNT(*) AS cantidad
+FROM animal
+GROUP BY clase;
 
 -- -----------------------------------------------------
 -- 10. Consulta para saber la cantidad de alimento existente segun el tipo de alimento
@@ -72,6 +75,9 @@ WHERE clase = 'Clase 1';
 SELECT tipo_alimento, SUM(cantidad) as cantidad_total 
 FROM alimento 
 GROUP BY tipo_alimento;
+
+
+
 
 
 
