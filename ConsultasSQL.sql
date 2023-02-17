@@ -99,8 +99,8 @@ WHERE proveedor.nombre_proveedor = 'Proveedor 1';
 
 
 
--- Consulta que me permite obtener los nombres de los clientes mayores de 30 años podrías hacer
 
+-- Consulta que me permite obtener los nombres de los clientes mayores de 30 años podrías hacer
 SELECT nombre_cliente AS "Clientes mayores"
 FROM cliente
 WHERE edad > 30;
