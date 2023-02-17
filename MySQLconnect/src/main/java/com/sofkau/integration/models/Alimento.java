@@ -13,6 +13,9 @@ public class Alimento {
         this.dosis_alimento = dosis_alimento;
     }
 
+    public Alimento() {
+    }
+
     public String getIdAlimento() {
         return idAlimento;
     }
