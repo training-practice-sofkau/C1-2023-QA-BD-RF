@@ -7,7 +7,7 @@ create table dieta(
 create table animal(
 	idAnimal int auto_increment primary key,
     nombre varchar(60),
-    peso int,
+    peso float,
     clasificacion varchar(50)
 );
 
