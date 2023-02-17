@@ -170,3 +170,23 @@ insert into producto_proveedor values
 ("102","2002"),
 ("103","2003");
 select * from producto_proveedor;
+/*--------------------------------------------------Consultas --------------------------------------------------------*/
+
+/*---------------------Consulta 1---------------------*/
+select nombre from empleado
+where liga >2000;
+/*---------------------Consulta 2--------------------*/
+select empleado.nombre as "empleado", especialidad.especialidad as "especialidad"
+from empleado inner join especialidad on id_empleado_especialidad=id_empleado
+where especialidad.especialidad = "cejas";
+/*---------------------Consulta 3---------------------*/
+select cliente.nombre, group_concat(contacto_cliente.telefono SEPARATOR ', ') as telefonos
+from cliente inner join contacto_cliente on id_cliente_contacto=id_cliente
+group by cliente.id_cliente;
+/*---------------------Consulta 4---------------------*/
+select * from cita
+where hora="08:30";
+/*---------------------Consulta 5---------------------*/
+select cita.fecha, cita.hora, empleado.nombre as "empleado", cliente.nombre as "cliente"
+from cliente inner join cita on id_cliente_cita=cliente.id_cliente
+			 inner join empleado on id_empleado=cita.id_empleado_cita; 
