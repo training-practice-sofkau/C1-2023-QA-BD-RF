@@ -282,6 +282,40 @@ SELECT CONCAT(nombre_cliente," " ,apellido_cliente) AS "Lista de clientes"
 FROM tb_cliente 
 ORDER BY nombre_cliente ASC;
 
+-- Creación de vistas 
+-- Vista #1. 
+CREATE VIEW citas_empleado AS
+SELECT tb_empleado.id_empleado AS "Cédula del empleado", 
+CONCAT(tb_empleado.nombre_empleado, " ", tb_empleado.apellido_empleado) AS "Nombre del empleado", 
+tb_cliente.id_cliente AS "Cédula del cliente", 
+CONCAT(tb_cliente.nombre_cliente, " ", tb_cliente.apellido_cliente) AS "Nombre del cliente"
+FROM tb_empleado 
+INNER JOIN tb_cita ON tb_cita.id_empleado = tb_empleado.id_empleado
+INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_cita.id_cliente
+WHERE tb_empleado.id_empleado = '1000044';
+
+-- Vista #2.
+CREATE VIEW registro_venta_actual AS 
+SELECT tb_registro_venta.id_registro_venta AS "Id registros de venta", 
+tb_registro_venta.valor, 
+tb_registro_venta.fecha, 
+tb_registro_venta.id_cliente AS "Cédula cliente",
+CONCAT (tb_cliente.nombre_cliente, " ",tb_cliente.apellido_cliente) AS "Nombre cliente"
+FROM tb_registro_venta
+INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_registro_venta.id_cliente;
+
+-- Vista #3.
+CREATE VIEW agotando_stock AS 
+SELECT id_producto AS "Id del producto", nombre_producto AS "Nombre del producto", cantidad_disponible AS Stock
+FROM tb_producto
+WHERE cantidad_disponible < 5; 
+
+-- Vista #4.
+CREATE VIEW servicios_empleado AS
+SELECT CONCAT(nombre_empleado, " ",apellido_empleado) AS "Nombre del empleado", especialidad AS Servicio
+FROM tb_empleado
+ORDER BY nombre_empleado;
+
 INSERT INTO dll_venta_producto()
 VALUES ('034135', '1000000', '0000000001', 1, 2102);
 
