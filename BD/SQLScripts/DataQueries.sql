@@ -23,6 +23,16 @@ SELECT
 FROM insumo;
 
 -- -----------------------------------------------------
+-- Visualizar todas las citas agendadas
+-- -----------------------------------------------------
+SELECT
+		idCita AS 'Cita N°',
+        fechaCita AS 'Agendada para el',
+        c.nombreCliente AS 'Cliente'
+FROM cita, cliente AS c
+WHERE idClienteC = c.idCliente;
+
+-- -----------------------------------------------------
 -- Visualizar servicios realizados
 -- -----------------------------------------------------
 SELECT
@@ -72,17 +82,7 @@ SELECT COUNT(idVenta) AS 'Cantidad de ventas realizadas'
 FROM venta;
 
 -- -----------------------------------------------------
--- Visualizar todas citas agendadas
--- -----------------------------------------------------
-SELECT
-		idCita AS 'Cita N°',
-        fechaCita AS 'Agendada para el',
-        c.nombreCliente AS 'Cliente'
-FROM cita, cliente AS c
-WHERE idClienteC = c.idCliente;
-
--- -----------------------------------------------------
--- Visualizar los empleados y sus citas asignar
+-- Visualizar los empleados y sus citas asignadas
 -- -----------------------------------------------------
 SELECT nombreEmpleado AS 'Empleado', 
 GROUP_CONCAT(c.idCita SEPARATOR ' | ') AS 'Cita(s)'
