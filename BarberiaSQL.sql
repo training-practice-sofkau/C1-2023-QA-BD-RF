@@ -1,6 +1,5 @@
 CREATE DATABASE barber;
 
-
 -- Crear tabla Cliente
 CREATE TABLE Cliente (
   id_cliente INT PRIMARY KEY,
@@ -15,17 +14,14 @@ CREATE TABLE Cliente (
 CREATE TABLE Compra(
  REF VARCHAR(10),
  id_cliente int,
-
  PRIMARY KEY (id_cliente, REF),
  FOREIGN KEY(REF) REFERENCES Producto(REF),
  FOREIGN KEY(id_cliente) REFERENCES Cliente(id_cliente)
- 
 );
 CREATE TABLE Telefono_cliente(
 	id_cliente INT PRIMARY KEY,
     numero VARCHAR(12),
     FOREIGN KEY(id_cliente) REFERENCES Cliente(id_cliente)
-    
 );
 
 
@@ -87,8 +83,6 @@ CREATE TABLE Factura (
   valor DOUBLE,
   fecha_factura DATE,
    FOREIGN KEY (id_empleado) REFERENCES Empleado(id_empleado)
-  
-
 );
 
 -- Crear tabla Producto
@@ -100,7 +94,6 @@ CREATE TABLE Producto (
   id_proveedor INT,
   FOREIGN KEY (id_proveedor) REFERENCES Proveedor(id_proveedor)
 );
-
 -- Crear tabla Proveedor
 CREATE TABLE Proveedor (
   id_proveedor INT PRIMARY KEY,
@@ -108,20 +101,16 @@ CREATE TABLE Proveedor (
   direccion VARCHAR(50),
   correo VARCHAR(50)
 );
-
 CREATE TABLE Telefono_proveedor(
 	id_proveedor INT PRIMARY KEY,
     numero VARCHAR(12),
     FOREIGN KEY(id_proveedor) REFERENCES proveedor(id_proveedor)
 );
-
-
 CREATE TABLE insumo(
 	id_insumo int,
     nombre_insumo VARCHAR(50),
     descripcion VARCHAR(255),
     cantidad int
-  
 );
     
   
