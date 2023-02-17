@@ -236,11 +236,28 @@ from cliente inner join cita on id_cliente_cita=cliente.id_cliente
 group by servicio.id_servicio;
 select * from historial_de_servicios;
 /*---------------------Vista3---------------------*/
-
+create view registro_de_ventas as
+select producto.nombre as "producto", cliente.nombre as "cliente", empleado.nombre as "empleado"
+from empleado inner join empleado_vende on id_empleado_vende=empleado.id_empleado
+			  inner join producto on id_producto=empleado_vende.id_producto_vende
+              inner join compra on id_producto_compra=producto.id_producto
+              inner join cliente on id_cliente=compra.id_cliente_compra;
+select * from registro_de_ventas;
 /*---------------------Vista4---------------------*/
-
+create view informacion_proveedores as
+select proveedor.id_proveedor as "idProveedor",proveedor.nombre as "proveedor", group_concat(producto.nombre SEPARATOR ', ') as productos
+from producto inner join producto_proveedor on id_producto_proveedor=producto.id_producto
+			  inner join proveedor on id_proveedor=producto_proveedor.id_proveedor_producto
+group by proveedor.id_proveedor;
+select * from informacion_proveedores;
 /*---------------------Vista5---------------------*/
-
+create view mejores_clientes as
+select sum(compra.total) as "total", cliente.nombre as "cliente"
+from compra inner join producto on id_producto=compra.id_producto_compra
+			inner join cliente on id_cliente=compra.id_cliente_compra
+group by compra.id_cliente_compra
+order by total desc;
+select * from mejores_clientes;
 /*---------------------------------Procedimientos---------------------------------------*/
 /*---------------------Procedimiento1---------------------*/
 
