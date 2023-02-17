@@ -10,24 +10,46 @@ create table cliente(
     edad varchar(3),
     direccion varchar(40)
 );
+insert into cliente values
+("001","1115456123","Ash Ketchup","Entrenador pokemon","Ash@hotmail.com","12","Calle pueblo # paleta"),
+("002","1115456124","Goku Armando","Peleador de MMA","Goku@hotmail.com","27","Namekusei"),
+("003","1115456125","Mario Bros","Fontanero","Mario@hotmail.com","20","Reino champinion");
+select * from cliente;
+
 create table contacto_cliente(
 	id_cliente_contacto varchar(20),
     telefono varchar(20),
     primary key(id_cliente_contacto,telefono),
     foreign key(id_cliente_contacto) references cliente(id_cliente)
 );
+insert into contacto_cliente values
+("001","315789123"),
+("002","315789124"),
+("003","315789125");
+select * from contacto_cliente;
 /*--------------------------------------------------Tabla proveedor y contacto_proveedor --------------------------------------------------------*/
 create table proveedor(
 	id_proveedor varchar(20) primary key,
     nombre varchar(60),
     direccion varchar(40)
 );
+insert into proveedor values
+("101","Proveedor1","Calle falsa 123"),
+("102","Proveedor2","Calle falsa 124"),
+("103","Proveedor3","Calle falsa 125");
+select * from proveedor;
+
 create table contacto_proveedor(
 	id_proveedor_contacto varchar(20),
     telefono varchar(20),
     primary key(id_proveedor_contacto,telefono),
     foreign key(id_proveedor_contacto) references proveedor(id_proveedor)
 );
+insert into contacto_proveedor values
+("101","315789129"),
+("102","315789128"),
+("103","315789127");
+select * from contacto_proveedor;
 /*--------------------------------------------------Tabla empleado y especialidadr --------------------------------------------------------*/
 create table empleado(
 	id_empleado varchar(20) primary key,
@@ -35,12 +57,23 @@ create table empleado(
     nombre varchar(40),
     liga double
 );
+insert into empleado values
+("1001","1115456111","Empleado1",1000),
+("1002","1115456112","Empleado2",2000),
+("1003","1115456113","Empleado3",3000);
+select * from empleado;
+
 create table especialidad(
 	id_empleado_especialidad varchar(20),
     especialidad varchar(20),
     primary key(id_empleado_especialidad,especialidad),
     foreign key(id_empleado_especialidad) references empleado(id_empleado)
 );
+insert into especialidad values
+("1001","cejas"),
+("1002","cabello"),
+("1003","piel");
+select * from especialidad;
 /*--------------------------------------------------Tabla producto --------------------------------------------------------*/
 create table producto(
 	id_producto varchar(20) primary key,
@@ -49,6 +82,11 @@ create table producto(
     cantidad varchar(40),
     precio varchar(40)
 );
+insert into producto values
+("2001","Shampoo anti caspa","Descripcion1","100","50000"),
+("2002","Tinte","Descripcion2","100","5000"),
+("2003","Prestobarba","Descripcion13","100","6000");
+select * from producto;
 /*--------------------------------------------------Tabla cita --------------------------------------------------------*/
 create table cita(
 	id_cita varchar(20) primary key,
@@ -59,6 +97,11 @@ create table cita(
     foreign key(id_cliente_cita) references cliente(id_cliente),
     foreign key(id_empleado_cita) references empleado(id_empleado)
 );
+insert into cita values
+("3001","08:30","01/01/91","001","1001"),
+("3002","09:30","01/01/92","002","1002"),
+("3003","10:30","01/01/93","003","1003");
+select * from cita;
 /*--------------------------------------------------Tabla servicio --------------------------------------------------------*/
 create table servicio(
 	id_servicio varchar(20) primary key,
@@ -68,6 +111,11 @@ create table servicio(
     id_cita_servicio varchar(20),
     foreign key(id_cita_servicio) references cita(id_cita)
 );
+insert into servicio values
+("4001","02/02/92","descripcion1","30000","3001"),
+("4002","02/02/93","descripcion2","20000","3002"),
+("4003","02/02/94","descripcion3","10000","3003");
+select * from servicio;
 /*--------------------------------------------------Tabla producto_servicio --------------------------------------------------------*/
 create table producto_servicio(
 	id_producto_servicio varchar(20),
@@ -76,6 +124,11 @@ create table producto_servicio(
     foreign key(id_producto_servicio) references producto(id_producto),
     foreign key(id_servicio_producto) references servicio(id_servicio)
 );
+insert into producto_servicio values
+("2001","4001"),
+("2002","4002"),
+("2003","4003");
+select * from producto_servicio;
 /*--------------------------------------------------Tabla empleado_vende --------------------------------------------------------*/
 create table empleado_vende(
 	id_empleado_vende varchar(20),
@@ -84,6 +137,11 @@ create table empleado_vende(
     foreign key(id_empleado_vende) references empleado(id_empleado),
     foreign key(id_producto_vende) references producto(id_producto)
 );
+insert into empleado_vende values
+("1001","2001"),
+("1002","2002"),
+("1003","2003");
+select * from empleado_vende;
 /*--------------------------------------------------Tabla compra --------------------------------------------------------*/
 create table compra(
 	id_producto_compra varchar(20),
@@ -94,6 +152,11 @@ create table compra(
     foreign key(id_producto_compra) references producto(id_producto),
     foreign key(id_cliente_compra) references cliente(id_cliente)
 );
+insert into compra values
+("2001","001","5","250000"),
+("2002","002","2","10000"),
+("2003","003","5","30000");
+select * from compra;
 /*--------------------------------------------------Tabla producto_proveedor --------------------------------------------------------*/
 create table producto_proveedor(
 	id_proveedor_producto varchar(20),
@@ -102,3 +165,8 @@ create table producto_proveedor(
     foreign key(id_proveedor_producto) references proveedor(id_proveedor),
     foreign key(id_producto_proveedor) references producto(id_producto)
 );
+insert into producto_proveedor values
+("101","2001"),
+("102","2002"),
+("103","2003");
+select * from producto_proveedor;
