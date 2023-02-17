@@ -7,7 +7,17 @@ public class Empleado {
 
     private String nombre;
 
-    public Empleado(String cedula, String especialidad,  String nombre) {
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "id=" + id +
+                ", cedula='" + cedula + '\'' +
+                ", especialidad='" + especialidad + '\'' +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
+
+    public Empleado(String cedula, String especialidad, String nombre) {
         this.cedula = cedula;
         this.especialidad = especialidad;
         this.nombre = nombre;

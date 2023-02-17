@@ -15,6 +15,17 @@ public class Producto {
         this.proveedor = proveedor;
     }
 
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "ref=" + ref +
+                ", nombre='" + nombre + '\'' +
+                ", cantidad=" + cantidad +
+                ", precio=" + precio +
+                ", proveedor='" + proveedor + '\'' +
+                '}';
+    }
+
     public Producto() {
     }
 

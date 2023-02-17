@@ -10,6 +10,15 @@ public class Cita {
     private Date fechaHora;
 
 
+    @Override
+    public String toString() {
+        return "Cita{" +
+                "id=" + id +
+                ", cliente=" + cliente +
+                ", empleado=" + empleado +
+                ", fechaHora=" + fechaHora +
+                '}';
+    }
 
     public Cita() {
     }

@@ -16,7 +16,6 @@ public class ConexionMysql {
                 e.printStackTrace();
 
             }
-
         }
         return connection;
     }

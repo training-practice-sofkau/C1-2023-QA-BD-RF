@@ -69,6 +69,18 @@ public class Ventas {
         return ligaGanancia;
     }
 
+    @Override
+    public String toString() {
+        return "Ventas{" +
+                "id=" + id +
+                ", empleadoId=" + empleadoId +
+                ", clienteId=" + clienteId +
+                ", productoId=" + productoId +
+                ", fecha=" + fecha +
+                ", ligaGanancia=" + ligaGanancia +
+                '}';
+    }
+
     public void setLigaGanancia(Double ligaGanancia) {
         this.ligaGanancia = ligaGanancia;
     }

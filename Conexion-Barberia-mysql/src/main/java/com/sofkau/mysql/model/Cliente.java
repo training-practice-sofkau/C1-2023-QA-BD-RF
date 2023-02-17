@@ -39,6 +39,20 @@ public class Cliente {
         this.nombre = nombre;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", cedula='" + cedula + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", profesion='" + profesion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", correo='" + correo + '\'' +
+                ", edad=" + edad +
+                ", direccion='" + direccion + '\'' +
+                '}';
+    }
+
     public String getProfesion() {
         return profesion;
     }

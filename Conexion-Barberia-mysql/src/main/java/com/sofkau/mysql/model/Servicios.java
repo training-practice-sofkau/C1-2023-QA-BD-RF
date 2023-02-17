@@ -20,6 +20,18 @@ public class Servicios {
         this.fecha = fecha;
     }
 
+    @Override
+    public String toString() {
+        return "Servicios{" +
+                "id=" + id +
+                ", empleado_id=" + empleado_id +
+                ", cliente_id=" + cliente_id +
+                ", productos_consumidos='" + productos_consumidos + '\'' +
+                ", duracion_procedimiento=" + duracion_procedimiento +
+                ", fecha=" + fecha +
+                '}';
+    }
+
     public Servicios() {
     }
 

@@ -71,7 +71,7 @@ public class Main {
                 serviciosnew.setDuracion_procedimiento(faker.number().numberBetween(10,30));
                 serviciosnew.setProductos_consumidos("champu: "+ faker.funnyName().name());
                 repositoryServicios.save(serviciosnew);
-
+                System.out.println(serviciosnew.toString());
 
 
             }

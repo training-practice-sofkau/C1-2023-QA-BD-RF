@@ -1,5 +1,4 @@
 DELIMITER //
-
 CREATE PROCEDURE sp_citas_empleados_mes_actual()
 BEGIN
   SELECT empleados.nombre, COUNT(citas.id) as citas_mes_actual
@@ -10,6 +9,8 @@ BEGIN
 END //
 
 DELIMITER ;
+
+CALL sp_citas_empleados_mes_actual();
 
 DELIMITER //
 
@@ -22,6 +23,8 @@ END //
 
 DELIMITER ;
 
+CALL sp_total_servicios_empleado();
+
 DELIMITER //
 
 CREATE PROCEDURE sp_cantidad_productos_proveedor(IN proveedor VARCHAR(50))
@@ -33,6 +36,7 @@ END //
 
 DELIMITER ;
 
+CALL sp_cantidad_productos_proveedor();
 
 DELIMITER //
 
@@ -46,3 +50,5 @@ BEGIN
 END //
 
 DELIMITER ;
+
+CALL sp_clientes_compras_mes_actual();
