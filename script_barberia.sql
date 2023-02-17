@@ -6,8 +6,8 @@ USE db_barberia;
 
 -- Creación tabla de servicio 
 CREATE TABLE tb_servicio(
-id_servicio VARCHAR(10) NOT NULL, 
-nombre_servicio VARCHAR(45) NOT NULL,
+id_servicio VARCHAR(200) NOT NULL, 
+nombre_servicio VARCHAR(200) NOT NULL,
 descripcion VARCHAR(200) NOT NULL, 
 valor INT NOT NULL,
 PRIMARY KEY(id_servicio)
@@ -15,73 +15,73 @@ PRIMARY KEY(id_servicio)
 
 -- Creación de tabla cliente
 CREATE TABLE tb_cliente(
-id_cliente VARCHAR(10) NOT NULL, 
-nombre_cliente VARCHAR(25) NOT NULL, 
-apellido_cliente VARCHAR(25) NOT NULL,
-fecha_nacimiento VARCHAR(20) NOT NULL, 
-correo VARCHAR(30) NOT NULL,
-direccion VARCHAR(50) NOT NULL,
+id_cliente VARCHAR(200) NOT NULL, 
+nombre_cliente VARCHAR(200) NOT NULL, 
+apellido_cliente VARCHAR(200) NOT NULL,
+fecha_nacimiento VARCHAR(200) NOT NULL, 
+correo VARCHAR(200) NOT NULL,
+direccion VARCHAR(200) NOT NULL,
 PRIMARY KEY(id_cliente)
 );
 
 -- Creación tabla telefono_cliente
 CREATE TABLE tb_telefono_cliente(
-id_telefono_cliente VARCHAR(10) NOT NULL, 
-telefono VARCHAR(15) NOT NULL, 
+id_telefono_cliente VARCHAR(200) NOT NULL, 
+telefono VARCHAR(200) NOT NULL, 
 PRIMARY KEY(id_telefono_cliente, telefono),
 FOREIGN KEY(id_telefono_cliente) REFERENCES tb_cliente(id_cliente)
 );
 
 -- Creación de la tabla registro venta
 CREATE TABLE tb_registro_venta(
-id_registro_venta VARCHAR(10) NOT NULL, 
+id_registro_venta VARCHAR(200) NOT NULL, 
 valor INT NOT NULL, 
-fecha VARCHAR(20) NOT NULL, 
-id_cliente VARCHAR(10) NOT NULL, 
+fecha VARCHAR(200) NOT NULL, 
+id_cliente VARCHAR(200) NOT NULL, 
 PRIMARY KEY(id_registro_venta),
 FOREIGN KEY(id_cliente) REFERENCES tb_cliente(id_cliente)
 );
 
 -- Creación de la tabla proveedor
 CREATE TABLE tb_proveedor(
-id_proveedor VARCHAR(10) NOT NULL,
-nombre_proveedor VARCHAR(45) NOT NULL, 
-direccion VARCHAR(50) NOT NULL,
+id_proveedor VARCHAR(200) NOT NULL,
+nombre_proveedor VARCHAR(200) NOT NULL, 
+direccion VARCHAR(200) NOT NULL,
 PRIMARY KEY(id_proveedor)
 );
 
 -- Creación tabla de telefono_proveedor
 CREATE TABLE tb_telefono_proveedor(
-id_telefono_proveedor VARCHAR(10) NOT NULL, 
-telefono VARCHAR(15) NOT NULL,
+id_telefono_proveedor VARCHAR(200) NOT NULL, 
+telefono VARCHAR(200) NOT NULL,
 PRIMARY KEY(id_telefono_proveedor, telefono),
 FOREIGN KEY(id_telefono_proveedor) REFERENCES tb_proveedor(id_proveedor)
 );
 
 -- Creación de la tabla producto
 CREATE TABLE tb_producto(
-id_producto VARCHAR(10) NOT NULL,
-nombre_producto VARCHAR(30) NOT NULL, 
+id_producto VARCHAR(200) NOT NULL,
+nombre_producto VARCHAR(200) NOT NULL, 
 cantidad_disponible INT NOT NULL, 
 precio INT NOT NULL, 
-id_proveedor VARCHAR(10) NOT NULL,
+id_proveedor VARCHAR(200) NOT NULL,
 PRIMARY KEY(id_producto),
 FOREIGN KEY(id_proveedor) REFERENCES tb_proveedor(id_proveedor)
 );
 
 -- Creación de la tabla compra
 CREATE TABLE tb_compra(
-id_compra VARCHAR(10) NOT NULL, 
+id_compra VARCHAR(200) NOT NULL, 
 valor INT NOT NULL, 
-fecha VARCHAR(20) NOT NULL, 
+fecha VARCHAR(200) NOT NULL, 
 PRIMARY KEY(id_compra)
 );
 
 -- Creación de la tabla detalle compra producto 
 CREATE TABLE dll_compra_producto(
-id_compra_producto VARCHAR(10) NOT NULL, 
-id_compra VARCHAR(10) NOT NULL, 
-id_producto VARCHAR(10) NOT NULL, 
+id_compra_producto VARCHAR(200) NOT NULL, 
+id_compra VARCHAR(200) NOT NULL, 
+id_producto VARCHAR(200) NOT NULL, 
 unidades INT NOT NULL,
 valor INT NOT NULL,
 PRIMARY KEY(id_compra_producto),
@@ -91,9 +91,9 @@ FOREIGN KEY(id_producto) REFERENCES tb_producto(id_producto)
 
 -- Creación de la tabla detalle venta producto 
 CREATE TABLE dll_venta_producto(
-id_venta_producto VARCHAR(10) NOT NULL, 
-id_registro_venta VARCHAR(10) NOT NULL, 
-ref_producto VARCHAR(10) NOT NULL, 
+id_venta_producto VARCHAR(200) NOT NULL, 
+id_registro_venta VARCHAR(200) NOT NULL, 
+ref_producto VARCHAR(200) NOT NULL, 
 unidades INT NOT NULL,
 valor INT NOT NULL,
 PRIMARY KEY(id_venta_producto),
@@ -103,23 +103,23 @@ FOREIGN KEY(ref_producto) REFERENCES tb_producto(id_producto)
 
 -- Creación tabla empleado 
 CREATE TABLE tb_empleado(
-id_empleado VARCHAR(10) NOT NULL, 
-nombre_empleado VARCHAR(25) NOT NULL, 
-apellido_empleado VARCHAR(25) NOT NULL,
-especialidad VARCHAR(30) NOT NULL,
-id_servicio VARCHAR(10) NOT NULL,
+id_empleado VARCHAR(200) NOT NULL, 
+nombre_empleado VARCHAR(200) NOT NULL, 
+apellido_empleado VARCHAR(200) NOT NULL,
+especialidad VARCHAR(200) NOT NULL,
+id_servicio VARCHAR(200) NOT NULL,
 PRIMARY KEY(id_empleado), 
 FOREIGN KEY(id_servicio) REFERENCES tb_servicio(id_servicio)
 );
 
 -- Creación tabla cita 
 CREATE TABLE tb_cita(
-id_cita VARCHAR(10) NOT NULL, 
-fecha VARCHAR(20) NOT NULL, 
-hora VARCHAR(7) NOT NULL, 
-estado VARCHAR(10) NOT NULL,
-id_cliente VARCHAR(10) NOT NULL,
-id_empleado VARCHAR(10)NOT NULL, 
+id_cita VARCHAR(200) NOT NULL, 
+fecha VARCHAR(200) NOT NULL, 
+hora VARCHAR(200) NOT NULL, 
+estado VARCHAR(200) NOT NULL,
+id_cliente VARCHAR(200) NOT NULL,
+id_empleado VARCHAR(200)NOT NULL, 
 PRIMARY KEY(id_cita),
 FOREIGN KEY(id_cliente) REFERENCES tb_cliente(id_cliente),
 FOREIGN KEY(id_empleado) REFERENCES tb_empleado(id_empleado)
@@ -127,18 +127,136 @@ FOREIGN KEY(id_empleado) REFERENCES tb_empleado(id_empleado)
 
 -- Creación tabla historial servicio 
 CREATE TABLE tb_historial_servicio(
-id_historial_servicio VARCHAR(10) NOT NULL, 
-producto_consumido VARCHAR(30) NOT NULL, 
-duracion VARCHAR(15) NOT NULL, 
-fecha VARCHAR(20) NOT NULL,
-id_empleado VARCHAR(10) NOT NULL,
-id_servicio VARCHAR(10) NOT NULL,
+id_historial_servicio VARCHAR(200) NOT NULL, 
+producto_consumido VARCHAR(200) NOT NULL, 
+duracion VARCHAR(200) NOT NULL, 
+fecha VARCHAR(200) NOT NULL,
+id_empleado VARCHAR(200) NOT NULL,
+id_servicio VARCHAR(200) NOT NULL,
 PRIMARY KEY(id_historial_servicio), 
 FOREIGN KEY(id_empleado) REFERENCES tb_empleado(id_empleado),
 FOREIGN KEY(id_servicio) REFERENCES tb_servicio(id_servicio)
 ); 
 
+-- Procedimientos almacenados 
+-- 1. Permite registrar un nuevo proveedor
+DELIMITER //
+CREATE PROCEDURE registrar_proveedor(
+IN id_proveedor_proc VARCHAR(200),
+IN nombre_proveedor_proc VARCHAR(200),
+IN direccion_proc VARCHAR(200)
+)
+BEGIN 
+INSERT INTO tb_proveedor(id_proveedor, nombre_proveedor, direccion)
+VALUES (id_proveedor_proc, nombre_proveedor_proc, direccion_proc);
+END 
+//DELIMITER ;
 
+-- 2. Permite registrar un nuevo producto 
+DELIMITER //
+CREATE PROCEDURE registrar_producto(
+IN id_producto_proc VARCHAR(200),
+IN nombre_producto_proc VARCHAR(200), 
+IN cantidad_disponible_proc INT, 
+IN precio_proc INT, 
+IN id_proveedor_proc VARCHAR(200)
+)
+BEGIN 
+INSERT INTO tb_producto(id_producto, nombre_producto, cantidad_disponible, precio, id_proveedor)
+VALUES (id_producto_proc, nombre_producto_proc, cantidad_disponible_proc, precio_proc, id_proveedor_proc);
+END 
+//DELIMITER ;
 
+-- 3. Permite registrar un nuevo cliente 
+DELIMITER //
+CREATE PROCEDURE registrar_cliente(
+IN id_cliente_proc VARCHAR(200), 
+IN nombre_cliente_proc VARCHAR(200), 
+IN apellido_cliente_proc VARCHAR(200),
+IN fecha_nacimiento_proc VARCHAR(200), 
+IN correo_proc VARCHAR(200),
+IN direccion_proc VARCHAR(200) 
+)
+BEGIN 
+INSERT INTO tb_cliente(id_cliente, nombre_cliente, apellido_cliente, fecha_nacimiento, correo, direccion)
+VALUES (id_cliente_proc, nombre_cliente_proc, apellido_cliente_proc, fecha_nacimiento_proc, correo_proc, direccion_proc);
+END 
+//DELIMITER ;
 
+-- 4. Permite registrar un nuevo empleado (barbero)
+DELIMITER //
+CREATE PROCEDURE registrar_empleado(
+IN id_empleado_proc VARCHAR(200), 
+IN nombre_empleado_proc VARCHAR(200), 
+IN apellido_empleado_proc VARCHAR(200),
+IN especialidad_proc VARCHAR(200),
+IN id_servicio_proc VARCHAR(200)
+)
+BEGIN 
+INSERT INTO tb_empleado(id_empleado, nombre_empleado, apellido_empleado, especialidad, id_servicio)
+VALUES (id_empleado_proc, nombre_empleado_proc, apellido_empleado_proc, especialidad_proc, id_servicio_proc);
+END 
+//DELIMITER ;
 
+-- 1er. Trigger 
+DELIMITER //
+CREATE TRIGGER triggerCompras BEFORE INSERT ON dll_compra_producto
+FOR EACH ROW 
+BEGIN
+UPDATE tb_producto SET cantidad_disponible = cantidad_disponible + NEW.unidades 
+WHERE id_producto = NEW.id_producto;  
+END
+//DELIMITER ;
+
+-- 2do. trigger
+DELIMITER //
+CREATE TRIGGER triggerVentas BEFORE INSERT ON dll_venta_producto
+FOR EACH ROW 
+BEGIN
+UPDATE tb_producto SET cantidad_disponible = cantidad_disponible - NEW.unidades 
+WHERE id_producto = NEW.ref_producto;  
+END
+//DELIMITER ;
+
+INSERT INTO dll_venta_producto()
+VALUES ('034135', '1000000', '0000000001', 1, 2102);
+
+INSERT INTO dll_compra_producto()
+VALUES ('034135', '1000000', '0000000001', 2, 2102);
+
+-- Muestra todos los datos de cada una de las tablas
+SELECT * 
+FROM tb_proveedor;
+
+SELECT * 
+FROM tb_producto;
+
+SELECT * 
+FROM tb_cliente; 
+
+SELECT *
+FROM tb_servicio; 
+
+SELECT * 
+FROM tb_empleado;
+
+SELECT * 
+FROM tb_telefono_proveedor;
+
+SELECT * 
+FROM tb_telefono_cliente;
+
+SELECT * 
+FROM tb_compra;
+
+SELECT *
+FROM dll_compra_producto;
+
+SELECT * 
+FROM dll_venta_producto;
+
+SELECT * 
+FROM tb_historial_servicio;
+
+SELECT * 
+FROM tb_cita;
