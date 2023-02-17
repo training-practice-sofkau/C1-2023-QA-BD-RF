@@ -16,7 +16,8 @@ ON e.idEmpleado = es.idEmpleadoE
 GROUP BY e.idEmpleado;
 
 -- -----------------------------------------------------
--- Visualizar los procedimientos realizados en un servicio
+-- Visualizar los procedimientos realizados en un
+-- servicio
 -- -----------------------------------------------------
 CREATE VIEW procedimientosEnServicio AS
 SELECT
@@ -44,7 +45,8 @@ INNER JOIN insumo AS i
 ON u.REFInsumoU = i.REFInsumo
 GROUP BY s.idServicio;
 -- -----------------------------------------------------
--- Visualizar la cantidad total de ligas que se ha ganado un empleado
+-- Visualizar la cantidad total de ligas que se ha
+-- ganado un empleado
 -- -----------------------------------------------------
 CREATE VIEW ligaTotalEmpleado AS
 SELECT 
@@ -67,7 +69,8 @@ ON c.idCliente = ci.idClienteC
 GROUP BY c.idCliente;
 
 -- -----------------------------------------------------
--- Visualizar el tiempo total trabajado por cada empleado
+-- Visualizar el tiempo total trabajado por cada
+-- empleado
 -- -----------------------------------------------------
 CREATE VIEW tiempoTotalEmpleado AS
 SELECT 
