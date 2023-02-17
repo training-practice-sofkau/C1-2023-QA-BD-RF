@@ -142,6 +142,7 @@ public class Main {
             //TABLA PRODUCTO_PROVEEDOR
             mySqlOperation.setSqlStatement("insert into producto_proveedor values('"+String.valueOf(id_proveedor)+"','"+String.valueOf(id_producto)+"')");
             mySqlOperation.executeSqlStatementVoid();
+
             id_cliente=id_cliente+1;
             id_proveedor=id_proveedor+1;
             id_empleado=id_empleado+1;
