@@ -274,6 +274,7 @@ END //
 
 CALL eliminar_telefono_cliente ('123456789','666-6666')
 
+-- trigger para disminuir el stock cuando se realice una compra en la tabla producto_pedido
 DELIMITER //
 CREATE TRIGGER disminuir_stock AFTER INSERT ON producto_pedido 
 FOR EACH ROW
@@ -286,3 +287,49 @@ BEGIN
 END;
 // DELIMITER ;
 
+INSERT INTO producto_pedido(id_producto_pedido, id_pedido_producto, Cantidad)
+VALUES('prod001', 'PED001', 200)
+
+-- trigger para validar que el domicilirio este en la misma zona que el cliente
+DELIMITER //
+CREATE TRIGGER validar_zona_domiciliario
+BEFORE INSERT ON pedido
+FOR EACH ROW
+BEGIN
+    DECLARE trigger_zona_cliente VARCHAR(15);
+    DECLARE trigger_zona_domiciliario VARCHAR(15);
+    
+    SELECT zona_cliente INTO trigger_zona_cliente FROM cliente WHERE cedula = NEW.cedula_cliente;
+    SELECT zona_domiciliario INTO trigger_zona_domiciliario FROM domiciliario WHERE id_domiciliario = NEW.id_domiciliario_pedido;
+    
+    IF trigger_zona_cliente != trigger_zona_domiciliario THEN
+        SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'El domiciliario no está en la misma zona que el cliente';
+    END IF;
+END;
+// DELIMITER ;
+
+-- Tabla control_de_cambios_librería
+CREATE TABLE IF NOT EXISTS control_de_cambios_tienda (
+    usuario VARCHAR(50),
+    accion VARCHAR(50),
+    fecha DATETIME DEFAULT current_timestamp
+);
+
+-- Trigger agregar
+DELIMITER //
+CREATE TRIGGER agregar_telefono AFTER INSERT ON telefono_cliente
+	FOR EACH ROW
+	BEGIN
+		INSERT INTO control_de_cambios_tienda VALUES(user(), 'agregar', now());
+	END;
+// DELIMITER ;
+
+-- Trigger eliminar
+DELIMITER //
+CREATE TRIGGER eliminar_telefono AFTER DELETE ON telefono_cliente
+	FOR EACH ROW
+	BEGIN
+		INSERT INTO control_de_cambios_tienda VALUES(user(), 'eliminar', now());
+	END;
+// DELIMITER ;
