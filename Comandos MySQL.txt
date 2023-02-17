@@ -178,7 +178,7 @@ where liga >2000;
 /*---------------------Consulta 2--------------------*/
 select empleado.nombre as "empleado", especialidad.especialidad as "especialidad"
 from empleado inner join especialidad on id_empleado_especialidad=id_empleado
-where especialidad.especialidad = "cejas";
+where especialidad.especialidad = "cabello";
 /*---------------------Consulta 3---------------------*/
 select cliente.nombre, group_concat(contacto_cliente.telefono SEPARATOR ', ') as telefonos
 from cliente inner join contacto_cliente on id_cliente_contacto=id_cliente
@@ -190,3 +190,25 @@ where hora="08:30";
 select cita.fecha, cita.hora, empleado.nombre as "empleado", cliente.nombre as "cliente"
 from cliente inner join cita on id_cliente_cita=cliente.id_cliente
 			 inner join empleado on id_empleado=cita.id_empleado_cita; 
+/*---------------------Consulta 6---------------------*/
+select empleado.nombre, group_concat(especialidad.especialidad SEPARATOR ', ') as especialidades
+from empleado inner join especialidad on id_empleado_especialidad=id_empleado
+group by empleado.id_empleado;
+/*---------------------Consulta 7---------------------*/
+select cliente.CC as "cedula", cliente.nombre as "cliente", producto.nombre as "producto", producto.precio as "precio", compra.cantidad_producto as "cantidad", compra.total as "total"
+from cliente inner join compra on id_cliente_compra=cliente.id_cliente
+			 inner join producto on id_producto=compra.id_producto_compra;
+/*---------------------Consulta 8---------------------*/
+select producto.nombre as "producto", cliente.nombre as "cliente", empleado.nombre as "empleado"
+from empleado inner join empleado_vende on id_empleado_vende=empleado.id_empleado
+			  inner join producto on id_producto=empleado_vende.id_producto_vende
+              inner join compra on id_producto_compra=producto.id_producto
+              inner join cliente on id_cliente=compra.id_cliente_compra;
+/*---------------------Consulta 9---------------------*/
+select sum(total) as "ingresos totales"
+from compra;
+/*---------------------Consulta 10---------------------*/
+select sum(compra.cantidad_producto) as "mayor producto vendido", producto.nombre as "producto"
+from compra inner join producto on id_producto=compra.id_producto_compra
+group by compra.id_producto_compra
+limit 1;
