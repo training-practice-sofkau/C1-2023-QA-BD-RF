@@ -305,9 +305,57 @@ delimiter ;
 call buscar_proveedor("Proveedor3");
 /*---------------------------------Triggers---------------------------------------*/
 /*---------------------Trigger1---------------------*/
-
+create table cita_cancelada(
+	usuario varchar(30),
+    fecha datetime default current_timestamp
+);
+delimiter //
+create trigger del_cita after delete on cita
+	for each row
+		begin
+		insert into cita_cancelada values(user(),now());
+	end;
+//
+delimiter ;
+call cancelar_cita("3004");
+select * from cita_cancelada;
 /*---------------------Trigger2---------------------*/
-
+create table control_cambios_cita(
+	usuario varchar(30),
+    descripcion varchar(30),
+    fecha datetime default current_timestamp
+);
+delimiter //
+create trigger ins_cita after insert on cita
+	for each row
+		begin
+		insert into control_cambios_cita values(user(),"creo cita",now());
+	end;
+//
+delimiter ;
+call generar_cita("3006","11:30","01/01/94","002","1002");
+select * from control_cambios_cita;
 /*---------------------Trigger3---------------------*/
-
+delimiter //
+create trigger mod_cita after update on cita
+	for each row
+		begin
+		insert into control_cambios_cita values(user(),"modifico",now());
+	end;
+//
+delimiter ;
+call modificar_cita("3006","01/02/94","13:30");
+select * from control_cambios_cita;
 /*---------------------Trigger4---------------------*/
+select * from producto;
+delimiter //
+create trigger ins_producto after insert on producto
+	for each row
+		begin
+		insert into control_cambios_cita values(user(),"creo producto",now());
+	end;
+//
+delimiter ;
+insert into producto values
+("2005","Gel","Descripcion5","100","1000");
+select * from control_cambios_cita;
