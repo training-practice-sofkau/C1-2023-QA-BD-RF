@@ -50,22 +50,6 @@ CREATE TABLE proveerI (
     FOREIGN KEY (REFInsumoI) REFERENCES insumo (REFInsumo)
 );
 
--- Tabla Procedimiento
-CREATE TABLE procedimiento (
-	tipo VARCHAR(40) DEFAULT 'CORTE',
-    precioProcedimiento FLOAT DEFAULT 0,
-    PRIMARY KEY (tipo)
-);
-
--- Tabla Usar
-CREATE TABLE usar (
-	tipoP VARCHAR(40) DEFAULT 'CORTE',
-    REFInsumoP INT,
-    PRIMARY KEY (tipoP, REFInsumoP),
-    FOREIGN KEY (tipoP) REFERENCES procedimiento (tipo),
-    FOREIGN KEY (REFInsumoP) REFERENCES insumo (REFInsumo)
-);
-
 -- Tabla Cliente
 CREATE TABLE cliente (
 	idCliente INT AUTO_INCREMENT,
@@ -94,8 +78,7 @@ CREATE TABLE especialidad (
 -- Tabla Cita
 CREATE TABLE cita (
 	idCita INT AUTO_INCREMENT,
-    fecha VARCHAR(40),
-    hora VARCHAR(15),
+    fechaCita VARCHAR(100),    
     idClienteC INT,
     idEmpleadoC INT,
     PRIMARY KEY (idCita),
@@ -107,6 +90,7 @@ CREATE TABLE cita (
 CREATE TABLE venta (
 	idVenta INT AUTO_INCREMENT,
 	liga FLOAT DEFAULT 0,
+    fechaVenta VARCHAR(100),
     idClienteV INT,
     idEmpleadoV INT,
     PRIMARY KEY (idVenta),
@@ -127,12 +111,20 @@ CREATE TABLE vender (
 CREATE TABLE servicio (
 	idServicio INT AUTO_INCREMENT,
 	duración VARCHAR(15) DEFAULT '0 HORAS',
+    fechaServicio VARCHAR(100),
     descripción VARCHAR(250),
     idClienteS INT,
     idEmpleadoS INT,
     PRIMARY KEY (idServicio),
     FOREIGN KEY (idClienteS) REFERENCES cliente (idCliente),
     FOREIGN KEY (idEmpleadoS) REFERENCES empleado (idEmpleado)
+);
+
+-- Tabla Procedimiento
+CREATE TABLE procedimiento (
+	tipo VARCHAR(40) DEFAULT 'CORTE',
+    precioProcedimiento FLOAT DEFAULT 0,
+    PRIMARY KEY (tipo)
 );
 
 -- Tabla Realizar
@@ -142,4 +134,13 @@ CREATE TABLE realizar (
     PRIMARY KEY (idServicioR, tipoR),
     FOREIGN KEY (idServicioR) REFERENCES servicio (idServicio),
     FOREIGN KEY (tipoR) REFERENCES procedimiento (tipo)
+);
+
+-- Tabla Usar
+CREATE TABLE usar (
+	idServicioU INT,
+    REFInsumoU INT,
+    PRIMARY KEY (idServicioU, REFInsumoU),
+    FOREIGN KEY (idServicioU) REFERENCES servicio (idServicio),
+    FOREIGN KEY (REFInsumoU) REFERENCES insumo (REFInsumo)
 );
