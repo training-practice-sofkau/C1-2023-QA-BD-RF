@@ -9,4 +9,5 @@ public interface IDataBase {
     ResultSet obtenerResultado();
     void close();
     void imprimirResultados() throws SQLException;
+    void executeSqlStatementVoid();
 }
