@@ -111,6 +111,8 @@ create table servicio(
     id_cita_servicio varchar(20),
     foreign key(id_cita_servicio) references cita(id_cita)
 );
+alter table servicio
+add duracion varchar(10);
 insert into servicio values
 ("4001","02/02/92","descripcion1","30000","3001"),
 ("4002","02/02/93","descripcion2","20000","3002"),
@@ -152,6 +154,9 @@ create table compra(
     foreign key(id_producto_compra) references producto(id_producto),
     foreign key(id_cliente_compra) references cliente(id_cliente)
 );
+alter table compra
+add fecha varchar(20);
+
 insert into compra values
 ("2001","001","5","250000"),
 ("2002","002","2","10000"),
@@ -171,7 +176,6 @@ insert into producto_proveedor values
 ("103","2003");
 select * from producto_proveedor;
 /*--------------------------------------------------Consultas --------------------------------------------------------*/
-
 /*---------------------Consulta 1---------------------*/
 select nombre from empleado
 where liga >2000;
@@ -212,3 +216,44 @@ select sum(compra.cantidad_producto) as "mayor producto vendido", producto.nombr
 from compra inner join producto on id_producto=compra.id_producto_compra
 group by compra.id_producto_compra
 limit 1;
+/*---------------------------------Vistas---------------------------------------*/
+/*---------------------Vista1---------------------*/
+create view facturas as
+select cliente.CC as "cedula", cliente.nombre as "cliente", producto.nombre as "producto", producto.precio as "precio", 
+	   compra.cantidad_producto as "cantidad", compra.total as "total", compra.fecha as "fecha compra"
+from cliente inner join compra on id_cliente_compra=cliente.id_cliente
+			 inner join producto on id_producto=compra.id_producto_compra;
+select * from facturas;
+/*---------------------Vista2---------------------*/
+create view historial_de_servicios as
+select cliente.nombre as "cliente", empleado.nombre as "empleado", group_concat(producto.nombre SEPARATOR ', ') as productos_consumidos,
+	   servicio.descripcion as "servicio", servicio.duracion as "duracion", servicio.fecha as "fecha"
+from cliente inner join cita on id_cliente_cita=cliente.id_cliente
+			 inner join empleado on id_empleado=cita.id_empleado_cita
+             inner join servicio on id_cita_servicio=cita.id_cita
+             inner join producto_servicio on id_servicio_producto=servicio.id_servicio
+             inner join producto on id_producto=producto_servicio.id_producto_servicio
+group by servicio.id_servicio;
+select * from historial_de_servicios;
+/*---------------------Vista3---------------------*/
+
+/*---------------------Vista4---------------------*/
+
+/*---------------------Vista5---------------------*/
+
+/*---------------------------------Procedimientos---------------------------------------*/
+/*---------------------Procedimiento1---------------------*/
+
+/*---------------------Procedimiento2---------------------*/
+
+/*---------------------Procedimiento3---------------------*/
+
+/*---------------------Procedimiento4---------------------*/
+/*---------------------------------Triggers---------------------------------------*/
+/*---------------------Trigger1---------------------*/
+
+/*---------------------Trigger2---------------------*/
+
+/*---------------------Trigger3---------------------*/
+
+/*---------------------Trigger4---------------------*/
