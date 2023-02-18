@@ -2,7 +2,8 @@ use tiendadonpepe;
 -- -----------------------------------------------------
 -- 1- Conocer las categorias y sus prodcutos
 
-select categoria.nombre as Nombre_Categoria, group_concat(producto.nom_producto separator ', ') as Nombre_Productos
+select categoria.nombre as Nombre_Categoria, 
+group_concat(producto.nom_producto separator ', ') as Nombre_Productos
 from producto inner join  categoria
 on producto.id_categorias = categoria.id_categoria
 group by categoria.nombre;
