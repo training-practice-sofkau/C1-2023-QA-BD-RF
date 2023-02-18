@@ -20,12 +20,7 @@ public class Main {
         for(int i=0;i<50;i++){
             tabla=nombreTabla(tablas);
             System.out.println(tabla+" "+i);
-            if (tabla.equals("telefono_veterinario")||
-                    tabla.equals("animal_dieta")||
-                    tabla.equals("telefono_proveedor")||
-                    tabla.equals("alimento_dieta")||
-                    tabla.equals("Dieta")||
-                    tabla.equals("alimento")){
+            if (){
                 bandera=1;
                 posicionReal=i+1;
                 i=random.nextInt(posicionReal+1);
@@ -69,50 +64,18 @@ public class Main {
     }
     public static String nombreTabla(int valor){
         switch (valor){
-            case 0: return "veterinario";
-            case 1: return "telefono_veterinario";
-            case 2: return "dieta";
-            case 3: return "proveedor";
-            case 4: return "telefono_proveedor";
-            case 5: return "animal";
-            case 6: return "animal_dieta";
-            case 7: return "alimento";
-            case 8: return "alimento_dieta";
             default:
                 return null;
         }
     }
     public static String stringAtributos(String valor){
         switch (valor){
-            case "veterinario":
-            case "proveedor":
-                return "nombre";
-            case "telefono_veterinario": return "idEmpleado_telefono,telefono_veterinario";
-            case "dieta": return "idEmpleado_veterinario";
-            case "animal": return "nombre,peso,clasificacion";
-            case "animal_dieta": return "idAlimento_dieta,idDieta_alimento";
-            case "telefono_proveedor": return "idProceedor_telefono,telefono_proveedor";
-            case "alimento": return "dosis,tipo,nombre,idProveedor";
-            case "alimento_dieta": return "idAnimal_dieta,idDieta_animal";
             default: return null;
         }
     }
     public static String stringValores(String valor,int i){
-        List<String> clasificacion= List.of("mamiferos","aves","anfibios","peces","reptíles");
-        List<String> tipo= List.of("humeda","seca","mixta");
         switch (valor){
-            case "veterinario":
-            case "proveedor":
-                return faker.name().firstName()+faker.name().lastName()+" ";
-            case "telefono_veterinario":
-            case "telefono_proveedor":
-                return i+","+faker.phoneNumber().phoneNumber();
-            case "dieta": return ""+i;
-            case "animal": return faker.animal().name()+","+random.nextInt(1000-50)+50+","+clasificacion.get(random.nextInt(4)+1);
-            case "animal_dieta":
-            case "alimento_dieta":
-                return i+","+random.nextInt(49)+1;
-            case "alimento": return random.nextInt(500)+1+" gr"+","+tipo.get(random.nextInt(2)+1)+","+"comida"+","+random.nextInt(49)+1;
+            case :
             default: return null;
         }
     }
