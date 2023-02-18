@@ -17,11 +17,9 @@ public class Main {
     public static void main(String[] args){
         ITabla tabla=new Veterinario();
         int contador=0;
-        String valor;
         for(int i=0;i<51;i++){
-            valor=tabla.getValores();
             abrirConexion();
-            insertIntoAnimal(tabla.getTabla(),tabla.getAtributos(),valor);
+            insertIntoAnimal(tabla.getTabla(),tabla.getAtributos(),tabla.getValores());
             closeConexion();
             if(tabla instanceof AlimentoDieta&&i==49){
                 break;
