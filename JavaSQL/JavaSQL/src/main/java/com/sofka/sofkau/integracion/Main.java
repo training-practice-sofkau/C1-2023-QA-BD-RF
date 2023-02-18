@@ -1,11 +1,6 @@
 package com.sofka.sofkau.integracion;
-import com.github.javafaker.Faker;
 import com.sofka.sofkau.integracion.database.mysql.MySqlOperacion;
 import com.sofka.sofkau.integracion.modelo.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 public class Main {
     private static final String SERVIDOR="localhost";
     private static final String NOMBRE_BASE_DATOS="alimentos_parque_santafe";
