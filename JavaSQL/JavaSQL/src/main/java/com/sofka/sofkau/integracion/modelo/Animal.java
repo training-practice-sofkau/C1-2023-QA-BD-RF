@@ -7,10 +7,6 @@ public class Animal implements ITabla{
         return "animal";
     }
 
-    @Override
-    public boolean esForanea() {
-        return false;
-    }
 
     @Override
     public String getAtributos() {

@@ -5,10 +5,6 @@ public class Dieta implements ITabla{
         return "dieta";
     }
     @Override
-    public boolean esForanea() {
-        return true;
-    }
-    @Override
     public String getAtributos() {
         return "idEmpleado_veterinario";
     }

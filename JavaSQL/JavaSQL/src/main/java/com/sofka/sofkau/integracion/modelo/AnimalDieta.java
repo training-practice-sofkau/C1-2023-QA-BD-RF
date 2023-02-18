@@ -4,10 +4,6 @@ public class AnimalDieta implements ITabla{
     public String getTabla() {
         return "animal_dieta";
     }
-    @Override
-    public boolean esForanea() {
-        return true;
-    }
 
     @Override
     public String getAtributos() {

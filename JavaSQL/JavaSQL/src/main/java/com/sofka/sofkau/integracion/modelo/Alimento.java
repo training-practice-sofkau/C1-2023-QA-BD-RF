@@ -8,10 +8,6 @@ public class Alimento implements ITabla{
     public String getTabla() {
         return "alimento";
     }
-    @Override
-    public boolean esForanea() {
-        return true;
-    }
 
     @Override
     public String getAtributos() {

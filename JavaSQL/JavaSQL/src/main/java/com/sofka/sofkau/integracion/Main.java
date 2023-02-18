@@ -1,6 +1,8 @@
 package com.sofka.sofkau.integracion;
 import com.github.javafaker.Faker;
 import com.sofka.sofkau.integracion.database.mysql.MySqlOperacion;
+import com.sofka.sofkau.integracion.modelo.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,34 +17,37 @@ public class Main {
     public static Random random=new Random();
     public static Faker faker=new Faker();
     public static void main(String[] args){
-        int tablas=0,posicionReal=0,bandera;
-        String tabla,atributos,valores;
+        ITabla tabla=new Veterinario();
+        int contador=1;
         for(int i=0;i<50;i++){
-            tabla=nombreTabla(tablas);
-            System.out.println(tabla+" "+i);
-            if (){
-                bandera=1;
-                posicionReal=i+1;
-                i=random.nextInt(posicionReal+1);
-            }else{
-                bandera=0;
-            }
-            atributos=stringAtributos(tabla);
-            valores=stringValores(tabla,i);
             abrirConexion();
-            /*insertIntoAnimal(
-                    tabla,
-                    atributos,
-                    valores);
-             */
+            insertIntoAnimal(tabla.getTabla(),tabla.getAtributos(),tabla.getValores());
             closeConexion();
-            if (bandera==1)
-                i=posicionReal-1;
-            if(i==49){
-                tablas++;
-                i=0;
-            }if(tablas==9){
+            if(tabla instanceof AlimentoDieta&&i==49){
                 break;
+            }
+            if(i==49){
+                i=0;
+                contador++;
+                switch (contador){
+                    case 1: tabla=new VeterinarioTelefono();
+                            break;
+                    case 2: tabla=new Dieta();
+                            break;
+                    case 3: tabla=new Animal();
+                            break;
+                    case 4: tabla=new AnimalDieta();
+                            break;
+                    case 5: tabla=new Proveedor();
+                            break;
+                    case 6: tabla=new ProveedorTelefono();
+                            break;
+                    case 7: tabla=new Alimento();
+                            break;
+                    case 8: tabla=new AlimentoDieta();
+                            break;
+                    default: break;
+                }
             }
         }
     }
@@ -61,22 +66,5 @@ public class Main {
     }
     public static void closeConexion(){
         mySqlOperacion.cerrar();
-    }
-    public static String nombreTabla(int valor){
-        switch (valor){
-            default:
-                return null;
-        }
-    }
-    public static String stringAtributos(String valor){
-        switch (valor){
-            default: return null;
-        }
-    }
-    public static String stringValores(String valor,int i){
-        switch (valor){
-            case :
-            default: return null;
-        }
     }
 }

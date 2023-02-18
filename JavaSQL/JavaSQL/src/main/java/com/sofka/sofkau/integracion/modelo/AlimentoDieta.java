@@ -6,10 +6,6 @@ public class AlimentoDieta implements ITabla{
         return "alimento_dieta";
     }
 
-    @Override
-    public boolean esForanea() {
-        return true;
-    }
 
     @Override
     public String getAtributos() {

@@ -6,10 +6,6 @@ public class Veterinario implements ITabla{
         return "veterinario";
     }
     @Override
-    public boolean esForanea() {
-        return false;
-    }
-    @Override
     public String getAtributos() {
         return "nombre";
     }

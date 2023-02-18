@@ -5,12 +5,6 @@ public class Proveedor implements ITabla{
     public String getTabla() {
         return "proveedor";
     }
-
-    @Override
-    public boolean esForanea() {
-        return false;
-    }
-
     @Override
     public String getAtributos() {
         return "nombre";
