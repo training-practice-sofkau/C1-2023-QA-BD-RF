@@ -218,11 +218,44 @@ WHERE id_producto = NEW.ref_producto;
 END
 //DELIMITER ;
 
+
 -- 3er. trigger
+DELIMITER //
+CREATE TRIGGER prevenir_remover_producto BEFORE DELETE ON tb_producto
+FOR EACH ROW
+BEGIN
+	DECLARE veces_vendido INT; -- Declaramos una variable de tipo entero
+	SELECT COUNT(*) INTO veces_vendido FROM dll_venta_producto WHERE ref_producto = OLD.id_producto;
+    IF veces_vendido > 0 THEN
+		-- La palabra reservada SIGNAL le dice a mysql que no continue con la ejecución y que
+        -- arroje un error
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No puedes eliminar este producto por que ya tiene ventas.';
+    END IF;
+END
+//DELIMITER // ; 
+Delete from tb_producto WHERE id_producto = '0000000003';
 
+-- 4to. trigger
+DELIMITER //  
+CREATE TRIGGER prevenir_citas_dobles BEFORE INSERT ON tb_cita
+FOR EACH ROW
+BEGIN
+	DECLARE citas_duplicadas INT;
+    SELECT 
+		COUNT(*) INTO citas_duplicadas 
+        FROM tb_cita
+        WHERE 
+            id_empleado = NEW.id_empleado AND
+            fecha = NEW.fecha AND
+            hora = NEW.hora;
+	IF citas_duplicadas > 0 THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "La cita está duplicada";
+	END IF; 
+END
+//DELIMITER ;
 
--- 4to. trigger 
-
+INSERT INTO tb_cita(id_cita, fecha, hora, estado, id_cliente, id_empleado) 
+	VALUES ('12012010', '08/09/1973', '3', 'activa', '1000004', '1000004');
 
 -- Consultas que permiten ver la información de cada tabla o de varias tablas. 
 -- Consulta #1. Mostrar todos los empleados que trabajan en la barbería
@@ -294,6 +327,9 @@ INNER JOIN tb_cita ON tb_cita.id_empleado = tb_empleado.id_empleado
 INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_cita.id_cliente
 WHERE tb_empleado.id_empleado = '1000044';
 
+SELECT *
+FROM citas_empleado;
+
 -- Vista #2.
 CREATE VIEW registro_venta_actual AS 
 SELECT tb_registro_venta.id_registro_venta AS "Id registros de venta", 
@@ -304,17 +340,26 @@ CONCAT (tb_cliente.nombre_cliente, " ",tb_cliente.apellido_cliente) AS "Nombre c
 FROM tb_registro_venta
 INNER JOIN tb_cliente ON tb_cliente.id_cliente = tb_registro_venta.id_cliente;
 
+SELECT *
+FROM registro_venta_actual;
+
 -- Vista #3.
 CREATE VIEW agotando_stock AS 
 SELECT id_producto AS "Id del producto", nombre_producto AS "Nombre del producto", cantidad_disponible AS Stock
 FROM tb_producto
 WHERE cantidad_disponible < 5; 
 
+SELECT *
+FROM agotando_stock;
+
 -- Vista #4.
 CREATE VIEW servicios_empleado AS
 SELECT CONCAT(nombre_empleado, " ",apellido_empleado) AS "Nombre del empleado", especialidad AS Servicio
 FROM tb_empleado
 ORDER BY nombre_empleado;
+
+SELECT * 
+FROM servicios_empleado;
 
 INSERT INTO dll_venta_producto()
 VALUES ('034135', '1000000', '0000000001', 1, 2102);
