@@ -9,12 +9,12 @@ public class AlimentoDieta implements ITabla{
 
     @Override
     public String getAtributos() {
-        return "idAnimal_dieta,idDieta_animal";
+        return "idAlimento_dieta,idDieta_alimento";
     }
 
     @Override
     public String getValores() {
-        return FakerLlenar.getRandom().getRand().nextInt(48)+1
-                +","+FakerLlenar.getRandom().getRand().nextInt(49)+1;
+        return "'"+(FakerLlenar.getRandom().getRand().nextInt(48)+1)+"'"
+                +","+"'"+(FakerLlenar.getRandom().getRand().nextInt(49)+1)+"'";
     }
 }

@@ -11,13 +11,13 @@ public class Alimento implements ITabla{
 
     @Override
     public String getAtributos() {
-        return "dosis,tipo,nombre,idProveedor";
+        return "dosis,tipo,nombre,idProveedor_alimento";
     }
 
     @Override
     public String getValores() {
-        return FakerLlenar.getRandom().getRand().nextInt(500)+1
-                +" gr"+","+this.tipo.get(FakerLlenar.getRandom().getRand().nextInt(2)+1)
-                +","+"comida"+","+FakerLlenar.getRandom().getRand().nextInt(49)+1;
+        return "'"+(FakerLlenar.getRandom().getRand().nextInt(500)+1)+" gr"+"'"
+                +","+"'"+this.tipo.get(FakerLlenar.getRandom().getRand().nextInt(2)+1)+"'"
+                +","+"'"+"comida"+"'"+","+"'"+(FakerLlenar.getRandom().getRand().nextInt(49)+1)+"'";
     }
 }

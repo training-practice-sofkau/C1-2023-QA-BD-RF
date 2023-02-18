@@ -11,23 +11,24 @@ public class Main {
     private static final String NOMBRE_BASE_DATOS="alimentos_parque_santafe";
     private static final String USUARIO="root";
     private static final String CONTRASENA="IVAN.dario00";
-    private static final String INSERTAR_ANIMAL=("insert into %s.%s(%s) values ('%s');");
+    private static final String INSERTAR_ANIMAL=("insert into %s.%s(%s) values (%s);");
     private static final String SELECT_ALL_FROM_ANIMALES=String.format("select * from %s.animal",NOMBRE_BASE_DATOS);
     private static final MySqlOperacion mySqlOperacion= new MySqlOperacion();
-    public static Random random=new Random();
-    public static Faker faker=new Faker();
     public static void main(String[] args){
         ITabla tabla=new Veterinario();
-        int contador=1;
-        for(int i=0;i<50;i++){
+        int contador=0;
+        String valor;
+        for(int i=0;i<51;i++){
+            valor=tabla.getValores();
             abrirConexion();
-            insertIntoAnimal(tabla.getTabla(),tabla.getAtributos(),tabla.getValores());
+            insertIntoAnimal(tabla.getTabla(),tabla.getAtributos(),valor);
             closeConexion();
-            System.out.println(tabla.getTabla());
+            System.out.println(tabla.getTabla()+", "+valor);
+            System.out.println(tabla.getAtributos());
             if(tabla instanceof AlimentoDieta&&i==49){
                 break;
             }
-            if(i==49){
+            if(i==50){
                 i=0;
                 contador++;
                 switch (contador){

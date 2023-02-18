@@ -12,6 +12,6 @@ public class VeterinarioTelefono implements ITabla{
 
     @Override
     public String getValores() {
-        return (FakerLlenar.getRandom().getRand().nextInt(48)+1)+","+FakerLlenar.getRandom().getFaker().phoneNumber().phoneNumber();
+        return "'"+(FakerLlenar.getRandom().getRand().nextInt(48)+1)+"'"+","+"'"+FakerLlenar.getRandom().getFaker().phoneNumber().cellPhone()+"'";
     }
 }

@@ -15,8 +15,8 @@ public class Animal implements ITabla{
 
     @Override
     public String getValores() {
-        return FakerLlenar.getRandom().getFaker().animal().name()
-                +","+FakerLlenar.getRandom().getRand().nextInt(1000-50)+50
-                +","+this.clasificacion.get(FakerLlenar.getRandom().getRand().nextInt(4)+1);
+        return "'"+FakerLlenar.getRandom().getFaker().animal().name()+"'"+","
+                +"'"+(FakerLlenar.getRandom().getRand().nextInt(1000-50)+50)+"'"+","
+                +"'"+(this.clasificacion.get(FakerLlenar.getRandom().getRand().nextInt(4)+1)+"'");
     }
 }

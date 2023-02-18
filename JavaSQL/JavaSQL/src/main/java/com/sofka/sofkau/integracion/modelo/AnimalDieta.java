@@ -7,12 +7,12 @@ public class AnimalDieta implements ITabla{
 
     @Override
     public String getAtributos() {
-        return "idAlimento_dieta,idDieta_alimento";
+        return "idAnimal_dieta,idDieta_animal";
     }
 
     @Override
     public String getValores() {
-        return FakerLlenar.getRandom().getRand().nextInt(48)+1
-                +","+FakerLlenar.getRandom().getRand().nextInt(49)+1;
+        return (FakerLlenar.getRandom().getRand().nextInt(48)+1)
+                +","+(FakerLlenar.getRandom().getRand().nextInt(49)+1);
     }
 }

@@ -11,6 +11,6 @@ public class Veterinario implements ITabla{
     }
     @Override
     public String getValores() {
-        return FakerLlenar.getRandom().getFaker().name().fullName()+" ";
+        return "'"+FakerLlenar.getRandom().getFaker().name().fullName()+" "+"'";
     }
 }

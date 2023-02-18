@@ -7,11 +7,11 @@ public class ProveedorTelefono implements ITabla{
     }
     @Override
     public String getAtributos() {
-        return "idProceedor_telefono,telefono_proveedor";
+        return "idProveedor_telefono,telefono_proveedor";
     }
 
     @Override
     public String getValores() {
-        return ""+FakerLlenar.getRandom().getFaker().phoneNumber().phoneNumber();
+        return "'"+(FakerLlenar.getRandom().getRand().nextInt(48)+1)+"'"+","+"'"+FakerLlenar.getRandom().getFaker().phoneNumber().cellPhone()+"'";
     }
 }
