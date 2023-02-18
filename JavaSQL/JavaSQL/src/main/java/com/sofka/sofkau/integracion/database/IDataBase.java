@@ -1,4 +1,4 @@
-package com.sofka.sofkau.integracion.database.database;
+package com.sofka.sofkau.integracion.database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public interface IDataBase {
