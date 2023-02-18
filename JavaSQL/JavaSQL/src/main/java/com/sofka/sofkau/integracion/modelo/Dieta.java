@@ -10,6 +10,6 @@ public class Dieta implements ITabla{
     }
     @Override
     public String getValores() {
-        return ""+FakerLlenar.getRandom().getRand().nextInt(48)+1;
+        return ""+FakerLlenar.getRandom().getRand().nextInt(49)+1;
     }
 }

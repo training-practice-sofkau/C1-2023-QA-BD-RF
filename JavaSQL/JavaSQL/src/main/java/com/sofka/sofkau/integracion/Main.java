@@ -23,6 +23,7 @@ public class Main {
             abrirConexion();
             insertIntoAnimal(tabla.getTabla(),tabla.getAtributos(),tabla.getValores());
             closeConexion();
+            System.out.println(tabla.getTabla());
             if(tabla instanceof AlimentoDieta&&i==49){
                 break;
             }
