@@ -1,0 +1,12 @@
+
+
+java:S1192‰"qDefine a constant instead of duplicating this literal "SELECT CedulaCliente FROM tiendadonpepe.cliente;" 3 times.(à¨úÇıÿÿÿÿ
+e
+java:S1192"NDefine a constant instead of duplicating this literal "CedulaCliente" 3 times.(ğÚÜÉ
+e
+java:S1192@"ODefine a constant instead of duplicating this literal "[A-Z]{2}\\d{3}" 4 times.(Á ‘¾
+h	java:S100-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·´ÉÉÿÿÿÿÿ
+‰
+java:S11303"nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body.(¨¬›¥øÿÿÿÿ
+‘
+java:S1130Ø"nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body.(±³şòÿÿÿÿÿ8‰è×æ0
