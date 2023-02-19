@@ -110,8 +110,8 @@ public class Tienda {
     public void insertarProducto() {
         try {
             Faker faker = new Faker();
-            String query = "INSERT INTO producto (id_producto, nombre_producto, marca, origen, contenido, fotografia, stock, id_categoria_producto, id_proveedor_producto)" +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String query = "INSERT INTO producto (id_producto, nombre_producto, marca, origen, contenido, fotografia, stock, " +
+                    "id_categoria_producto, id_proveedor_producto)" +  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement statement = this.mySqlConnector.getStatement(query);
             for (int i = 0; i < 50; i++) {
                 statement.setString(1, "prod"+i);
@@ -152,7 +152,8 @@ public class Tienda {
         try {
             Faker faker = new Faker();
             LocalDate fechaActual = LocalDate.now();
-            String query = "INSERT INTO pedidos (id_pedido, direccion_pedido, fecha_pedido, numero_tarjeta, fecha_caducidad_tarjeta, total_valor, cedula_cliente, id_domiciliario_pedido)" +
+            String query = "INSERT INTO pedidos (id_pedido, direccion_pedido, fecha_pedido, numero_tarjeta, fecha_caducidad_tarjeta, " +
+                    "total_valor, cedula_cliente, id_domiciliario_pedido)" +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement statement = this.mySqlConnector.getStatement(query);
             int cc = 1999999;

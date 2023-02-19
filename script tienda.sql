@@ -88,36 +88,6 @@ FOREIGN KEY(id_producto_pedido) REFERENCES producto(id_producto),
 FOREIGN KEY(id_pedido_producto) REFERENCES pedidos(id_pedido)
 );
 
-INSERT INTO cliente(cedula, nombre_cliente, direccion_cliente, zona_cliente, email, password_cliente)
-VALUES ('123456785', 'Juan Pérez', 'Calle 123, Ciudad ABC', 'Zona 1', 'juanperez@email.com', 'clave123'),
-	   ('987654325', 'María Gómez', 'Avenida XYZ, Ciudad DEF', 'Zona 2', 'mariagomez@email.com', 'clave456');
-
-INSERT INTO telefono_cliente (cedula_cliente, numero_cliente)
-VALUES ('123456789', '555-1234'),('987654321', '555-5678');
-
-INSERT INTO proveedor (id_proveedor, nombre_proveedor)
-VALUES ('prov001', 'Proveedor A'),('prov002', 'Proveedor B');
-
-INSERT INTO telefono_proveedor (id_proveedor_telefono, numero_proveedor)
-VALUES ('prov001', '555-1234'),('prov002', '555-5678');
-
-INSERT INTO categoria (id_categoria, nombre_categoria, condiciones_almacenaimiento, observaciones)
-VALUES ('cat001', 'Categoría A', 'Seco', 'Observación 1'),('cat002', 'Categoría B', 'Frío', 'Observación 2');
-
-INSERT INTO producto (id_producto, nombre_producto, marca, origen, contenido, fotografia, stock, id_categoria_producto, id_proveedor_producto)
-VALUES ('prod001', 'Producto A', 'Marca A', 'Origen A', 'Contenido 1', 'imagen1.jpg', 50, 'cat001', 'prov001'),
-       ('prod002', 'Producto B', 'Marca B', 'Origen B', 'Contenido 2', 'imagen2.jpg', 100, 'cat002', 'prov002');
-
-INSERT INTO domiciliario (id_domiciliario, nombre_domiciliario, numero_matricula, zona_domiciliario)
-VALUES  ('dom001', 'Domiciliario 1', 'M0001', 'Zona 1'), ('dom002', 'Domiciliario 2', 'M0002', 'Zona 2');
-
-INSERT INTO pedido (id_pedido, direccion_pedido, fecha_pedido, numero_tarjeta, fecha_caducidad_tarjeta, total_valor, cedula_cliente, id_domiciliario_pedido)
-VALUES ('PED001', 'Calle 123, Ciudad ABC', '2023-02-17 09:30:00', '1234567812345678', '12/25', '50000', '123456789', 'dom001'),
-	   ('PED002', 'Avenida XYZ, Ciudad DEF', '2023-02-16 15:45:00', '8765432187654321', '06/28', '75000', '987654321', 'dom002');
-
-INSERT INTO producto_pedido(id_producto_pedido, id_pedido_producto, Cantidad)
-VALUES('prod001', 'PED001', 2),('prod002', 'PED002', 3);
-
 -- 1 consulta para ver el listado de productos con su categoria y proveedor
 SELECT producto.nombre_producto, categoria.nombre_categoria, proveedor.nombre_proveedor
 FROM producto
