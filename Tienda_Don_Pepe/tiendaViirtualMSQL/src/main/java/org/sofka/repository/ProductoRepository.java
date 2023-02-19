@@ -24,14 +24,14 @@ public class ProductoRepository implements Table{
             p.setId(String.valueOf(i));
             p.setNombre(faker.food().fruit());
             p.setOrigen(obtenerorigen());
-            p.setMarca(faker.company().name().replace("'"," ").replace(","," "));
+            p.setMarca(faker.company().name().replace("'"," "));
             p.setPeso(String.valueOf(faker.number().randomDouble(2,1, 10)));
             p.setStock(faker.number().numberBetween(10,1000));
-            p.setPrecio(faker.number().randomDouble(2,1000, 50000));
+            p.setPrecio(String.valueOf(faker.number().randomDouble(2,1000, 50000)));
             p.setIdProveeedor(i);
-            p.setIdCategoria("180");
+            p.setIdCategoria("80");
 
-            sql = String.format("INSERT INTO PRODUCTO VALUES('%s','%s','%s','%s','%s',%s,%s,%s,'%s');",
+            sql = String.format("INSERT INTO PRODUCTO  VALUES('%s','%s','%s','%s','%s',%s,'%s',%s,'%s');",
                     p.getId(),
                     p.getNombre(),
                     p.getOrigen(),
