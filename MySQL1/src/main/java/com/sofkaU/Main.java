@@ -1,6 +1,7 @@
 package com.sofkaU;
 
 import com.github.javafaker.Faker;
+import com.sofkaU.integration.database.models.Producto;
 import com.sofkaU.integration.database.models.Proveedor;
 import com.sofkaU.integration.database.mysql.MySqlOperation;
 
@@ -19,6 +20,7 @@ public class Main {
     public static void main(String[] args) {
         openConnection();
         insertarProveedor();
+        insertarProducto();
 
     }
     public static void openConnection(){
@@ -33,15 +35,39 @@ public class Main {
 
     }
 
+    /**
+     * Método para insertar datos en tabla Proveedor.
+     */
     private static void insertarProveedor(){
 
-        for (int i = 1; i < 5; i++) {
+        for (int i = 1; i < 51; i++) {
+
             Proveedor prov = new Proveedor();
-            prov.setNit(faker.number().numberBetween(300,400));
+            prov.setNit(i);
             prov.setNombre(faker.name().fullName());
             prov.setDireccion(faker.address().streetAddress());
-            mySqlOperation.setSqlStatement("insert into barberia.proveedor values('"+prov.getNit()+"','"+prov.getNombre()+"'," +
+            mySqlOperation.setSqlStatement("insert into proveedor values("+prov.getNit()+",'"+prov.getNombre()+"'," +
                     "'"+prov.getDireccion()+"');");
+            mySqlOperation.executeSqlStatementVoid();
+        }
+    }
+    /**
+     * Método para insertar datos en tabla Proveedor.
+     */
+    private static void insertarProducto(){
+
+        for (int i = 1; i < 51; i++) {
+
+            Producto prod = new Producto();
+            prod.setREF(i);
+            prod.setNombre(faker.funnyName().name());
+            prod.setCantidad(faker.random().nextInt(12,90));
+            prod.setPrecioCompra(faker.number().randomDouble(1,12900,180000));
+            prod.setPrecioVenta(faker.number().randomDouble(1,180000,200000));
+            prod.setNITproveedor(i);
+
+            mySqlOperation.setSqlStatement("insert into producto values("+prod.getREF()+",'"+prod.getNombre()+"'," +
+                    " "+prod.getCantidad()+","+prod.getPrecioCompra()+","+prod.getPrecioVenta()+","+prod.getNITproveedor()+");");
             mySqlOperation.executeSqlStatementVoid();
         }
     }
