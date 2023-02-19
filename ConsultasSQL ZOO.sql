@@ -18,7 +18,8 @@ INNER JOIN veterinario ON veterinario_informe.id_veterinario_informe = veterinar
 -- -----------------------------------------------------
 -- 3. Consulta para ver las ordenes de compra y el logistico que lo creó
 -- -----------------------------------------------------
-SELECT orden_compra.id_orden, orden_compra.fecha_emision, orden_compra.fecha_entrega, orden_compra.descripcion, logistico.nombre as nombre_logistico, logistico.apellido as apellido_logistico
+SELECT orden_compra.id_orden, orden_compra.fecha_emision, orden_compra.fecha_entrega, orden_compra.descripcion, logistico.nombre as nombre_logistico, 
+logistico.apellido as apellido_logistico
 FROM orden_compra
 JOIN logistico ON orden_compra.id_logistico_orden = logistico.id_logistico;
 
@@ -44,7 +45,8 @@ INNER JOIN alimento al ON aa.id_alimento_animal = al.id_alimento;
 -- -----------------------------------------------------
 -- 6. Consulta para ver el informe de todos los animales y el entrenador
 -- -----------------------------------------------------
-SELECT animal.nombre AS nombre_animal, informe_animal.fecha_peso, informe_animal.peso_registrado, informe_animal.detalles, entrenador.nombre AS nombre_entrenador, entrenador.apellido AS apellido_entrenador
+SELECT animal.nombre AS nombre_animal, informe_animal.fecha_peso, informe_animal.peso_registrado, 
+informe_animal.detalles, entrenador.nombre AS nombre_entrenador, entrenador.apellido AS apellido_entrenador
 FROM animal
 JOIN informe_animal ON animal.id_animal = informe_animal.id_animal_informe
 JOIN entrenador ON informe_animal.id_entrenador_informe = entrenador.id_entrenador;
@@ -71,11 +73,12 @@ FROM animal
 GROUP BY clase;
 
 -- -----------------------------------------------------
--- 10. Consulta para saber la cantidad de alimento existente segun el tipo de alimento
+-- 10. Consulta para saber la cantidad de alimento existente segun el tipo de alimento y lo organiza de mayor a menor
 -- -----------------------------------------------------
 SELECT tipo_alimento, SUM(cantidad) as cantidad_total 
 FROM alimento 
-GROUP BY tipo_alimento;
+GROUP BY tipo_alimento 
+ORDER BY cantidad_total DESC 
 
 
 

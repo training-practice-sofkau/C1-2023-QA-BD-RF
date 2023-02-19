@@ -14,7 +14,7 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL obtener_proveedores_por_tipo_alimento('Tipo 1');
+CALL obtener_proveedores_por_tipo_alimento('non');
 
 -- -----------------------------------------------------
 -- 2. Agregar nueva dieta
@@ -30,7 +30,7 @@ BEGIN
 END//
 DELIMITER ;
 
-call agregar_nueva_dieta('DIE-003', 'Tipo 1', '80 gr');
+call agregar_nueva_dieta('DIE-006', 'SECA', '500 gr');
 call agregar_nueva_dieta('DIE-004', 'Tipo 3', '300 gr');
 call agregar_nueva_dieta('DIE-005', 'Tipo 3', '300 gr');
 
@@ -47,7 +47,7 @@ BEGIN
 END//
 DELIMITER ;
 
-call actualizar_dieta_animal('ANI-001', 'DIE-002');
+call actualizar_dieta_animal('ANI-10', 'DIE-006');
 call actualizar_dieta_animal('ANI-001', 'DIE-003');
 -- -----------------------------------------------------
 -- 4. Eliminar una factura

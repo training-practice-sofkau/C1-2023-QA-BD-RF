@@ -99,7 +99,6 @@ public class Main {
     private static List<String> generarProveedores() {
 
         String insertProveedor = "";
-
         for (int i = 0; i < n ; i++) {
             Proveedor proveedor = new Proveedor();
             Faker faker = new Faker();
@@ -302,7 +301,6 @@ public class Main {
     private static List<String> generarAnimal(List<String> id_dietas) {
 
         String insertAnimal = "";
-
         for (int i = 0; i < n; i++) {
             Animal animal = new Animal();
             Faker faker = new Faker();
@@ -323,10 +321,8 @@ public class Main {
                     animal.getFecha_nacimiento(),
                     animal.getId_dieta_animal());
 
-
             mySqlOperation.setSqlStatement(insertAnimal);
             mySqlOperation.executeSqlStatementVoid();
-
             id_animales.add(animal.getId_animal());
         }
         return id_animales;
@@ -362,7 +358,6 @@ public class Main {
     private static List<String> generarInformeAnimal(List<String> id_animales, List<String> id_entrenadores) {
 
         String insertInformeAnimal = "";
-
         for (int i = 0; i < n ; i++) {
             InformeAnimal informeAnimal = new InformeAnimal();
             Faker faker = new Faker();
@@ -385,7 +380,6 @@ public class Main {
 
             mySqlOperation.setSqlStatement(insertInformeAnimal);
             mySqlOperation.executeSqlStatementVoid();
-
             id_informes.add(informeAnimal.getId_informe());
         }
         return id_informes;
@@ -398,7 +392,6 @@ public class Main {
         for (int i = 0; i < n ; i++) {
 
             Veterinario veterinario = new Veterinario();
-
             Faker faker = new Faker();
 
             veterinario.setId_veterinario("VET-" + i);

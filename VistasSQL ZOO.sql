@@ -9,7 +9,7 @@ FROM animal
 INNER JOIN dieta ON animal.id_dieta_animal = dieta.id_dieta
 INNER JOIN informe_animal ON animal.id_animal = informe_animal.id_animal_informe
 INNER JOIN veterinario_informe ON informe_animal.id_informe = veterinario_informe.id_informe_veterinario
-INNER JOIN veterinario ON veterinario_informe.id_veterinario_informe = veterinario.id_veterinario;
+INNER JOIN veterinario ON veterinario_informe.id_veterinario_infvista_alimento_proveedororme = veterinario.id_veterinario;
 
 -- -----------------------------------------------------
 -- 2. Vista para ver el alimento y el proveedor de ese alimento
@@ -24,10 +24,11 @@ JOIN proveedor p ON pa.id_proveedor_alimento = p.nit;
 -- 3. Vista para ver el alimento que un animal consume diario segun su dieta
 -- -----------------------------------------------------
 CREATE VIEW vista_alimento_animal_segun_dieta AS
-SELECT animal.nombre AS nombre_animal, alimento.nombre_alimento, alimento.tipo_alimento, dieta.dosis
-FROM animal
-JOIN dieta ON animal.id_dieta_animal = dieta.id_dieta
-JOIN alimento ON dieta.tipo_alimento = alimento.tipo_alimento;
+SELECT a.id_animal, a.nombre as nombre_animal, d.tipo_alimento as tipo_alimento_que_consume, d.dosis, al.nombre_alimento
+FROM animal a
+INNER JOIN dieta d ON a.id_dieta_animal = d.id_dieta
+INNER JOIN alimento_animal aa ON a.id_animal = aa.id_animal_alimento
+INNER JOIN alimento al ON aa.id_alimento_animal = al.id_alimento;
 
 -- -----------------------------------------------------
 -- 4. Vista para ver el informe de todos los animales y el entrenador
