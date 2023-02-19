@@ -226,6 +226,10 @@ VALUES ('03413591', '1000001', '0000000002', 1, 23157);
 
 SELECT *
 FROM tb_producto; 
+
+SELECT * 
+FROM tb_producto
+WHERE id_producto = 0000000002;
 -- 3er. trigger
 DELIMITER //
 CREATE TRIGGER prevenir_remover_producto BEFORE DELETE ON tb_producto
