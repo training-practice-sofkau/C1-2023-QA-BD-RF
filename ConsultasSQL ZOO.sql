@@ -35,10 +35,11 @@ GROUP BY dieta.tipo_alimento;
 -- -----------------------------------------------------
 -- 5. Consulta para ver el alimento que un animal consume diario segun su dieta
 -- -----------------------------------------------------
-SELECT animal.nombre AS nombre_animal, alimento.nombre_alimento, alimento.tipo_alimento, dieta.dosis
-FROM animal
-JOIN dieta ON animal.id_dieta_animal = dieta.id_dieta
-JOIN alimento ON dieta.tipo_alimento = alimento.tipo_alimento;
+SELECT a.id_animal, a.nombre as nombre_animal, d.tipo_alimento as tipo_alimento_que_consume, d.dosis, al.nombre_alimento
+FROM animal a
+INNER JOIN dieta d ON a.id_dieta_animal = d.id_dieta
+INNER JOIN alimento_animal aa ON a.id_animal = aa.id_animal_alimento
+INNER JOIN alimento al ON aa.id_alimento_animal = al.id_alimento;
 
 -- -----------------------------------------------------
 -- 6. Consulta para ver el informe de todos los animales y el entrenador

@@ -44,6 +44,8 @@ INSERT INTO entrenador (id_entrenador, nombre, apellido, telefono) VALUES
 ('ENT-001', 'Entrenador 1', 'Apellido 1', '1111111111'),
 ('ENT-002', 'Entrenador 2', 'Apellido 2', '2222222222');
 
+INSERT INTO entrenador (id_entrenador, nombre, apellido, telefono) VALUES('EN75', 'Carmine','Trantow', '55585' );
+
 INSERT INTO informe_animal (id_informe, fecha_peso, peso_registrado, detalles, id_animal_informe, id_entrenador_informe)
 VALUES ('INF001', '2022-11-01', '150 kg', 'buen estado de salud y comportamiento', 'ANI-001', 'ENT-001');
 
