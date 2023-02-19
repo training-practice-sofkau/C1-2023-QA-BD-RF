@@ -3,66 +3,68 @@ USE  TiendaDonPepeSanty;
 
 -- Tabla cliente
 CREATE TABLE cliente (
-  IdCliente VARCHAR(30) PRIMARY KEY,
-  Password VARCHAR(30),
-  Email VARCHAR(30),
-  NombreCliente VARCHAR(30),
-  ApellidoCliente VARCHAR(30),
-  ClienteCedula VARCHAR(30),
-  Barrio VARCHAR(30),
-  NumeroCasa VARCHAR(30)
+  IdCliente VARCHAR(100) PRIMARY KEY,
+  Password VARCHAR(100),
+  Email VARCHAR(100),
+  NombreCliente VARCHAR(100),
+  ApellidoCliente VARCHAR(100),
+  ClienteCedula VARCHAR(100),
+  Barrio VARCHAR(100),
+  NumeroCasa VARCHAR(100)
 );
 
 -- Tabla TelefonoClIENTE
 CREATE TABLE TelefonoCliente (
-  IdTelefono INT PRIMARY KEY,
-  FKIdCliente VARCHAR(30),
-  NumeroTelefono VARCHAR(30),
+  IdTelefono VARCHAR(100) PRIMARY KEY,
+  FKIdCliente VARCHAR(100),
+  NumeroTelefono VARCHAR(100),
   CONSTRAINT FK_TelefonoCliente_Cliente FOREIGN KEY (FKIdCliente)
     REFERENCES Cliente (IdCliente)
 );
 -- Tabla Domiciliario
 CREATE TABLE Domiciliario (
-  IdDomiciliario VARCHAR(30) PRIMARY KEY,
-  NumeroMatricula VARCHAR(30),
-  NombreDomiciliario VARCHAR(30),
-  ApellidoDomiciliario VARCHAR(30)
+  IdDomiciliario VARCHAR(100) PRIMARY KEY,
+  NumeroMatricula VARCHAR(100),
+  NombreDomiciliario VARCHAR(100),
+  ApellidoDomiciliario VARCHAR(100)
 );
 
 -- Tabla Proveedor
 CREATE TABLE Proveedor (
-  IdProveedor VARCHAR(30) PRIMARY KEY,
-  NombreProveedor VARCHAR(30),
-  TelefonoProveedor VARCHAR(30)
+  IdProveedor VARCHAR(100) PRIMARY KEY,
+  NombreProveedor VARCHAR(100),
+  TelefonoProveedor VARCHAR(100)
 );
 
 
 -- Tabla Tipo Almacenamiento
 CREATE TABLE TipoAlmacenamiento (
-  IdTipoAlmacenamiento VARCHAR(30) PRIMARY KEY,
-  TipoDeAlmacenaminento VARCHAR(30)
+  IdTipoAlmacenamiento VARCHAR(100) PRIMARY KEY,
+  TipoDeAlmacenaminento VARCHAR(100)
 );
 
 -- Tabla Categoria Producto
 CREATE TABLE CategoriaProducto (
-  IdCategoriaProducto VARCHAR(30) PRIMARY KEY,
-  Recomendaciones VARCHAR(30),
-  FKIdTipoAlmacenamiento VARCHAR(30),
+  IdCategoriaProducto VARCHAR(100) PRIMARY KEY,
+  Recomendaciones VARCHAR(100),
+  FKIdTipoAlmacenamiento VARCHAR(100),
   CONSTRAINT FKCategoriaProductoTipoAlmacenamiento FOREIGN KEY (FKIdTipoAlmacenamiento)
     REFERENCES TipoAlmacenamiento (IdTipoAlmacenamiento)
 );
 
 -- Tabla Pedido
 CREATE TABLE Pedido (
-  IdPedido VARCHAR(30) PRIMARY KEY,
-  FKIdCliente VARCHAR(30),
-  FKIdDomiciliario VARCHAR(30),
-  FechaPedido VARCHAR(30),
-  ImporteTotalPedido VARCHAR(30),
-  VerificacionRealizacionPedido VARCHAR (30),
-  CodigoPostalCliente VARCHAR(30),
-  CodigoPostalDomiciliario VARCHAR(30),
-  DireccionPedido VARCHAR(30),
+  IdPedido VARCHAR(100) PRIMARY KEY,
+  FKIdCliente VARCHAR(100),
+  FKIdDomiciliario VARCHAR(100),
+  FechaPedido VARCHAR(100),
+  ImporteTotalPedido VARCHAR(100),
+  VerificacionRealizacionPedido VARCHAR (100),
+  CodigoPostalCliente VARCHAR(100),
+  CodigoPostalDomiciliario VARCHAR(100),
+  TajetaCredito VARCHAR(100),
+  FechaCaducidadTarjeta VARCHAR(100),
+  DireccionPedido VARCHAR(100),
   UnidadesPedidas INT,
   CONSTRAINT FKPedidoCliente FOREIGN KEY (FKIdCliente)
     REFERENCES Cliente (IdCliente),
@@ -71,18 +73,21 @@ CREATE TABLE Pedido (
 );
 
 
+
+
 -- Tabla Producto
 CREATE TABLE Producto (
-  IdProducto VARCHAR(30) PRIMARY KEY,
-  FKIdCategoriaProducto VARCHAR(30),
-  FKIdProveedor VARCHAR(30),
-  FKIdPedido VARCHAR(30),
-  Fotografia VARCHAR(30),
+  IdProducto VARCHAR(100) PRIMARY KEY,
+  FKIdCategoriaProducto VARCHAR(100),
+  FKIdProveedor VARCHAR(100),
+  FKIdPedido VARCHAR(100),
+  Fotografia VARCHAR(100),
   UnidadesDisponibles INT,
-  Observaciones VARCHAR(30),
-  Volumen VARCHAR(30),
-  Peso VARCHAR(30),
-  Nombre VARCHAR(30),
+  Observaciones VARCHAR(100),
+  Volumen VARCHAR(100),
+  Peso VARCHAR(100),
+  Nombre VARCHAR(100),
+  PrecioProductoUnidad VARCHAR(100),
   CONSTRAINT FKProductoCategoriaProducto FOREIGN KEY (FKIdCategoriaProducto)
     REFERENCES CategoriaProducto (IdCategoriaProducto),
   CONSTRAINT FKProductoProveedor FOREIGN KEY (FKIdProveedor)
@@ -94,8 +99,8 @@ CREATE TABLE Producto (
 -- Tabla Contener
 
 CREATE TABLE Contener (
-  FKIdContenerPedidoProducto VARCHAR(30),
-  FKIdContenerProductoPedido VARCHAR(30),
+  FKIdContenerPedidoProducto VARCHAR(100),
+  FKIdContenerProductoPedido VARCHAR(100),
   PRIMARY KEY (FKIdContenerPedidoProducto,FKIdContenerProductoPedido),
   foreign key(FKIdContenerPedidoProducto) references Pedido(IdPedido),
   foreign key(FKIdContenerProductoPedido) references Producto(IdProducto)
@@ -214,7 +219,7 @@ WHERE c.FKIdContenerProductoPedido = NEW.FKIdContenerProductoPedido AND c.FKIdCo
 -- Tabla notificacion 
 CREATE TABLE Notificacion (
     IdNotificacion INT AUTO_INCREMENT  PRIMARY KEY,
-    Mensaje VARCHAR(100),
+    Mensaje VARCHAR(255),
     Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -233,13 +238,13 @@ BEGIN
 END
 //DELIMITER ;
 
- DROP TRIGGER tr_notificacion_nuevo_pedido;
+
 
 -- Tabla para saber cuando se realizaron los cambios a la tabla proveedor 
 
  CREATE TABLE IF NOT EXISTS ControlCambiosProveedor (
- usuario VARCHAR(45) NOT NULL,
- accion VARCHAR(10) NOT NULL,
+ usuario VARCHAR(100) NOT NULL,
+ accion VARCHAR(100) NOT NULL,
  fecha DATETIME NOT NULL,
  PRIMARY KEY (usuario, accion, fecha)
 );
@@ -271,7 +276,7 @@ fecha)
 END//
 DELIMITER ;
 
-DROP TRIGGER TriggerIngresarProveedor
+
 
 
 -- Procedimientos 
@@ -280,8 +285,8 @@ DROP TRIGGER TriggerIngresarProveedor
 -- Procedimiento para agregar Proveedor 
 
 DELIMITER //
-CREATE PROCEDURE AgregarProveedor (IN idProveedorLocal VARCHAR(30),
-IN NombreProveedorLocal VARCHAR(30), TelefonoProveedorLocal VARCHAR(30) )
+CREATE PROCEDURE AgregarProveedor (IN idProveedorLocal VARCHAR(100),
+IN NombreProveedorLocal VARCHAR(100), TelefonoProveedorLocal VARCHAR(100) )
 BEGIN
  INSERT INTO Proveedor (IdProveedor, NombreProveedor,TelefonoProveedor) VALUES
 (idProveedorLocal, NombreProveedorLocal,TelefonoProveedorLocal);
@@ -292,8 +297,8 @@ CALL AgregarProveedor("10", "Agregar Santy", "1111");
 
 -- Procedimiento actualizar Proveedor
 DELIMITER //
-CREATE PROCEDURE ActualizarProveedor (IN idProveedorLocal VARCHAR(30),
-IN NombreProveedorLocal VARCHAR(30), TelefonoProveedorLocal VARCHAR(30))
+CREATE PROCEDURE ActualizarProveedor (IN idProveedorLocal VARCHAR(100),
+IN NombreProveedorLocal VARCHAR(100), TelefonoProveedorLocal VARCHAR(100))
 BEGIN
  UPDATE Proveedor 
  SET NombreProveedor = NombreProveedorLocal,
@@ -306,7 +311,7 @@ CALL ActualizarProveedor('1', 'atualizar', '02');
 
 
 DELIMITER //
-CREATE PROCEDURE BorrarProveedor (IN idProveedorLocal VARCHAR(30))
+CREATE PROCEDURE BorrarProveedor (IN idProveedorLocal VARCHAR(100))
 BEGIN
  DELETE FROM Proveedor  WHERE IdProveedor = 
 idProveedorLocal ;
@@ -314,17 +319,13 @@ END//
 DELIMITER ;
 CALL BorrarProveedor('10');
 
--- Procedimiento consultar procedimiento medico
+-- Procedimiento consultar Proveedor por ID
 DELIMITER //
-CREATE PROCEDURE ConsultarProcedimiento (IN idProcedimientoLocal 
-VARCHAR(20))
-BEGIN
- SELECT * FROM Procedimiento WHERE idProcedimiento = 
-idProcedimientoLocal ;
+CREATE PROCEDURE ConsultarProveedor (IN idProveedorLocal VARCHAR(100))
+SELECT * FROM Proveedor WHERE IdProveedor = idProveedorLocal ;
 END//
 DELIMITER ;
-CALL ConsultarProcedimiento('1');
+CALL ConsultarProveedor('1');
 
- 
  
  
