@@ -8,6 +8,7 @@ import com.sofkau.database.mysql.MySqlOperation;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ProductoProveedor_DAO implements I_ProductoProveedor {
     private MySqlOperation mySqlOperation;
@@ -28,13 +29,21 @@ public class ProductoProveedor_DAO implements I_ProductoProveedor {
     @Override
     public void insertarProdProveedor(ProductoProveedor crearProdProvee) {
         sentenciaSQL= "insert into producto_proveedor(razon_social,nombre_prod) values (?,?)";
-        if (confirmarProveedor(crearProdProvee.getRazon_social())){
-            if (confirmarProducto(crearProdProvee.getNombre_prod())){
-
+        if (confirmarProveedor(crearProdProvee.getRazon_social()) && confirmarProducto(crearProdProvee.getNombre_prod())){
+            try {
+                mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
+                preparedStatement =mySqlOperation.getPreparedStatement();
+                preparedStatement.setString(1,crearProdProvee.getRazon_social());
+                preparedStatement.setString(2,crearProdProvee.getNombre_prod());
+                mySqlOperation.executeSqlPreparedStatement();
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
             }
+        } else {
+            System.out.println("No se pudo agregar el registro");
         }
     }
-    public Boolean confirmarProducto (String nom_producto){
+    private Boolean confirmarProducto (String nom_producto){
         iproducto = producto_dao.obteberProducto(nom_producto);
         if (iproducto !=null){
             return true;
@@ -42,7 +51,7 @@ public class ProductoProveedor_DAO implements I_ProductoProveedor {
         return false;
     }
 
-    public Boolean confirmarProveedor (String razonSocial){
+    private Boolean confirmarProveedor (String razonSocial){
         razonSociales = proveedorDao.obtenerProveedor(razonSocial);
         if (razonSociales !=null){
             return true;

@@ -3,16 +3,8 @@ _
 /src/main/java/com/sofkau/database/DataBase.java,b\4\b4c3ba058c470ea7b24a0399e973488d65f59c62
 j
 :src/main/java/com/sofkau/database/mysql/MySqlConstans.java,8\e\8e560aeda0a20e9d01c4c3eb6b5204902e1280de
-m
-=src/main/java/com/sofkau/database/clases/CarritoDeCompra.java,3\7\376aa6c64ad8c6974386ef0c326066eb846fa36a
-s
-Csrc/main/java/com/sofkau/database/interfaces/I_CarritoDeCompra.java,7\e\7ef6388df6561e2b3d4b1581d4d44a2f5a830ba0
-s
-Csrc/main/java/com/sofkau/database/clases/CarritoCompraProducto.java,3\4\34f7bd59941cbb5d938476fb681b96d860f2823b
 g
 7src/main/java/com/sofkau/database/clases/Proveedor.java,c\a\ca8899bd07d34c69c6ea37cd9716f12c1ed4bacc
-n
->src/main/java/com/sofkau/database/dao/CarritoDeCompra_DAO.java,8\3\83b5025e766a46fb3b508eb229319d230be374d1
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 g
@@ -25,13 +17,5 @@ k
 ;src/main/java/com/sofkau/database/interfaces/I_Cliente.java,9\0\900242f27869ac55182ce70d7ba422e674332920
 k
 ;src/main/java/com/sofkau/database/dao/Domiciliario_DAO.java,4\a\4af9eb1c3aae8ad8454dd0b03da52a813ddbf3e7
-e
-5src/main/java/com/sofkau/database/clases/Cliente.java,0\7\07a581540e7c5f24f1a0d0b713448e7a8b0a9228
-o
-?src/main/java/com/sofkau/database/clases/ProductoProveedor.java,5\f\5ff0d93242493d481da91a7c42175a82888b459b
 p
 @src/main/java/com/sofkau/database/interfaces/I_Domiciliario.java,2\4\24671954cb2ed8648ca7816f3448dc05ff2e37aa
-m
-=src/main/java/com/sofkau/database/interfaces/I_Proveedor.java,f\d\fd3bbc98cc8a62681233e8190728a19dfe930893
-u
-Esrc/main/java/com/sofkau/database/interfaces/I_ProductoProveedor.java,8\5\8552ccb41b2a0b3099eda1bcb7cae234f8864e58

@@ -30,8 +30,9 @@ public class Main {
         //listarProductos();
         //agregarDomiciliario();
        // listarDomiciliario();
-      agregarClientes();
-       // zona();
+      //agregarClientes();
+        //agregarProductoProveedor();
+        agregarProdutoAlCarrito();
 
         closeConnection();
 
@@ -80,7 +81,7 @@ public class Main {
     public static void agregarCarrito(){
         CarritoDeCompra_DAO carritoDeCompraDao = new CarritoDeCompra_DAO(mysqlOperation);
         for (int i=0;i<=50;i++){
-            String id_carrito = i+" ";
+            int id_carrito = i;
             carritoDeCompraDao.insertarCarritoCompra(new CarritoDeCompra(id_carrito));
         }
     }
@@ -148,6 +149,31 @@ public class Main {
             clienteDao.insertarCliente(new Cliente(cedula,nombre,direccion,correo,contrasena,zona));
         }
     }
+    public static void agregarInventario() {
+        Inventario_DAO inventarioDao = new Inventario_DAO(mysqlOperation);
+        Producto_DAO producto_dao = new Producto_DAO(mysqlOperation);
+        List<Producto> misProductos = producto_dao.mostrarProducto();
+        Faker faker = new Faker();
+        for (int i = 0; i <= 45; i++) {
+            int id = i;
+            int cant = 100;
+            String producto = misProductos.get(faker.random().nextInt(0, 45)).getNom_producto();
+            inventarioDao.insertarInventario(new Inventario(id, cant, producto));
+        }
+    }
+    public static void  agregarProductoProveedor(){
+        ProductoProveedor_DAO productoProveedorDao = new ProductoProveedor_DAO(mysqlOperation);
+        Producto_DAO producto_dao = new Producto_DAO(mysqlOperation);
+        Proveedor_DAO proveedorDao = new Proveedor_DAO(mysqlOperation);
+        List<Producto> misProductos = producto_dao.mostrarProducto();
+        List<Proveedor> misProveedores = proveedorDao.mostrarProveedor();
+        Faker faker = new Faker();
+        for (int i=0;i < misProductos.size();i++){
+            String razonSocial = misProveedores.get(faker.random().nextInt(0,misProveedores.size()-1)).getRazon_social();
+            String nomProducto = misProductos.get(i).getNom_producto();
+            productoProveedorDao.insertarProdProveedor(new ProductoProveedor(razonSocial,nomProducto));
+        }
+    }
     public static void agregarDomiciliario(){
         Domiciliario_DAO domiciliarioDao= new Domiciliario_DAO(mysqlOperation);
         Faker faker = new Faker();
@@ -156,6 +182,25 @@ public class Main {
             String nombre = faker.name().firstName();
             String matricula = faker.regexify("[A-Z]{3}-[0-9]{3}");
             domiciliarioDao.insertarDomiciliario(new Domiciliario(cedula,nombre,matricula));
+        }
+    }
+
+
+    public static void agregarProdutoAlCarrito (){
+        CarritoCompraProducto_DAO carritoCompraProductoDao = new CarritoCompraProducto_DAO(mysqlOperation);
+        CarritoDeCompra_DAO miCarrito = new CarritoDeCompra_DAO(mysqlOperation);
+        List<CarritoDeCompra> listaCarritos = miCarrito.mostrarCarritoCompra();
+        Producto_DAO miProducto = new Producto_DAO(mysqlOperation);
+        List<Producto> listaProductos = miProducto.mostrarProducto();
+        Faker faker =new Faker();
+        for (int i=0; i< listaCarritos.size(); i++){
+            int cant_prod = faker.random().nextInt(1,6);
+            for (int j=1;j<cant_prod;j++){
+                int id = i;
+                String producto = listaProductos.get(faker.random().nextInt(0,listaProductos.size()-1)).getNom_producto();
+                int cant = faker.random().nextInt(1,5);
+                carritoCompraProductoDao.ingresarCarritoProducto(new CarritoCompraProducto(id,producto,cant));
+            }
         }
     }
     public static void listarDomiciliario(){

@@ -13,10 +13,11 @@ import java.util.List;
 
 public class CarritoDeCompra_DAO implements I_CarritoDeCompra {
     private MySqlOperation mySqlOperation;
-    private String sentenciaSQL= " ";
+    private String sentenciaSQL = " ";
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
     private List<CarritoDeCompra> listaCarritoCompra;
+    private CarritoDeCompra miCarritoDeCompra = null;
 
     public CarritoDeCompra_DAO(MySqlOperation mySqlOperation) {
         this.mySqlOperation = mySqlOperation;
@@ -29,24 +30,42 @@ public class CarritoDeCompra_DAO implements I_CarritoDeCompra {
         try {
             mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
             preparedStatement = mySqlOperation.getPreparedStatement();
-            preparedStatement.setString(1,crearCarritoCompra.getId_carrito());
+            preparedStatement.setInt(1,crearCarritoCompra.getId_carrito());
             mySqlOperation.executeSqlPreparedStatement();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
+
     @Override
     public List<CarritoDeCompra> mostrarCarritoCompra() {
         sentenciaSQL = "select * from carrito_de_compra";
         try {
             mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
             resultSet = mySqlOperation.executeQuery();
-            while (resultSet.next()){
-                listaCarritoCompra.add(new CarritoDeCompra(resultSet.getString("id_carrito")));
+            while (resultSet.next()) {
+                listaCarritoCompra.add(new CarritoDeCompra(resultSet.getInt("id_carrito")));
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return listaCarritoCompra;
+    }
+
+    @Override
+    public CarritoDeCompra obtenerCarrito(int id_carrito) {
+        sentenciaSQL = "select * from carrito_de_compra where id_carrito=?";
+        try {
+            mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
+            preparedStatement = mySqlOperation.getPreparedStatement();
+            preparedStatement.setInt(1, id_carrito);
+            resultSet = mySqlOperation.executeQuery();
+            resultSet.next();
+            miCarritoDeCompra = new CarritoDeCompra(resultSet.getInt("id_carrito"));
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return miCarritoDeCompra;
     }
 }
