@@ -1,5 +1,7 @@
 package com.co.sofkaU.integration.database.mysql;
 
+import com.github.javafaker.Faker;
+
 import java.sql.SQLException;
 
 public class MySQLQuery {
@@ -8,6 +10,7 @@ public class MySQLQuery {
     private static final String USER = "ococho";
     private static final String PASSWORD = "hola123";
     private static final MySQLOperation mySQLOp = new MySQLOperation();
+    private final Faker faker = new Faker();
 
     public static final String SELECT = "select * from cliente";
 
