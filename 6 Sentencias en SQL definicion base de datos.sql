@@ -137,8 +137,8 @@ CREATE TABLE IF NOT EXISTS `TiendaPepe`.`Cesta` (
 CREATE TABLE IF NOT EXISTS `TiendaPepe`.`Categoria` (
   `ID_categoria` VARCHAR(45) NOT NULL,
   `nombre_cat` VARCHAR(45) NOT NULL,
-  `almacenamiento` VARCHAR(45),
-  `observaciones` VARCHAR(50),
+  `almacenamiento` VARCHAR(45) NOT NULL,
+  `observaciones` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`ID_categoria`)
 ) ENGINE = InnoDB;
 
@@ -147,10 +147,10 @@ CREATE TABLE IF NOT EXISTS `TiendaPepe`.`Producto` (
   `nombre_prod` VARCHAR(45) NOT NULL,
   `marca` VARCHAR(45) NOT NULL,
   `origen` VARCHAR(45) NOT NULL,
-  `fotografia` VARCHAR(45),
+  `fotografia` VARCHAR(45) NOT NULL,
   `unidades_disponibles` VARCHAR(45) NOT NULL,
-  `volumen` VARCHAR(45),
-  `peso` VARCHAR(45),
+  `volumen` VARCHAR(45) NOT NULL,
+  `peso` VARCHAR(45) NOT NULL,
   `valor_compra` VARCHAR(45) NOT NULL,
   `valor_venta` VARCHAR(45) NOT NULL,
   `ID_categoria` VARCHAR(45) NOT NULL,
