@@ -9,7 +9,7 @@ nombre_cliente VARCHAR(50) NOT NULL,
 direccion_cliente VARCHAR(50) NOT NULL,
 zona_cliente VARCHAR(15) NOT NULL,
 email VARCHAR(30) NOT NULL,
-contraseña VARCHAR(20) NOT NULL
+password_cliente VARCHAR(20) NOT NULL
 );
 
 -- tabla telefono cliente
@@ -47,7 +47,7 @@ CREATE TABLE producto(
 id_producto VARCHAR(15) NOT NULL PRIMARY KEY,
 nombre_producto VARCHAR(50) NOT NULL,
 marca VARCHAR(50) NOT NULL,
-origen VARCHAR(20) NOT NULL,
+origen VARCHAR(50) NOT NULL,
 contenido VARCHAR(20) NOT NULL,
 fotografia VARCHAR(20) NOT NULL,
 stock INT NOT NULL,
@@ -66,7 +66,7 @@ zona_domiciliario VARCHAR(15) NOT NULL
 );
 
 -- tabla pedido
-CREATE TABLE pedido(
+CREATE TABLE pedidos(
 id_pedido VARCHAR(15) NOT NULL PRIMARY KEY,
 direccion_pedido VARCHAR(50) NOT NULL,
 fecha_pedido DATETIME DEFAULT current_timestamp,
@@ -85,13 +85,13 @@ id_producto_pedido VARCHAR(15) NOT NULL,
 id_pedido_producto VARCHAR(15) NOT NULL,
 Cantidad INT NOT NULL CHECK (Cantidad >= 1),
 FOREIGN KEY(id_producto_pedido) REFERENCES producto(id_producto),
-FOREIGN KEY(id_pedido_producto) REFERENCES pedido(id_pedido)
+FOREIGN KEY(id_pedido_producto) REFERENCES pedidos(id_pedido)
 );
 
-INSERT INTO cliente(cedula, nombre_cliente, direccion_cliente, zona_cliente, email, contraseña)
+INSERT INTO cliente(cedula, nombre_cliente, direccion_cliente, zona_cliente, email, password_cliente)
 VALUES ('123456785', 'Juan Pérez', 'Calle 123, Ciudad ABC', 'Zona 1', 'juanperez@email.com', 'clave123'),
 	   ('987654325', 'María Gómez', 'Avenida XYZ, Ciudad DEF', 'Zona 2', 'mariagomez@email.com', 'clave456');
-       
+
 INSERT INTO telefono_cliente (cedula_cliente, numero_cliente)
 VALUES ('123456789', '555-1234'),('987654321', '555-5678');
 

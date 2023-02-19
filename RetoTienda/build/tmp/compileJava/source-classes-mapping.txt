@@ -1,0 +1,6 @@
+com/sofka/integration/database/MySqlConnector.java
+ com.sofka.integration.database.MySqlConnector
+com/sofka/Main.java
+ com.sofka.Main
+com/sofka/integration/Tienda.java
+ com.sofka.integration.Tienda
