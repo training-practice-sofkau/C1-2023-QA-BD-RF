@@ -31,14 +31,14 @@ public class CategoriaRepository implements Table {
         mySqlOperation.configureDatabaseconetion();
 
         List <Categoria>   categorias= new ArrayList<Categoria>();
-        categorias.add(new Categoria("10", "Aseo Personal", "seco", "cuidado personal"));
-        categorias.add(new Categoria( "20", "Bebidas", "frio", "gaseosa"));
-        categorias.add(new Categoria("30", "Lacteos", "frio", "Queso "));
-        categorias.add(new Categoria("40", "Carnes", "frio", "Pollo"));
-        categorias.add(new Categoria("50", "Arroz y granos", "seco", "diferentes presentaciones"));
-        categorias.add(new Categoria( "60", "enlatados", "seco", "atún y conservas"));
-        categorias.add(new Categoria( "70", "condimentos", "seco", "despensa "));
-        categorias.add(new Categoria( "80", "Vegetales y Frutas", "frio", "despensa "));
+        categorias.add(new Categoria("110", "Electronicos", "seco", "cuidado personal"));
+        categorias.add(new Categoria( "120", "Medicamentos", "frio", "gaseosa"));
+        categorias.add(new Categoria("130", "Inflamables", "frio", "Queso "));
+        categorias.add(new Categoria("140", "Veganos", "frio", "Pollo"));
+        categorias.add(new Categoria("150", "Categoria 150", "seco", "diferentes presentaciones"));
+        categorias.add(new Categoria( "160", "Categoria 160", "seco", "atún y conservas"));
+        categorias.add(new Categoria( "170", "Categoria 170", "seco", "despensa "));
+        categorias.add(new Categoria( "180", "Vegetales y Frutas", "frio", "despensa "));
 
         String sql ="";
 
