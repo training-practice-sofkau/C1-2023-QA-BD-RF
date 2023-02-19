@@ -8,7 +8,9 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         openConnection();
-        select(SELECT);
+        insertProveedor(INSERT_PROVEEDOR);
+        insertProducto(INSERT_PRODUCTO, INSERT_PROVEEDORP);
+        insertInsumo(INSERT_INSUMO, INSERT_PROVEEDORI);
         closeConnection();
     }
 }
