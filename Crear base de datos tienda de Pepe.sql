@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS Zona (
 CREATE TABLE IF NOT EXISTS Cliente (
   CedulaCliente VARCHAR(15) PRIMARY KEY,
   NombreCliente VARCHAR(45),
-  Direccion VARCHAR(45),
+  Direccion VARCHAR(150),
   Email VARCHAR(45),
   Password VARCHAR(45),
   IdZona VARCHAR(10),
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS CestaCompras (
 CREATE TABLE IF NOT EXISTS Pedido(
   CodigoPedido VARCHAR(10) PRIMARY KEY,
   FechaPedido VARCHAR(45),
-  DireccionEntrega VARCHAR(45),
+  DireccionEntrega VARCHAR(150),
   ImporteTotal INT,
   DatosDePago VARCHAR(45),
   CedulaCliente VARCHAR(15),
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS Pedido(
   CREATE TABLE IF NOT EXISTS Categoria (
   NombreCategoria VARCHAR(45) PRIMARY KEY,
   Condiciones VARCHAR(45),
-  Observaciones VARCHAR(45)
+  Observaciones VARCHAR(150)
   );
   -- Crear tabla producto
   CREATE TABLE IF NOT EXISTS Producto(
