@@ -1,35 +1,5 @@
-# Reto BD
 
-**Barbería (Ejercicio A)**
-
-Una barbería desea llevar el control de sus empleados y de sus clientes así como
-
-de los servicios que se prestan. Se desea almacenar la siguiente información:
-
-- Empleados: ID,cedula,Nombre, Especialidad (Masaje, Corte, Cejas, etc.)
-- Clientes: Datos personales (ID,cedula,Nombre, Profesión, Teléfono, correo, edad y Dirección).
-- Historial de Servicios prestados por la barbería: Un registro para saber información del servicio prestado por un empleado a un cliente, productos consumidos, duración del procedimiento y fecha.
-- Citas: Fecha y Hora en la que se cita al cliente yel barberoque realizará el servicio.
-- Productos vendidos por la barbería: REF, Nombre, Cantidad y Precio.
-- Proveedor: los productos vendidos deben tener una fuente.
-- Registro de Ventas : Si un barbero vende un producto a un cliente, termina obteniendo una “liga” ganancia ocasional.
-
-**ZOO (Ejercicio B)**
-
-El parque zoo santafe “parque de la conservación” quiere registrar en una base de datos el consumo de alimentos por los animales que tiene en su sede.
-
-Usted acaba de hablar con el administrador y el le comenta que tienen una clasificación para los animales (mamiferos, aves, anfibios, peces y reptíles) de los cuales usted debe seleccionar 3 para el MVP.
-
-- Tierragro empresa de alimentos para diferentes especies es uno de los 5 proveedores del parque, pero se esperan que almenos lleguen 10 nuevos proveedores.
-- Dentro del parque hay varios roles para las personas, empleados cuidadores, empleados logisticos, empleados veterinarios, empleados entrenadores, visitantes.
-- El veterinario esta encargado de realizar consultas a sus especies y de diseñar la dieta de cada especie.
-- El alimento de cada especie es diferente y tiene una dosis y un tipo (humeda, seca, etc).
-- Uno de los roles de empleado del Zoo debe contactarse con el proveedor para solicitar alimentos y debe asear cada una de las hábitas de las especies.
-- El proveedor recibe una orden de compra revisa que tenga todo el alimento que le piden y con el genera una factura, a final de mes el gerente del Zoo consulta las facturas que debe a sus distintos proveedores y genera su pago correspondiente.
-- Los empleados entrenadores son los encargados de llevar el peso de cada especie e informar a un veterinario en que condición están.
-- El alimento es una entidad fuerte y debe contener sus características.
-
-**Tienda Virtual Don pepe (Ejercicio C)**
+**Tienda Virtual Don pepe (Ejercicio C)**:dart:
 
 Don pepe quiere que sus clientes puedan realizar compras desde sus casas. El junto a su esposa tienen una cantidad domiciliarios conocidos que se encargan de llevar los pedidos a los clientes.
 
