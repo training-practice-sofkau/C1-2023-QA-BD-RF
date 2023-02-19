@@ -430,21 +430,4 @@ BEGIN
 END//
 DELIMITER ;
 
--- -----------------------------------------------------
--- ----#Trigger se activará automáticamente cada vez que se inserte un nuevo registro en la tabla "Domiciliario" y actualizará la columna "FechaModificacion" del registro correspondiente. ------------
--- -----------------------------------------------------
-
-
-DELIMITER //
-
-CREATE TRIGGER tr_actualizar_registro_domiciliario
-AFTER INSERT ON Domiciliario
-FOR EACH ROW
-BEGIN
-    UPDATE Domiciliario
-    SET FechaModificacion = CURRENT_TIMESTAMP
-    WHERE ID = NEW.ID;
-END //
-
-DELIMITER ;
 
