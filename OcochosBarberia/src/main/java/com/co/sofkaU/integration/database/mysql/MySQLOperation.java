@@ -53,11 +53,6 @@ public class MySQLOperation implements DataBase {
     }
 
     @Override
-    public ResultSet getResultSet() {
-        return resultSet;
-    }
-
-    @Override
     public void closeConnection() {
         try {
             if (resultSet != null) {

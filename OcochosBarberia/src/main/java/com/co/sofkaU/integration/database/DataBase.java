@@ -1,6 +1,5 @@
 package com.co.sofkaU.integration.database;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface DataBase {
@@ -10,8 +9,6 @@ public interface DataBase {
     void executeSelectStatement();
 
     void executeInsertStatement();
-
-    ResultSet getResultSet();
 
     void closeConnection();
 
