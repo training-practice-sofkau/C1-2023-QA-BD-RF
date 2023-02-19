@@ -302,5 +302,29 @@ TelefonoProveedor = TelefonoProveedorLocal
  WHERE IdProveedor = idProveedorLocal ;
 END//
 DELIMITER ;
-CALL ActualizarProveedor('4', 'atualizar', '02');
- DROP PROCEDURE ActualizarProveedor
+CALL ActualizarProveedor('1', 'atualizar', '02');
+
+
+DELIMITER //
+CREATE PROCEDURE BorrarProveedor (IN idProveedorLocal VARCHAR(30))
+BEGIN
+ DELETE FROM Proveedor  WHERE IdProveedor = 
+idProveedorLocal ;
+END//
+DELIMITER ;
+CALL BorrarProveedor('10');
+
+-- Procedimiento consultar procedimiento medico
+DELIMITER //
+CREATE PROCEDURE ConsultarProcedimiento (IN idProcedimientoLocal 
+VARCHAR(20))
+BEGIN
+ SELECT * FROM Procedimiento WHERE idProcedimiento = 
+idProcedimientoLocal ;
+END//
+DELIMITER ;
+CALL ConsultarProcedimiento('1');
+
+ 
+ 
+ 
