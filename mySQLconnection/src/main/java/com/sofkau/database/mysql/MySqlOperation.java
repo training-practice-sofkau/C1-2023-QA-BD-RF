@@ -2,6 +2,7 @@ package com.sofkau.database.mysql;
 
 import com.sofkau.database.DataBase;
 
+import java.security.PublicKey;
 import java.sql.*;
 
 import static com.sofkau.database.mysql.MySqlConstans.CONNECTION_STRING;
@@ -17,6 +18,8 @@ public class MySqlOperation implements DataBase {
     private String dataBaseName;
     private String user;
     private String password;
+    private PreparedStatement preparedStatement=null;
+
 
     public String getSqlStatement() {
         return sqlStatement;
@@ -24,6 +27,22 @@ public class MySqlOperation implements DataBase {
 
     public void setSqlStatement(String sqlStatement) {
         this.sqlStatement = sqlStatement;
+    }
+
+    public void setSqlPreparedStatement(String sql) throws SQLException{
+        configureDataBaseConnection();
+        preparedStatement=connection.prepareStatement(sql);
+    }
+    public PreparedStatement getPreparedStatement(){
+        return preparedStatement;
+    }
+
+    public void executeSqlPreparedStatement() throws SQLException{
+        preparedStatement.execute();
+
+    }
+    public ResultSet executeQuery() throws SQLException{
+        return preparedStatement.executeQuery();
     }
 
     public String getServer() {
@@ -114,6 +133,9 @@ public class MySqlOperation implements DataBase {
             }
             if (connection != null){
                 connection.close();
+            }
+            if (preparedStatement != null){
+                preparedStatement.close();
             }
 
         }
