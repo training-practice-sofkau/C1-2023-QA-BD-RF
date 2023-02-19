@@ -272,3 +272,35 @@ END//
 DELIMITER ;
 
 DROP TRIGGER TriggerIngresarProveedor
+
+
+-- Procedimientos 
+
+
+-- Procedimiento para agregar Proveedor 
+
+DELIMITER //
+CREATE PROCEDURE AgregarProveedor (IN idProveedorLocal VARCHAR(30),
+IN NombreProveedorLocal VARCHAR(30), TelefonoProveedorLocal VARCHAR(30) )
+BEGIN
+ INSERT INTO Proveedor (IdProveedor, NombreProveedor,TelefonoProveedor) VALUES
+(idProveedorLocal, NombreProveedorLocal,TelefonoProveedorLocal);
+END//
+DELIMITER ;
+CALL AgregarProveedor("10", "Agregar Santy", "1111");
+
+
+-- Procedimiento actualizar Proveedor
+DELIMITER //
+CREATE PROCEDURE ActualizarProveedor (IN idProveedorLocal VARCHAR(30),
+IN NombreProveedorLocal VARCHAR(30), TelefonoProveedorLocal VARCHAR(30))
+BEGIN
+ UPDATE Proveedor 
+ SET NombreProveedor = NombreProveedorLocal,
+TelefonoProveedor = TelefonoProveedorLocal
+ 
+ WHERE IdProveedor = idProveedorLocal ;
+END//
+DELIMITER ;
+CALL ActualizarProveedor('4', 'atualizar', '02');
+ DROP PROCEDURE ActualizarProveedor
