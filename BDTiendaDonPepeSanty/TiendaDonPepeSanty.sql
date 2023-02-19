@@ -219,12 +219,8 @@ CREATE TABLE Notificacion (
 );
 
 
-
-
-
-
-
 SELECT * FROM information_schema.tables WHERE table_name = 'Notificacion';
+-- Notificar a los empleados  de la creacion de un nuevo producto 
 
 DELIMITER //
 CREATE TRIGGER tr_notificacion_nuevo_pedido
@@ -237,6 +233,42 @@ BEGIN
 END
 //DELIMITER ;
 
+ DROP TRIGGER tr_notificacion_nuevo_pedido;
+
+-- Tabla para saber cuando se realizaron los cambios a la tabla proveedor 
+
+ CREATE TABLE IF NOT EXISTS ControlCambiosProveedor (
+ usuario VARCHAR(45) NOT NULL,
+ accion VARCHAR(10) NOT NULL,
+ fecha DATETIME NOT NULL,
+ PRIMARY KEY (usuario, accion, fecha)
+);
 
 
- DROP TRIGGER tr_notificacion_nuevo_pedido
+-- TRigger para saber quien ingreso nuevos Proveedores
+DELIMITER //
+CREATE TRIGGER TriggerIngresarProveedor
+AFTER INSERT ON Proveedor
+FOR EACH ROW
+BEGIN
+ INSERT INTO ControlCambiosProveedor (usuario, accion, 
+fecha)
+ VALUES (USER(), "Agrego", NOW());
+END//
+DELIMITER ;
+
+
+-- Trigger para saber quien elimino datos en la tabla de Proveedores
+
+DELIMITER //
+CREATE TRIGGER TriggerEliminarProveedor
+AFTER DELETE ON Proveedor
+FOR EACH ROW
+BEGIN
+ INSERT INTO ControlCambiosProveedor (usuario, accion, 
+fecha)
+ VALUES (USER(), "Elimino", NOW());
+END//
+DELIMITER ;
+
+DROP TRIGGER TriggerIngresarProveedor

@@ -194,53 +194,11 @@ SELECT pe.FKIdDomiciliario, COUNT(pe.IdPedido) AS NumeroPedidos
 FROM Pedido pe
 GROUP BY pe.FKIdDomiciliario;
 
--- TRIGGERS 
-
--- Para crear un Trigger que disminuya el número de unidades disponibles del producto cada vez que se realice un pedido, podemos utilizar el siguiente código:
+-- DROP TR
 
 
 
 
-DELIMITER //
-CREATE TRIGGER notificar_pedido_realizado
-AFTER INSERT ON Pedido
-FOR EACH ROW
-BEGIN
-    DECLARE cliente_nombre VARCHAR(30);
-    DECLARE cliente_email VARCHAR(30);
-    DECLARE producto_nombre VARCHAR(30);
-    DECLARE producto_cantidad INT;
-    DECLARE mensaje VARCHAR(1000);
-    
-    SELECT NombreCliente, Email 
-    INTO cliente_nombre, cliente_email
-    FROM Cliente
-    WHERE IdCliente = NEW.FKIdCliente;
-    
-    SELECT Nombre
-    INTO producto_nombre
-    FROM Producto
-    WHERE IdProducto = NEW.FKIdProducto;
-    
-    SET producto_cantidad = NEW.CantidadProductos;
-    
-    SET mensaje = CONCAT('El cliente ', cliente_nombre, ' (', cliente_email, ') ha realizado un pedido de ', producto_cantidad, ' unidades del producto ', producto_nombre, '.');
-    
-    -- Enviar el mensaje a un sistema de notificación, por ejemplo, un correo electrónico o una API de mensajería.
-    -- En este caso, simplemente se mostrará el mensaje en la consola.
-    SELECT mensaje;
-END
-//DELIMITER ;
 
 -- ALTER TABLE usuarios MODIFY edad VARCHAR(50);
 
--- IMPORTANTE  TRIGGER   para descontar el stock
-
-DELIMITER //
-CREATE TRIGGER descontar_unidades
-AFTER INSERT ON Pedido
-FOR EACH ROW
-UPDATE Producto
-SET UnidadesDisponibles = UnidadesDisponibles - NEW.ProductosPedidos
-WHERE IdProducto= NEW.producto_id;
-//DELIMITER ;
