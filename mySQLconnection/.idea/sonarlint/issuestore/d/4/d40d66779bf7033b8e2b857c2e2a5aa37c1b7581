@@ -1,0 +1,10 @@
+
+S	java:S106^"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
+S	java:S106i"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
+S	java:S106s"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
+T	java:S106›"9Replace this use of System.out or System.err by a logger.(¹ª”·şÿÿÿÿ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(Ù²™ùÿÿÿÿ
+T	java:S106 "9Replace this use of System.out or System.err by a logger.(ŞÒ—üÿÿÿÿ
+O
+java:S1128"4Remove this unused import 'java.security.PublicKey'.(ºâú½üÿÿÿÿ
