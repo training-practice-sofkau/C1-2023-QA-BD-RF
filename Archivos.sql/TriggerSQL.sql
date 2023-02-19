@@ -19,7 +19,7 @@ END;
 
 
 DROP TRIGGER control_insert
-
+DROP TRIGGER control_delete
 call insertar_cliente('70','YEISON', '1010110', 'INGENIERO', 'YEISON@GMAIL.COM', 12, 'INJNCD');
 
 
