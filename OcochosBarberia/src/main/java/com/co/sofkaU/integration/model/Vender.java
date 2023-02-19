@@ -4,4 +4,6 @@ import lombok.Data;
 
 @Data
 public class Vender {
+    private int idVentaV;
+    private int REFProductoV;
 }

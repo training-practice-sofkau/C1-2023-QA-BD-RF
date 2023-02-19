@@ -4,4 +4,6 @@ import lombok.Data;
 
 @Data
 public class ProveerI {
+    private int idProveedorI;
+    private int REFInsumoI;
 }
