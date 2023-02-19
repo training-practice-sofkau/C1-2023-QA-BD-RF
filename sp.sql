@@ -11,7 +11,7 @@ VALUES (NIT_param, nombre_param, direccion_param);
 END//
 DELIMITER ;
 
-CALL sp_agregar_proveedor( 113, "Pinturas", "direccion3");
+CALL sp_agregar_proveedor( 116, "Cosmeticos LI", "direccion5");
 SELECT*FROM proveedor;
 
 
@@ -24,7 +24,7 @@ BEGIN
     DELETE FROM  proveedor WHERE NIT = NIT_param;
 END//
 DELIMITER 
-CALL sp_eliminar_proveedor(113);
+CALL sp_eliminar_proveedor(116);
 SELECT*FROM proveedor;
 
 #Sp para actualizar proveedor
@@ -49,7 +49,7 @@ BEGIN
     SELECT * FROM producto WHERE REF = id_param ;
 END//
 DELIMITER ;
-CALL producto ('112');
+CALL sp_consultar_producto  (112);
 
 
 
