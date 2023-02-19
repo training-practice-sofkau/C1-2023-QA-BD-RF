@@ -50,24 +50,7 @@ public class Main {
         mySqlOperation.setPassword(PASSWORD);
     }
 
-    public static void insertClientes() {
-        Faker faker = new Faker(new Locale("es"));
-        for (int i = 1; i <= 50; i++) {
-            int IdCliente = i;
 
-            String PasswordCliente = faker.internet().password();
-            String Email = faker.internet().emailAddress();
-            String NombreCliente = faker.name().firstName();
-            String ApellidoCliente = faker.name().lastName();
-            String ClienteCedula = faker.idNumber().valid();
-            String Barrio = faker.address().cityName();
-            String NumeroCasa = Integer.toString(faker.number().numberBetween(1, 1000));
-            String query = String.format(INSERT_CLIENTE, IdCliente, PasswordCliente, Email, NombreCliente, ApellidoCliente, ClienteCedula, Barrio, NumeroCasa);
-            mySqlOperation.setSqlStatement(query);
-            System.out.println(query);
-            mySqlOperation.executeSqlStatementVoid();
-        }
-    }
 
 
     public static void insertTelefonoCliente() {
