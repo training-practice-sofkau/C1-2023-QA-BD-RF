@@ -7,4 +7,6 @@ import java.util.List;
 public interface I_Categoria {
     public void insertarCategoria (Categoria crearCategoria);
     public List<Categoria> mostrarCategoria();
+
+    public Categoria obtenerCategoria(int id_categoria);
 }

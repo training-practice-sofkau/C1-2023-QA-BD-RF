@@ -1,14 +1,8 @@
 package com.sofkau;
 
 import com.github.javafaker.Faker;
-import com.sofkau.database.clases.CarritoDeCompra;
-import com.sofkau.database.clases.Categoria;
-import com.sofkau.database.clases.Proveedor;
-import com.sofkau.database.clases.Zona;
-import com.sofkau.database.dao.CarritoDeCompra_DAO;
-import com.sofkau.database.dao.Categoria_DAO;
-import com.sofkau.database.dao.Proveedor_DAO;
-import com.sofkau.database.dao.Zona_DAO;
+import com.sofkau.database.clases.*;
+import com.sofkau.database.dao.*;
 import com.sofkau.database.mysql.MySqlOperation;
 
 import java.sql.SQLException;
@@ -31,7 +25,14 @@ public class Main {
         //listarProveeedor();
         //agregarCarrito();
         //listarcarrito();
-        agregarZona();
+        //agregarZona();
+        //agregarProductos();
+        //listarProductos();
+        //agregarDomiciliario();
+       // listarDomiciliario();
+      agregarClientes();
+       // zona();
+
         closeConnection();
 
 
@@ -48,7 +49,6 @@ public class Main {
             categoriaDao.insertarCategoria(new Categoria(id_cate,nombre,almacenamiento,observaciones));
         }
     }
-
     public static void listarCategorias(){
         Categoria_DAO categoriaDao = new Categoria_DAO(mysqlOperation);
         List<Categoria> categorias = categoriaDao.mostrarCategoria();
@@ -107,9 +107,65 @@ public class Main {
             System.out.println("CODIGO POSTAL: "+dato.getCod_postal()+" "+" NOMBRE: "+dato.getNombre());
         }
     }
-    
+    public static void agregarProductos(){
+        Producto_DAO productoDao = new Producto_DAO(mysqlOperation);
+        Faker faker = new Faker();
+        for (int i=0;i<=50;i++){
+            String nombre= faker.commerce().productName();
+            String marca = faker.company().name();
+            String dimension = String.valueOf(faker.random().nextInt(50,250));
+            dimension=dimension+"gr";
+            String foto = nombre + "png";
+            double precio = Double.parseDouble(faker.commerce().price());
+            int categoria = faker.random().nextInt(1,100);
+            productoDao.insertarProducto(new Producto(nombre,marca,dimension,foto,precio,categoria));
+        }
+    }
 
 
+    public static void listarProductos(){
+        Producto_DAO productoDao = new Producto_DAO(mysqlOperation);
+        List<Producto> productos = productoDao.mostrarProducto();
+        for (Producto dato:productos){
+            System.out.println("NOMBRE: "+dato.getNom_producto()+" "+" MARCA: "+dato.getMarca()+" "+
+                    " DIMENSION: "+dato.getDimension()+" "+" FOTO: "+dato.getFoto()+" "+" PRECIO: "+dato.getPrecio()+
+                    " "+" CATEGORIA: "+dato.getId_categoria());
+        }
+    }
+    public static void  agregarClientes(){
+        Cliente_DAO clienteDao = new Cliente_DAO(mysqlOperation);
+        Zona_DAO zonaDao = new Zona_DAO(mysqlOperation);
+        List<Zona> misZonas = zonaDao.mostrarZona();
+       //clienteDao.insertarCliente(new Cliente("12343","maria","callee","mad @fv","vava","05553"));
+        Faker faker = new Faker();
+        for (int i=0;i<=50;i++){
+            String cedula = faker.idNumber().valid();
+            String nombre = faker.name().name();
+            String direccion = faker.address().streetName();
+            String correo = faker.internet().emailAddress();
+            String contrasena = faker.internet().password();
+            String zona = misZonas.get(faker.random().nextInt(0,49)).getCod_postal();
+            clienteDao.insertarCliente(new Cliente(cedula,nombre,direccion,correo,contrasena,zona));
+        }
+    }
+    public static void agregarDomiciliario(){
+        Domiciliario_DAO domiciliarioDao= new Domiciliario_DAO(mysqlOperation);
+        Faker faker = new Faker();
+        for (int i=0;i<=50;i++){
+            String cedula = faker.idNumber().valid();
+            String nombre = faker.name().firstName();
+            String matricula = faker.regexify("[A-Z]{3}-[0-9]{3}");
+            domiciliarioDao.insertarDomiciliario(new Domiciliario(cedula,nombre,matricula));
+        }
+    }
+    public static void listarDomiciliario(){
+        Domiciliario_DAO domiciliarioDao= new Domiciliario_DAO(mysqlOperation);
+        List<Domiciliario> domiciliarios =domiciliarioDao.mostrarDomiciliario();
+        for (Domiciliario dato: domiciliarios){
+            System.out.println("CEDULA: "+dato.getCedula_domiciliario()+" "+" NOMBRE: "+dato.getNombre()+" "
+                               +" MATRICULA: "+dato.getNum_matricula());
+        }
+    }
 
 
 

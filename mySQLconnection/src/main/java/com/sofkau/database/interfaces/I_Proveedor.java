@@ -8,4 +8,6 @@ import java.util.List;
 public interface I_Proveedor {
     public void insertarProveedor (Proveedor crearProveedor);
     public List<Proveedor> mostrarProveedor ();
+
+    public Proveedor obtenerProveedor (String razon_social);
 }

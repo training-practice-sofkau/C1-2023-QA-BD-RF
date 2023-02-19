@@ -8,4 +8,6 @@ import java.util.List;
 public interface I_Zona {
     public void insertarZona (Zona crearZona);
     public List<Zona> mostrarZona ();
+
+    public Zona obtenerZona (String codigo_postal);
 }

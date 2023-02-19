@@ -13,14 +13,15 @@ import java.util.List;
 
 public class Proveedor_DAO implements I_Proveedor {
     private MySqlOperation mySqlOperation;
-    private String sentenciaSQL= " ";
+    private String sentenciaSQL = " ";
     private PreparedStatement preparedStatements;
     private ResultSet resultSet;
     private List<Proveedor> listaProveedores;
+    private Proveedor miproveedor = null;
 
     public Proveedor_DAO(MySqlOperation mySqlOperation) {
         this.mySqlOperation = mySqlOperation;
-        listaProveedores= new ArrayList<>();
+        listaProveedores = new ArrayList<>();
     }
 
     @Override
@@ -29,11 +30,11 @@ public class Proveedor_DAO implements I_Proveedor {
         try {
             mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
             preparedStatements = mySqlOperation.getPreparedStatement();
-            preparedStatements.setString(1,crearProveedor.getRazon_social());
-            preparedStatements.setString(2,crearProveedor.getTelefono());
-            preparedStatements.setString(3,crearProveedor.getCorreo());
+            preparedStatements.setString(1, crearProveedor.getRazon_social());
+            preparedStatements.setString(2, crearProveedor.getTelefono());
+            preparedStatements.setString(3, crearProveedor.getCorreo());
             mySqlOperation.executeSqlPreparedStatement();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -44,14 +45,32 @@ public class Proveedor_DAO implements I_Proveedor {
         try {
             mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
             resultSet = mySqlOperation.executeQuery();
-            while (resultSet.next()){
-                listaProveedores.add(new Proveedor(resultSet.getString("razon_social"),resultSet.getString("telefono"),
-                                                   resultSet.getString("correo")));
+            while (resultSet.next()) {
+                listaProveedores.add(new Proveedor(resultSet.getString("razon_social"), resultSet.getString("telefono"),
+                        resultSet.getString("correo")));
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return listaProveedores;
+    }
+
+    @Override
+    public Proveedor obtenerProveedor(String razon_social) {
+        sentenciaSQL = "select * from proveedor where razon_social=?";
+        try {
+            mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
+            preparedStatements = mySqlOperation.getPreparedStatement();
+            preparedStatements.setString(1,razon_social);
+            resultSet = mySqlOperation.executeQuery();
+            resultSet.next();
+            miproveedor=new Proveedor(resultSet.getString("razon_social"),resultSet.getString("telefono"),
+                    resultSet.getString("correo"));
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return  miproveedor;
     }
 }

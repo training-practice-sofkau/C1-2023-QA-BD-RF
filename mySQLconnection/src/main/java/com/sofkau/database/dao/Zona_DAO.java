@@ -17,6 +17,7 @@ public class Zona_DAO implements I_Zona {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
     private List<Zona> listaZonas;
+    private Zona miZona=null;
 
     public Zona_DAO(MySqlOperation mySqlOperation) {
         this.mySqlOperation = mySqlOperation;
@@ -25,7 +26,7 @@ public class Zona_DAO implements I_Zona {
 
     @Override
     public void insertarZona(Zona crearZona) {
-        sentenciaSQL= "insert into zona (cod_postal,nombre) values (?,?)";
+        sentenciaSQL= "insert into zona(cod_postal,nombre) values (?,?)";
         try {
             mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
             preparedStatement = mySqlOperation.getPreparedStatement();
@@ -45,10 +46,27 @@ public class Zona_DAO implements I_Zona {
             mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
             resultSet = mySqlOperation.executeQuery();
             while (resultSet.next()){
-                listaZonas.add(new Zona(resultSet.getString("codigo_postal"),resultSet.getString("nombre")));
+                listaZonas.add(new Zona(resultSet.getString("cod_postal"),resultSet.getString("nombre")));
             }
         }catch (Exception e){
             e.printStackTrace();
-        }return null;
+        }return listaZonas;
+    }
+
+    @Override
+    public Zona obtenerZona(String codigo_postal) {
+        sentenciaSQL = "select * from zona where cod_postal=?";
+        try {
+            mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
+            preparedStatement = mySqlOperation.getPreparedStatement();
+            preparedStatement.setString(1,codigo_postal);
+            resultSet = mySqlOperation.executeQuery();
+            resultSet.next();
+            miZona =new Zona(resultSet.getString("cod_postal"),resultSet.getString("nombre"));
+
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return miZona;
     }
 }

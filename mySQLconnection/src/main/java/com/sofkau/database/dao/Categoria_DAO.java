@@ -17,6 +17,7 @@ public class Categoria_DAO implements I_Categoria {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
     private List<Categoria> listaCategoria;
+    private Categoria miCategoria=null;
 
 
     public Categoria_DAO(MySqlOperation mySqlOperation) {
@@ -54,5 +55,23 @@ public class Categoria_DAO implements I_Categoria {
             e.printStackTrace();
         }
         return listaCategoria;
+    }
+
+    @Override
+    public Categoria obtenerCategoria(int id_categoria) {
+        sentenciaSQL = "select * from categoria where id_categoria=?";
+        try {
+            mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
+            preparedStatement = mySqlOperation.getPreparedStatement();
+            preparedStatement.setInt(1,id_categoria);
+            resultSet = mySqlOperation.executeQuery();
+            resultSet.next();
+            miCategoria = new Categoria(resultSet.getInt("id_categoria"),resultSet.getString("nombre"),
+                    resultSet.getString("almacenamiento"),resultSet.getString("observaciones"));
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+        return miCategoria;
     }
 }
