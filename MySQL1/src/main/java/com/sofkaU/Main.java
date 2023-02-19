@@ -37,7 +37,8 @@ public class Main {
         //insertarEspecialidadEmpleado();
         //insertarServicioEmpleado();
        // insertarCotizacion();
-        insertarVenta();
+        //insertarVenta();
+        servicioInsumo();
 
 
     }
@@ -281,7 +282,7 @@ public class Main {
      * Método para insertar datos en tabla servicioinsumo
      */
    private  static void servicioInsumo() {
-       for (int i = 1; i < 51; i++){
+       for (int i = 30; i < 60; i++){
            ServicioInsumo si = new ServicioInsumo();
            si.setIdServicio(i);
            si.setREFinsumo(i);
