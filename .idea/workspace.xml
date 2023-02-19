@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="721c63b8-07b9-49cf-9f87-83166a1a4fd1" name="Changes" comment="Se realiza el script SQL con sus registros de prueba, se terminan las consultas, vistas, procedimientos almacenados y triggers" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2LqJKtcja9ZNml088jVwtT3M5cI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="721c63b8-07b9-49cf-9f87-83166a1a4fd1" name="Changes" comment="" />
+      <created>1676592621686</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676592621686</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Modelo entidad relacion y modelo relacional listos">
+      <created>1676646334271</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1676646334271</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Se realiza el script SQL con sus registros de prueba, se terminan las consultas, vistas, procedimientos almacenados y triggers">
+      <created>1676665696380</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1676665696380</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Modelo entidad relacion y modelo relacional listos" />
+    <MESSAGE value="Se realiza el script SQL con sus registros de prueba, se terminan las consultas, vistas, procedimientos almacenados y triggers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se realiza el script SQL con sus registros de prueba, se terminan las consultas, vistas, procedimientos almacenados y triggers" />
+  </component>
+</project>
