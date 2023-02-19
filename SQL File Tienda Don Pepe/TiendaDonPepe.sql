@@ -234,7 +234,7 @@ END
 
 -- ALTER TABLE usuarios MODIFY edad VARCHAR(50);
 
--- IMPORTANTE  TRIGGER FINAL 
+-- IMPORTANTE  TRIGGER   para descontar el stock
 
 DELIMITER //
 CREATE TRIGGER descontar_unidades

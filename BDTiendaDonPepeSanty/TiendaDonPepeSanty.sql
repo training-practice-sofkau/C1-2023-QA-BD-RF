@@ -187,13 +187,14 @@ SELECT pe.CodigoPostalCliente, COUNT(pe.IdPedido) AS NumeroPedidos
 FROM Pedido pe
 GROUP BY pe.CodigoPostalCliente; 
 
-
-
--- Vista que muestra el Id de los productos y el número de pedidos en los que han sido incluidos:
+-- Vista que muestra el numero total de pedidos por domiciliario:
 CREATE VIEW PedidosPorDomiciliario AS
 SELECT pe.FKIdDomiciliario, COUNT(pe.IdPedido) AS NumeroPedidos
 FROM Pedido pe
 GROUP BY pe.FKIdDomiciliario;
+
+
+
 
 -- TRIGGERS 
 
@@ -210,3 +211,32 @@ SET p.UnidadesDisponibles = p.UnidadesDisponibles - ped.UnidadesPedidas
 WHERE c.FKIdContenerProductoPedido = NEW.FKIdContenerProductoPedido AND c.FKIdContenerPedidoProducto = NEW.FKIdContenerPedidoProducto;
 //DELIMITER ;
 
+-- Tabla notificacion 
+CREATE TABLE Notificacion (
+    IdNotificacion INT AUTO_INCREMENT  PRIMARY KEY,
+    Mensaje VARCHAR(100),
+    Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
+
+
+
+SELECT * FROM information_schema.tables WHERE table_name = 'Notificacion';
+
+DELIMITER //
+CREATE TRIGGER tr_notificacion_nuevo_pedido
+AFTER INSERT ON Pedido
+FOR EACH ROW
+BEGIN
+    DECLARE mensaje VARCHAR(255);
+    SET mensaje = CONCAT('Se ha registrado un nuevo pedido con ID ', NEW.IdPedido);
+    INSERT INTO Notificacion (Mensaje) VALUES (mensaje);
+END
+//DELIMITER ;
+
+
+
+ DROP TRIGGER tr_notificacion_nuevo_pedido
