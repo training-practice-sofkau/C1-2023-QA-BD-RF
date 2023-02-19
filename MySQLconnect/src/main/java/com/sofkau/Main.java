@@ -5,35 +5,36 @@ import com.sofkau.integration.database.mysql.MySqlOperation;
 import com.sofkau.integration.models.*;
 
 import java.sql.SQLException;
-import java.util.stream.IntStream;
-
 
 public class Main {
-
-    private static final String INSERT_ANIMAL = "insert into Animal VALUES('A11', 'perro', 'felino', 'D02')";
+    //    private static final String INSERT_ANIMAL = "insert into Animal VALUES('A11', 'perro', 'felino', 'D02')";
     private static final String SERVER = "localhost";
     private static final String DATA_BASE_NAME = "zoo_santafe";
     private static final String USER = "root";
     private static final String PASSWORD = "Elvelo0820";
-    private static final String SELECT_ALL_FROM_ANIMALES = String.format("select * from %s.animal", DATA_BASE_NAME);
+    //    private static final String SELECT_ALL_FROM_ANIMALES = String.format("select * from %s.animal", DATA_BASE_NAME);
     private static final MySqlOperation mySqlOperation = new MySqlOperation();
-
     private static Faker faker = new Faker();
-
-
     public static void main(String[] args) throws SQLException {
-
         openConnection();
         insertarVeterinarioDieta();
+        insertarAlimento();
+        insertarVeterinario();
+        insertarDieta();
+        insertarEntrenador();
+        insertarProveedor();
+        insertarLogista();
+        insertarAnimales();
+        insertarAnimalEntrenador();
+        insertarDietaAlimento();
+        insertarInforme();
+        insertarEntrenadorVeterinario();
+        insertarFactura();
+        insertarProveedoresAlimento();
+        insertarOrdenCompra();
         closeConnection();
 
     }
-
-    private static void inserIntoAnimal() {
-        mySqlOperation.setSqlStatement(INSERT_ANIMAL);
-        mySqlOperation.executeSqlStatementVoid();
-    }
-
     public static void openConnection() {
         mySqlOperation.setServer(SERVER);
         mySqlOperation.setDataBaseName(DATA_BASE_NAME);
@@ -41,11 +42,11 @@ public class Main {
         mySqlOperation.setPassword(PASSWORD);
     }
 
-    public static void setSelectAllFromAnimales() throws SQLException {
-        mySqlOperation.setSqlStatement(SELECT_ALL_FROM_ANIMALES);
-        mySqlOperation.executeSqlStatement();
-        mySqlOperation.printResulset();
-    }
+//    public static void setSelectAllFromAnimales() throws SQLException {
+//        mySqlOperation.setSqlStatement(SELECT_ALL_FROM_ANIMALES);
+//        mySqlOperation.executeSqlStatement();
+//        mySqlOperation.printResulset();
+//    }
 
     public static void closeConnection() {
         mySqlOperation.close();
@@ -64,7 +65,6 @@ public class Main {
             mySqlOperation.executeSqlStatementVoid();
         }
     }
-
 
     private static void insertarAlimento() {
         for (int i = 1; i <= 50; i++) {
@@ -123,7 +123,7 @@ public class Main {
     }
 
     private static void insertarLogista() {
-        for(int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 50; i++) {
             Logista logista = new Logista();
             logista.setIdlogista("log" + i);
             logista.setNombre_logista(faker.name().fullName());
@@ -149,7 +149,6 @@ public class Main {
             mySqlOperation.executeSqlStatementVoid();
         }
     }
-
 
 
     private static void insertarAnimalEntrenador() {
@@ -219,7 +218,7 @@ public class Main {
 
 
     private static void insertarVeterinarioDieta() {
-        for(int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 50; i++) {
             Veterinario_dieta veterinarioDieta = new Veterinario_dieta();
             veterinarioDieta.setIdVeterinario("vet" + i);
             veterinarioDieta.setIdDieta("d" + i);
@@ -259,7 +258,6 @@ public class Main {
             mySqlOperation.executeSqlStatementVoid();
         }
     }
-
 
 
 }

@@ -6,11 +6,15 @@ import java.sql.SQLException;
 public interface DataBase {
 
     public void configurateDataBaseConnection();
+
     public void executeSqlStatement();
 
     public void executeSqlStatementVoid();
+
     public ResultSet getResulset();
+
     public void close();
-    public void printResulset()throws SQLException;
+
+    public void printResulset() throws SQLException;
 
 }

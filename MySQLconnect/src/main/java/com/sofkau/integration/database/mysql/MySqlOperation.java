@@ -6,7 +6,6 @@ import java.sql.*;
 
 import static com.sofkau.integration.database.mysql.MySqlConstants.CONNECTION_STRING;
 import static com.sofkau.integration.database.mysql.MySqlConstants.MY_SQL_JDBC_DRIVER;
-import static java.lang.Class.forName;
 
 public class MySqlOperation implements DataBase {
 
@@ -70,16 +69,16 @@ public class MySqlOperation implements DataBase {
     public void configurateDataBaseConnection() {
         try {
             Class.forName(MY_SQL_JDBC_DRIVER);
-            connection= DriverManager.getConnection(
+            connection = DriverManager.getConnection(
                     String.format(CONNECTION_STRING,
                             this.server,
                             this.dataBaseName,
                             this.user,
                             this.password)
             );
-            statement=connection.createStatement();
+            statement = connection.createStatement();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             close();
             System.out.println(e.getMessage());
         }
@@ -91,7 +90,7 @@ public class MySqlOperation implements DataBase {
         try {
             configurateDataBaseConnection();
             resultSet = statement.executeQuery(sqlStatement);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
 
         }
@@ -103,13 +102,12 @@ public class MySqlOperation implements DataBase {
         try {
             configurateDataBaseConnection();
             statement.execute(sqlStatement);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
 
         }
 
     }
-
 
     @Override
     public ResultSet getResulset() {
@@ -135,18 +133,17 @@ public class MySqlOperation implements DataBase {
 
     }
 
-
     @Override
     public void printResulset() throws SQLException {
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
         int totalColumnNumber = resultSetMetaData.getColumnCount();
-        while (resultSet.next()){
-            for (int columnNumber = 1; columnNumber <= totalColumnNumber; columnNumber++){
+        while (resultSet.next()) {
+            for (int columnNumber = 1; columnNumber <= totalColumnNumber; columnNumber++) {
                 if (columnNumber > 1) {
                     System.out.print(",\t");
                 }
                 String columnValue = resultSet.getString(columnNumber);
-                System.out.print(resultSetMetaData.getColumnName(columnNumber)+ ": " + columnValue);
+                System.out.print(resultSetMetaData.getColumnName(columnNumber) + ": " + columnValue);
             }
             System.out.print("");
         }
