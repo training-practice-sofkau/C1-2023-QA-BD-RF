@@ -160,9 +160,10 @@ ENGINE = InnoDB;
 -- Table `zoologico`.`Alimento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `zoologico`.`Alimento` (
+  `idAlimento` VARCHAR(10) NOT NULL,
   `nombreAlimento` VARCHAR(20) NOT NULL,
   `tipoAlimento` VARCHAR(45) NULL,
-  PRIMARY KEY (`nombreAlimento`))
+  PRIMARY KEY (`idAlimento`))
 ENGINE = InnoDB;
 
 
@@ -171,17 +172,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `zoologico`.`Alimento_Dieta` (
   `dietaAlimentoId` VARCHAR(10) NOT NULL,
-  `Alimento_Dieta_Nombre` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`dietaAlimentoId`, `Alimento_Dieta_Nombre`),
-  INDEX `Alimento_Dieta_Nombre_idx` (`Alimento_Dieta_Nombre` ASC) VISIBLE,
+  `alimento_Dieta_ID` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`dietaAlimentoId`, `alimento_Dieta_ID`),
+  INDEX `alimento_Dieta_ID_idx` (`alimento_Dieta_ID` ASC) VISIBLE,
   CONSTRAINT `dietaAlimentoId`
     FOREIGN KEY (`dietaAlimentoId`)
     REFERENCES `zoologico`.`Dieta` (`idDieta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `Alimento_Dieta_Nombre`
-    FOREIGN KEY (`Alimento_Dieta_Nombre`)
-    REFERENCES `zoologico`.`Alimento` (`nombreAlimento`)
+  CONSTRAINT `alimento_Dieta_ID`
+    FOREIGN KEY (`alimento_Dieta_ID`)
+    REFERENCES `zoologico`.`Alimento` (`idAlimento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -242,7 +243,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `zoologico`.`Factura` (
   `idFactura` VARCHAR(10) NOT NULL,
-  `alimento_factura` VARCHAR(10) NOT NULL,
+  `id_alimento_factura` VARCHAR(10) NOT NULL,
   `cantidad` VARCHAR(45) NOT NULL,
   `precio` VARCHAR(45) NOT NULL,
   `proveedorIdFactura` VARCHAR(10) NOT NULL,
@@ -251,10 +252,10 @@ CREATE TABLE IF NOT EXISTS `zoologico`.`Factura` (
   CONSTRAINT `proveedorIdFactura`
     FOREIGN KEY (`proveedorIdFactura`)
     REFERENCES `zoologico`.`Proveedor` (`idproveedor`),
-     INDEX `alimento_factura_idx` (`alimento_factura` ASC) VISIBLE,
-  CONSTRAINT `alimento_factura`
-    FOREIGN KEY (`alimento_factura`)
-    REFERENCES `zoologico`.`alimento` (`nombreAlimento`)
+     INDEX `id_alimento_factura_idx` (`id_alimento_factura` ASC) VISIBLE,
+  CONSTRAINT `id_alimento_factura`
+    FOREIGN KEY (`id_alimento_factura`)
+    REFERENCES `zoologico`.`alimento` (`idAlimento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -267,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `zoologico`.`OrdenesCompra` (
   `idOrdenesCompra` VARCHAR(10) NOT NULL,
   `nombreOrden` VARCHAR(45) NOT NULL,
   `fechaOrden` VARCHAR(10) NOT NULL,
-  `OrdenesCompracol` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NOT NULL,
   `ordenProveedorId` VARCHAR(10) NOT NULL,
   `logisticoIdOrden` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`idOrdenesCompra`),
@@ -294,3 +295,6 @@ CREATE TABLE zoologico.auditoria(
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+

@@ -20,8 +20,8 @@ INSERT INTO zoologico.animal (idAnimal, nombreAnimal, especie_id, dieta_id) VALU
 INSERT INTO zoologico.veterinario (idVeterinario, nombreVeterinario) VALUES ('V1', 'Juan Perez');
 INSERT INTO zoologico.veterinario (idVeterinario, nombreVeterinario) VALUES ('V2', 'Juan Peña');
 
-INSERT INTO zoologico.alimento (nombreAlimento, tipoAlimento) VALUES ('Carne de res', 'CARNES');
-INSERT INTO zoologico.alimento (nombreAlimento, tipoAlimento) VALUES ('Mojarra', 'PECES');
+INSERT INTO zoologico.alimento (idAlimento,nombreAlimento, tipoAlimento) VALUES ('Al1', 'Carne de res', 'CARNES');
+INSERT INTO zoologico.alimento (idAlimento,nombreAlimento, tipoAlimento) VALUES ('Al2', 'Mojarra', 'PECES');
 
 INSERT INTO zoologico.empleadologistico (idEmpleadoLogistico, nombreLogistico) VALUES ('EM1', 'Pedro Peña');
 INSERT INTO zoologico.empleadologistico (idEmpleadoLogistico, nombreLogistico) VALUES ('EM2', 'Jaime Peña');
@@ -37,12 +37,12 @@ INSERT INTO zoologico.proveedor (idproveedor, nombreProveedor) VALUES ('PRO2', '
 INSERT INTO zoologico.proveedor (idproveedor, nombreProveedor) VALUES ('PRO3', 'Chavo Roña');
 
 
-INSERT INTO zoologico.alimento_dieta (dietaAlimentoId, Alimento_Dieta_Nombre) VALUES ('D1', 'Carne de res');
-INSERT INTO zoologico.alimento_dieta (dietaAlimentoId, Alimento_Dieta_Nombre) VALUES ('D2', 'Mojarra');
+INSERT INTO zoologico.alimento_dieta (dietaAlimentoId, alimento_Dieta_ID) VALUES ('D1', 'Al1');
+INSERT INTO zoologico.alimento_dieta (dietaAlimentoId, alimento_Dieta_ID) VALUES ('D2', 'Al2');
 
 
-INSERT INTO zoologico.factura (idFactura, alimento_factura, cantidad, precio, proveedorIdFactura) VALUES ('FA1', 'Carne de res', '20' ,'3000', 'PRO1');
-INSERT INTO zoologico.factura (idFactura, alimento_factura, cantidad, precio, proveedorIdFactura) VALUES ('FA2', 'Mojarra', '10' ,'3000', 'PRO1');
+INSERT INTO zoologico.factura (idFactura, id_alimento_factura, cantidad, precio, proveedorIdFactura) VALUES ('FA1', 'Al1', '20' ,'3000', 'PRO1');
+INSERT INTO zoologico.factura (idFactura, id_alimento_factura, cantidad, precio, proveedorIdFactura) VALUES ('FA2', 'Al2', '10' ,'3000', 'PRO1');
 
 
 INSERT INTO zoologico.informe_peso (idInforme, pesoAnimal, entrenadorId, veterinarioId, animalId) VALUES ('IN1', '12 Kilos', 'EME1', 'V1', 'A2');

@@ -16,14 +16,14 @@ JOIN Dieta ON Animal.dieta_id = Dieta.idDieta;
 
 SELECT * FROM Especies_X_ANIMALES_X_DIETA;
 
-#Cantidad de animales (numerico) por especie
+#Vista 3 Cantidad de animales (numerico) por especie
 CREATE VIEW Cantidad_animalesXEspecie AS
 SELECT esp.nombreEspecie, COUNT(a.idAnimal) AS cantidad 
 FROM Animal a 
 INNER JOIN especie esp ON a.especie_id = esp.idEspecie 
 GROUP BY esp.idEspecie;
 
-#Vista 3 que muestra la especie con más animales
+#Vista 4 que muestra la especie con más animales
 CREATE VIEW Especie_x_animales AS
 SELECT e.nombreEspecie, COUNT(*) AS cantidad_animales
 FROM especie e
@@ -32,14 +32,7 @@ GROUP BY e.idEspecie
 ORDER BY cantidad_animales DESC
 LIMIT 1;
 
-#Vista 4 que muestra el animal, su tipo de dieta y dosis
+#Vista 5 que muestra el animal, su tipo de dieta y dosis
 CREATE VIEW Dieta_y_Dosis_Animales AS
 SELECT nombreAnimal, nombreDieta, dosisDieta FROM Animal
 JOIN Dieta ON Animal.dieta_id = Dieta.idDieta;
-
-
-
-
-
-
-

@@ -10,12 +10,12 @@ CALL insertar_animal ('A15', 'Pantera', 'ESP1', 'D1');
 // DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE insertar_alimento (IN nombreAlimento VARCHAR(20), IN tipoAlimento VARCHAR(45))
+CREATE PROCEDURE insertar_alimento (IN idAlimento VARCHAR (10), IN nombreAlimento VARCHAR(20), IN tipoAlimento VARCHAR(45))
 BEGIN
-    INSERT INTO zoologico.alimento (nombreAlimento, tipoAlimento) VALUES (nombreAlimento, tipoAlimento);
+    INSERT INTO zoologico.alimento (idAlimento, nombreAlimento, tipoAlimento) VALUES (idAlimento, nombreAlimento, tipoAlimento);
 END;
 
-CALL insertar_alimento ('ALPISTE', 'GRANO');
+CALL insertar_alimento ('Al1','ALPISTE', 'GRANO');
 
 // DELIMITER ;
 
