@@ -5,7 +5,9 @@ import com.sofkau.database.clases.*;
 import com.sofkau.database.dao.*;
 import com.sofkau.database.mysql.MySqlOperation;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class Main {
@@ -32,12 +34,14 @@ public class Main {
        // listarDomiciliario();
       //agregarClientes();
         //agregarProductoProveedor();
-        agregarProdutoAlCarrito();
-
+        //agregarProdutoAlCarrito();
+        //agregarPedido();
+        agregarFactura();
         closeConnection();
 
 
     }
+
 
     public static void agregarCategorias(){
         Categoria_DAO categoriaDao = new Categoria_DAO(mysqlOperation);
@@ -201,6 +205,39 @@ public class Main {
                 int cant = faker.random().nextInt(1,5);
                 carritoCompraProductoDao.ingresarCarritoProducto(new CarritoCompraProducto(id,producto,cant));
             }
+        }
+    }
+    public static void agregarPedido(){
+        Pedido_DAO pedidoDao = new Pedido_DAO(mysqlOperation);
+        CarritoDeCompra_DAO carritoDeCompraDao = new CarritoDeCompra_DAO(mysqlOperation);
+        List<CarritoDeCompra> listaCarritos = carritoDeCompraDao.mostrarCarritoCompra();
+        Faker faker = new Faker();
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+        for (int i=0;i<listaCarritos.size();i++){
+            String codigo = i +" ";
+            Date fecha= Date.valueOf(formatoFecha.format(faker.date().birthday()));
+            String tarjeta = faker.number().digit();
+            Date fechaCadu = Date.valueOf(formatoFecha.format(faker.date().birthday()));
+            int carrito = listaCarritos.get(i).getId_carrito();
+            pedidoDao.insertarPedido(new Pedido(codigo,fecha,tarjeta,fechaCadu,carrito));
+        }
+    }
+    public static void agregarFactura(){
+        Factura_DAO facturaDao = new Factura_DAO(mysqlOperation);
+        Domiciliario_DAO domiciliarioDao=new Domiciliario_DAO(mysqlOperation);
+        List<Domiciliario> listaDomiciliario = domiciliarioDao.mostrarDomiciliario();
+        Cliente_DAO clienteDao = new Cliente_DAO(mysqlOperation);
+        List<Cliente> listaCliente = clienteDao.mostrarCliente();
+        Pedido_DAO pedidoDao= new Pedido_DAO(mysqlOperation);
+        List<Pedido> listaPedido = pedidoDao.mostrarPedido();
+        Faker faker = new Faker();
+        for (int i=0;i<listaPedido.size();i++){
+            String codigo = i +" ";
+            int total= Integer.parseInt(faker.commerce().price());
+            String domiciliario = listaDomiciliario.get(faker.random().nextInt(0,listaDomiciliario.size()-1)).getCedula_domiciliario();
+           String cliente = listaCliente.get(faker.random().nextInt(0,listaCliente.size()-1)).getCed_cliente();
+           String pedido = listaPedido.get(i).getCodigo_pedido();
+           facturaDao.insertarFactura(new Factura(codigo,total,domiciliario,cliente,pedido));
         }
     }
     public static void listarDomiciliario(){

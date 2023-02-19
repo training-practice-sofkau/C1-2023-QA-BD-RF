@@ -13,9 +13,3 @@ k
 ;src/main/java/com/sofkau/database/mysql/MySqlOperation.java,d\4\d40d66779bf7033b8e2b857c2e2a5aa37c1b7581
 j
 :src/main/java/com/sofkau/database/clases/Domiciliario.java,3\7\37bfba8c0cbe5876b80a9c4a00e8f7fca372efaa
-k
-;src/main/java/com/sofkau/database/interfaces/I_Cliente.java,9\0\900242f27869ac55182ce70d7ba422e674332920
-k
-;src/main/java/com/sofkau/database/dao/Domiciliario_DAO.java,4\a\4af9eb1c3aae8ad8454dd0b03da52a813ddbf3e7
-p
-@src/main/java/com/sofkau/database/interfaces/I_Domiciliario.java,2\4\24671954cb2ed8648ca7816f3448dc05ff2e37aa

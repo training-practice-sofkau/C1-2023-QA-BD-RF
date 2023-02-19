@@ -20,6 +20,7 @@ public class Cliente_DAO implements I_Cliente {
     private List<Cliente> listClientes;
     private Zona miZona=null;
     private Zona_DAO zonaDao;
+    private Cliente miCliente=null;
 
     public Cliente_DAO(MySqlOperation mySqlOperation) {
         this.mySqlOperation = mySqlOperation;
@@ -66,6 +67,25 @@ public class Cliente_DAO implements I_Cliente {
             e.printStackTrace();
         }
         return listClientes;
+    }
+
+    @Override
+    public Cliente obtenerCliente(String ced_cliente) {
+        sentenciaSQL="select * from cliente where ced_cliente=?";
+        try {
+            mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
+            preparedStatement = mySqlOperation.getPreparedStatement();
+            preparedStatement.setString(1,ced_cliente);
+            resultSet = mySqlOperation.executeQuery();
+            resultSet.next();
+            miCliente = new Cliente(resultSet.getString("ced_cliente"),resultSet.getString("nombre"),
+                    resultSet.getString("direccion"),resultSet.getString("correo"),
+                    resultSet.getString("contrasena"),resultSet.getString("codigo_postal"));
+
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return miCliente;
     }
 
     private Boolean confimarZona (String codo_postal){

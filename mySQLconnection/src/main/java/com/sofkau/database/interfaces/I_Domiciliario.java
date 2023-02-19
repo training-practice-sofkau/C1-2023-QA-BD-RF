@@ -9,4 +9,6 @@ public interface I_Domiciliario {
 
     public void insertarDomiciliario (Domiciliario crearDomiciliario);
     public List<Domiciliario> mostrarDomiciliario();
+
+    public Domiciliario obtenerDomiciliario(String cedula_domiciliario);
 }

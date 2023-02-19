@@ -18,6 +18,8 @@ public class Domiciliario_DAO implements I_Domiciliario {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
+    private Domiciliario miDomiciliario=null;
+
     private List<Domiciliario> listaDomiciliario;
 
     public Domiciliario_DAO(MySqlOperation mySqlOperation) {
@@ -53,5 +55,22 @@ public class Domiciliario_DAO implements I_Domiciliario {
             e.printStackTrace();
         }
         return listaDomiciliario;
+    }
+
+    @Override
+    public Domiciliario obtenerDomiciliario(String cedula_domiciliario) {
+        sentenciaSQL = "select * from domiciliario where cedula_domiciliario=?";
+        try {
+            mySqlOperation.setSqlPreparedStatement(sentenciaSQL);
+            preparedStatement = mySqlOperation.getPreparedStatement();
+            preparedStatement.setString(1,cedula_domiciliario);
+            resultSet = mySqlOperation.executeQuery();
+            resultSet.next();
+            miDomiciliario= new Domiciliario(resultSet.getString("cedula_domiciliario"),
+                    resultSet.getString("nombre"),resultSet.getString("num_matricula"));
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return miDomiciliario;
     }
 }
