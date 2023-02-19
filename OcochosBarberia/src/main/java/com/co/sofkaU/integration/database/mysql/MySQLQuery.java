@@ -11,7 +11,6 @@ public class MySQLQuery {
 
     public static final String SELECT = "select * from cliente";
 
-
     public static void openConnection() {
         mySQLOp.setSocket(SOCKET);
         mySQLOp.setDbName(DBNAME);
@@ -21,14 +20,13 @@ public class MySQLQuery {
 
     public static void select(String select) throws SQLException {
         mySQLOp.setSqlStatement(select);
-        mySQLOp.executeSQLStatement();
+        mySQLOp.executeSelectStatement();
         mySQLOp.printResultSet();
     }
 
-    public static void insert(String insert) throws SQLException {
+    public static void insert(String insert) {
         mySQLOp.setSqlStatement(insert);
-        mySQLOp.executeSQLStatement();
-        mySQLOp.printResultSet();
+        mySQLOp.executeInsertStatement();
     }
 
     public static void closeConnection() {

@@ -33,10 +33,20 @@ public class MySQLOperation implements DataBase {
     }
 
     @Override
-    public void executeSQLStatement() {
+    public void executeSelectStatement() {
         try {
             configureDBConnection();
             resultSet = statement.executeQuery(sqlStatement);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void executeInsertStatement() {
+        try {
+            configureDBConnection();
+            int resultSet = statement.executeUpdate(sqlStatement);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

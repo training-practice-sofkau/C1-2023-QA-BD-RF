@@ -7,7 +7,9 @@ public interface DataBase {
 
     void configureDBConnection();
 
-    void executeSQLStatement();
+    void executeSelectStatement();
+
+    void executeInsertStatement();
 
     ResultSet getResultSet();
 
