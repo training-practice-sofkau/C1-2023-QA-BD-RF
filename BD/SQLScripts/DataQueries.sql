@@ -37,7 +37,7 @@ WHERE idClienteC = c.idCliente;
 -- -----------------------------------------------------
 SELECT
 		idServicio AS 'Servicio N°',
-        duración AS 'Duración',
+        duracion AS 'Duración',
         fechaServicio AS 'Realizado en',
         descripción AS 'Descripción'
 FROM servicio;
@@ -47,7 +47,7 @@ FROM servicio;
 -- -----------------------------------------------------
 SELECT
 		nombreEmpleado AS 'Empleado',
-        cédula AS 'Identificación'
+        cedula AS 'Identificación'
 FROM empleado;
 
 -- -----------------------------------------------------
@@ -56,7 +56,7 @@ FROM empleado;
 SELECT
 		nombreCliente AS 'Cliente',
         correo AS 'Correo',
-        teléfonoCliente AS 'Teléfono'
+        telefonoCliente AS 'Teléfono'
 FROM cliente;
 
 -- -----------------------------------------------------
@@ -64,7 +64,7 @@ FROM cliente;
 -- -----------------------------------------------------
 SELECT
 		nombreProveedor AS 'Proveedor',
-        teléfonoProveedor AS 'Teléfono'
+        telefonoProveedor AS 'Teléfono'
 FROM proveedor;
 
 -- -----------------------------------------------------

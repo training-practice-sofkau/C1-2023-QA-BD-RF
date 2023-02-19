@@ -9,7 +9,7 @@ USE ocochosBarberia;
 -- -----------------------------------------------------
 CREATE TABLE controlCambiosEmpleado (
 	usuario VARCHAR(100),
-    acción VARCHAR(40),
+    accion VARCHAR(40),
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -19,7 +19,7 @@ CREATE TABLE controlCambiosEmpleado (
 -- -----------------------------------------------------
 CREATE TABLE controlCambiosProveedor (
 	usuario VARCHAR(100),
-    acción VARCHAR(40),
+    accion VARCHAR(40),
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -57,7 +57,7 @@ CREATE TRIGGER updEmpleado
 AFTER UPDATE ON empleado
 FOR EACH ROW
 BEGIN
-IF OLD.cédula <> NEW.cédula AND OLD THEN
+IF OLD.cedula <> NEW.cedula AND OLD THEN
 	INSERT INTO controlCambiosEmpleado
 	VALUES (USER(), 'INVALIDO', NOW());
 ELSEIF OLD.nombreEmpleado <> NEW.cédula THEN

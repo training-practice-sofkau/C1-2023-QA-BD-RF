@@ -75,7 +75,7 @@ GROUP BY c.idCliente;
 CREATE VIEW tiempoTotalEmpleado AS
 SELECT 
 		e.nombreEmpleado AS 'Empleado',
-        SUM(s.duración) AS 'Tiempo total laborado'
+        SUM(s.duracion) AS 'Tiempo total laborado'
 FROM empleado AS e
 INNER JOIN servicio AS s
 ON e.idEmpleado = s.idEmpleadoS;

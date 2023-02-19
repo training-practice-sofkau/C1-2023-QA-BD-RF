@@ -9,11 +9,11 @@ USE ocochosBarberia;
 DELIMITER //
 CREATE PROCEDURE agregarEmpleado (IN idE INT,
 								  IN nombreE VARCHAR(40),
-                                  IN cédulaE VARCHAR(20))
+                                  IN cedulaE VARCHAR(20))
 BEGIN
 INSERT INTO empleado
 VALUES 
-	(idE, nombreE, cédulaE);
+	(idE, nombreE, cedulaE);
 END;
 //
 
@@ -25,7 +25,7 @@ CREATE PROCEDURE empleadoPorId (IN idE INT)
 BEGIN
 SELECT
 		nombreEmpleado AS 'Empleado',
-		cédula AS 'Identificación'
+		cedula AS 'Identificación'
 FROM empleado
 WHERE idEmpleado = idE;
 END;
@@ -37,12 +37,12 @@ END;
 DELIMITER //
 CREATE PROCEDURE actualizarEmpleado (IN idE INT,
 									 IN nombreE VARCHAR(40),
-                                     IN cédulaE VARCHAR(20))
+                                     IN cedulaE VARCHAR(20))
 BEGIN
 UPDATE empleado
 SET
 	nombreEmpleado = nombreE,
-	cédula = cédulaE
+	cedula = cedulaE
 WHERE idEmpleado = idE;
 END;
 //

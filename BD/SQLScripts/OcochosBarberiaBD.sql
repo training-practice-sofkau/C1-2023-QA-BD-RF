@@ -11,7 +11,7 @@ USE ocochosBarberia;
 CREATE TABLE proveedor (
 	idProveedor INT AUTO_INCREMENT,
     nombreProveedor VARCHAR(40),
-    teléfonoProveedor VARCHAR(20),
+    telefonoProveedor VARCHAR(20),
     PRIMARY KEY (idProveedor)
 );
 
@@ -55,7 +55,7 @@ CREATE TABLE cliente (
 	idCliente INT AUTO_INCREMENT,
     nombreCliente VARCHAR(40),
     correo VARCHAR(100),
-    teléfonoCliente VARCHAR(20),
+    telefonoCliente VARCHAR(20),
     PRIMARY KEY (idCliente)
 );
 
@@ -63,7 +63,7 @@ CREATE TABLE cliente (
 CREATE TABLE empleado (
 	idEmpleado INT AUTO_INCREMENT,
     nombreEmpleado VARCHAR(40),
-    cédula VARCHAR(20),
+    cedula VARCHAR(20),
     PRIMARY KEY (idEmpleado)
 );
 
@@ -110,9 +110,9 @@ CREATE TABLE vender (
 -- Tabla Servicio
 CREATE TABLE servicio (
 	idServicio INT AUTO_INCREMENT,
-	duración INT DEFAULT 0, -- ¡En horas!
+	duracion INT DEFAULT 0, -- ¡En horas!
     fechaServicio VARCHAR(100),
-    descripción VARCHAR(250),
+    descripcion VARCHAR(250),
     idClienteS INT,
     idEmpleadoS INT,
     PRIMARY KEY (idServicio),
