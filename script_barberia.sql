@@ -208,6 +208,9 @@ WHERE id_producto = NEW.id_producto;
 END
 //DELIMITER ;
 
+INSERT INTO dll_compra_producto()
+VALUES ('034135', '1000000', '0000000001', 2, 2102);
+
 -- 2do. trigger
 DELIMITER //
 CREATE TRIGGER triggerVentas BEFORE INSERT ON dll_venta_producto
@@ -218,7 +221,11 @@ WHERE id_producto = NEW.ref_producto;
 END
 //DELIMITER ;
 
+INSERT INTO dll_venta_producto()
+VALUES ('03413591', '1000001', '0000000002', 1, 23157);
 
+SELECT *
+FROM tb_producto; 
 -- 3er. trigger
 DELIMITER //
 CREATE TRIGGER prevenir_remover_producto BEFORE DELETE ON tb_producto
@@ -360,12 +367,6 @@ ORDER BY nombre_empleado;
 
 SELECT * 
 FROM servicios_empleado;
-
-INSERT INTO dll_venta_producto()
-VALUES ('034135', '1000000', '0000000001', 1, 2102);
-
-INSERT INTO dll_compra_producto()
-VALUES ('034135', '1000000', '0000000001', 2, 2102);
 
 -- Muestra todos los datos de cada una de las tablas
 SELECT * 
