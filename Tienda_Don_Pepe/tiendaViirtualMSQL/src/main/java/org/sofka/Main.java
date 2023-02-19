@@ -10,6 +10,12 @@ public class Main {
     private static ClienteRepository clienteRepository;
     private static DireccionClienteRepository direccionClienteRepository;
     private static TelefonoClienteRepository telefonoClienteRepository;
+    private static EstadoPedidoRepository estadoPedidoRepository;
+    private static TipoPagoRepository tipoPagoRepository;
+    private static DomiciliarioRepository domiciliarioRepository;
+    private static ProveedorRepository proveedorRepository;
+    private static TelefonoProveedorRepository telefonoProveedorRepository;
+    private static ProductoRepository productoRepository;
 
     public static void main(String[] args) throws SQLException {
         System.out.println("Hello world!");
@@ -23,17 +29,37 @@ public class Main {
 //           zonaPostalRepository.generateData();
 
         // Genera registros de cliente
-        clienteRepository = new ClienteRepository();
-        clienteRepository.generateData();
+//        0
 
         // Genera registros de direccion de clientes
-        direccionClienteRepository = new DireccionClienteRepository();
-        direccionClienteRepository.generateData();
+//        direccionClienteRepository = new DireccionClienteRepository();
+//        direccionClienteRepository.generateData();
 
         //Genera registros de telefono cliente
-        telefonoClienteRepository = new TelefonoClienteRepository();
-        telefonoClienteRepository.generateData();
+//        telefonoClienteRepository = new TelefonoClienteRepository();
+//        telefonoClienteRepository.generateData();
 
+        // Genera registros de estado de pedido
+//           estadoPedidoRepository=new EstadoPedidoRepository();
+//           estadoPedidoRepository.generateData();
 
+         //Generar registros domiciliarios
+//           domiciliarioRepository = new DomiciliarioRepository();
+//           domiciliarioRepository.generateData();
+
+        // Genera registros de tipo de pago
+//           tipoPagoRepository=new TipoPagoRepository();
+//           tipoPagoRepository.generateData();
+
+        //Genera registros de proveedor
+//        00
+
+        //Genera telefono proveedor
+//        telefonoProveedorRepository = new TelefonoProveedorRepository();
+//        telefonoProveedorRepository.generateData();
+
+        // Generar registros de productos
+        productoRepository = new ProductoRepository();
+        productoRepository.generateData();
     }
 }
