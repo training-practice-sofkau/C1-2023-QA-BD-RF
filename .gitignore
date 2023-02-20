@@ -1,0 +1,14 @@
+SoluciónTallerBDRetoFinal.docx
+~$luciónTallerBDRetoFinal.docx
+OcochosBarberia/.gradle
+OcochosBarberia/build/
+OcochosBarberia/!gradle/wrapper/gradle-wrapper.jar
+OcochosBarberia/!**/src/main/**/build/
+OcochosBarberia/!**/src/test/**/build/
+OcochosBarberia/.idea
+OcochosBarberia/*.iws
+OcochosBarberia/*.iml
+OcochosBarberia/*.ipr
+OcochosBarberia/out/
+OcochosBarberia/!**/src/main/**/out/
+OcochosBarberia/!**/src/test/**/out/
